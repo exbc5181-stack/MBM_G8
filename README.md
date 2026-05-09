@@ -1,2 +1,8 @@
 # MBM_G8
-PROYECTO FINAL
+#Proyecto:  
+##Integrantes:  
+##Objetivo:  
+##Conjunto de datos:  
+##Flujo de trabajo:  
+
+
