@@ -13,7 +13,7 @@ Realizar el ensamblaje de *novo* y la validación taxonómica del bacteriófago 
 * Validar taxonómicamente las secuencias ensambladas mediante herramientas de comparación y clasificación molecular.   
 * Analizar la relevancia biológica del bacteriófago T4 como posible alternativa para el control de cepas resistentes de *Escherichia coli*.  
 
-## CONJUNTO DE DATOS:  
+## DATASET:  
 ## FLUJO DE TRABAJO:  
 ## RESULTADOS:  
 
