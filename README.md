@@ -1,5 +1,5 @@
 # MBM_G8
-## PROYECTO:  
+## PROYECTO: Ensamblaje de *novo* y validación taxonómica del bacteriófago T4 como alternativa biológica para el control de cepas resistentes de *Escherichia coli*  
 ## INTEGRANTES:
 * Edison Gustavo Agualema Valdéz
 * Edisson Xavier Balarezo Cambi
