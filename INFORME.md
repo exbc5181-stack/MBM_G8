@@ -35,35 +35,6 @@ El funcionamiento de un fago, como el **Fago T4**, se basa en el ciclo lítico, 
 ---
 
 ## 2. METODOLOGÍA:   
-```mermaid
-graph TD
-    %% Estilos de los bloques
-    classDef input fill:#f9f,stroke:#333,stroke-width:2px;
-    classDef tool fill:#bbf,stroke:#333,stroke-width:2px;
-    classDef output fill:#bfb,stroke:#333,stroke-width:2px;
-
-    %% Nodos y flujo
-    In((ID SRA: DRR317419)):::input --> T1[fasterq-dump]:::tool
-    T1 --> Out1[/Lecturas FASTQ Pareadas/]:::output
-    
-    Out1 --> T2[FastQC]:::tool
-    T2 --> Out2[/Reporte de Calidad HTML/]:::output
-    
-    Out1 --> T3[Trimmomatic]:::tool
-    Out3[/FASTQ Filtrados Paired/]:::output
-    T3 --> Out3
-    
-    Out3 --> T4[Shovill / SPAdes]:::tool
-    T4 --> Out4((Genoma: contigs.fasta)):::output
-
-    %% Agrupación visual
-    subgraph "Procesamiento Genómico Fago T4"
-    T1
-    T2
-    T3
-    T4
-    end
-```
 
 
 
