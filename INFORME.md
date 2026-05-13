@@ -35,45 +35,36 @@ El funcionamiento de un fago, como el **Fago T4**, se basa en el ciclo lítico, 
 ---
 
 ## 2. METODOLOGÍA:   
-
+```mermaid
 graph TD
-    %% Definición de Estilos
+    %% Estilos de los bloques
     classDef input fill:#f9f,stroke:#333,stroke-width:2px;
     classDef tool fill:#bbf,stroke:#333,stroke-width:2px;
     classDef output fill:#bfb,stroke:#333,stroke-width:2px;
 
-    %% Nodos del Workflow
-    In((ID SRA: DRR317419)):::input
+    %% Nodos y flujo
+    In((ID SRA: DRR317419)):::input --> T1[fasterq-dump]:::tool
+    T1 --> Out1[/Lecturas FASTQ Pareadas/]:::output
     
-    T1[fasterq-dump]:::tool
-    Out1[/Lecturas FASTQ Pareadas/][RAW DATA]:::output
+    Out1 --> T2[FastQC]:::tool
+    T2 --> Out2[/Reporte de Calidad HTML/]:::output
     
-    T2[FastQC]:::tool
-    Out2[/Reporte de Calidad HTML/]:::output
-    
-    T3[Trimmomatic]:::tool
+    Out1 --> T3[Trimmomatic]:::tool
     Out3[/FASTQ Filtrados Paired/]:::output
-    
-    T4[Shovill / SPAdes]:::tool
-    Out4((Genoma: contigs.fasta)):::output
-
-    %% Conexiones
-    In --> T1
-    T1 --> Out1
-    Out1 --> T2
-    T2 --> Out2
-    Out1 --> T3
     T3 --> Out3
-    Out3 --> T4
-    T4 --> Out4
+    
+    Out3 --> T4[Shovill / SPAdes]:::tool
+    T4 --> Out4((Genoma: contigs.fasta)):::output
 
-    %% Anotación de proceso
+    %% Agrupación visual
     subgraph "Procesamiento Genómico Fago T4"
     T1
     T2
     T3
     T4
     end
+```
+
 
 
 ## 3. RESULTADOS:   
