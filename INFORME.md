@@ -34,6 +34,22 @@ El funcionamiento de un fago, como el **Fago T4**, se basa en el ciclo lítico, 
 
 ---
 
+# Hipótesis y pregunta de investigación
+
+## Pregunta de investigación
+
+¿El análisis bioinformático del espécimen DRR817419, mediante ensamblaje *de novo* y clasificación taxonómica, permite identificar correctamente su composición genética y establecer su relación taxonómica utilizando herramientas computacionales?
+
+---
+
+## Hipótesis
+
+Se plantea que el ensamblaje *de novo* del dataset DRR817419 generará secuencias organizadas y de calidad suficiente para permitir una clasificación taxonómica precisa del organismo analizado.
+
+Además, se considera que el uso de diferentes plataformas bioinformáticas, como Linux Ubuntu y Galaxy, permitirá obtener resultados reproducibles y comparables durante el proceso de análisis.
+
+---
+
 ## 2. METODOLOGÍA:   
 
 
