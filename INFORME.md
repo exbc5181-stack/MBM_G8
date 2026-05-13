@@ -36,9 +36,6 @@ El funcionamiento de un fago, como el **Fago T4**, se basa en el ciclo lítico, 
 
 ## 2. METODOLOGÍA:   
 
-
-**Workflow Bioinformático del Proyecto
-
 graph TD
     %% Definición de Estilos
     classDef input fill:#f9f,stroke:#333,stroke-width:2px;
@@ -77,6 +74,7 @@ graph TD
     T3
     T4
     end
+
 
 ## 3. RESULTADOS:   
 ## 4. DISCUSIÓN:  
