@@ -18,12 +18,12 @@ Realizar el ensamblaje de *novo* y la validación taxonómica del bacteriófago 
 
 ## CONJUNTO DE DATOS (DATASET):  
 ### Datos de Secuenciación de Lecturas Crudas (Raw Reads)
-Se utilizaron lecturas crudas depositadas en el Sequence Read Archive (SRA) del NCBI, las cuales representan la base experimental para el ensamblaje de *novo* del genoma viral.
-•	**Identificador de Acceso (SRA):** DRR817419.
-•	**Plataforma de Secuenciación:** Illumina NovaSeq 6000.
-•	**Estrategia de Librería:** WGS (Whole Genome Sequencing).
-•	**Configuración de Lecturas:** Paired-end (Lecturas emparejadas).
-•	**Volumen de Datos Crudos:** 1.5 G bases, con un tamaño de archivo comprimido de 457.8 MB.
+Se utilizaron lecturas crudas depositadas en el Sequence Read Archive (SRA) del NCBI, las cuales representan la base experimental para el ensamblaje de *novo* del genoma viral.  
+•	**Identificador de Acceso (SRA):** DRR817419.  
+•	**Plataforma de Secuenciación:** Illumina NovaSeq 6000.  
+•	**Estrategia de Librería:** WGS (Whole Genome Sequencing).  
+•	**Configuración de Lecturas:** Paired-end (Lecturas emparejadas).  
+•	**Volumen de Datos Crudos:** 1.5 G bases, con un tamaño de archivo comprimido de 457.8 MB.  
 •	**Importancia Técnica:** La utilización de la plataforma NovaSeq 6000 garantiza una alta fidelidad en las lecturas, lo que permite un pre-procesamiento riguroso y un ensamblaje de alta calidad.
 
 ### Genoma de Referencia (Gold Standard)
