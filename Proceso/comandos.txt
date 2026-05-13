@@ -1,0 +1,18 @@
+Memoria de Comandos y Herramientas
+
+En esta sección se detallan los comandos ejecutados en la terminal de Lubuntu para el procesamiento de los datos de *Escherichia coli*.
+
+## 1. Descarga de Datos (NCBI SRA)
+Se utilizó el ID de acceso **DRR817419**.
+```bash
+fastq-dump --split-files --gzip DRR817419
+
+2. Preprocesamiento y Control de Calidad
+
+fastp -i DRR817419_1.fastq.gz -I DRR817419_2.fastq.gz \
+      -o clean_R1.fastq.gz -O clean_R2.fastq.gz \
+      -h reporte_limpieza.html
+
+3. Ensamblaje
+
+spades.py -1 clean_R1.fastq.gz -2 clean_R2.fastq.gz -o ensamblaje_resultado
