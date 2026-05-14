@@ -57,9 +57,9 @@ Se evaluó el estado de las secuencias mediante FastQC para detectar artefactos 
 **Comando utilizado:**  
 `fastqc DRR817419_1.fastq DRR817419_2.fastq`  
 
-Se utilizó el comando `xdg-open` para abrir los reportes HTML generados por FASTQC y visualizar los resultados del control de calidad de las secuencias.
+Se generaron reportes HTML para inspeccionar la calidad de bases y contenido de adaptadores.   
 
-Se generaron reportes HTML para inspeccionar la calidad de bases y contenido de adaptadores.  
+Posteriormenete, se utilizó el comando `xdg-open` para abrir los reportes HTML generados por FASTQC y visualizar los resultados del control de calidad de las secuencias.  
 
 <img width="881" height="584" alt="image" src="https://github.com/user-attachments/assets/039b66f4-33f7-4ccc-90ec-2883ea0c64e6" />      
 
@@ -80,7 +80,12 @@ Se aplicó un filtrado riguroso mediante Trimmomatic v0.39 para garantizar que s
 output_1_paired.fq output_1_unpaired.fq \
 output_2_paired.fq output_2_unpaired.fq \
 ILLUMINACLIP:TruSeq3-PE.fa:2:30:10 HEADCROP:15 \
-LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:36`  
+LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:36`   
+
+<img width="1020" height="408" alt="image" src="https://github.com/user-attachments/assets/5b973129-a329-4c81-8d42-23fc0d579b13" />  
+
+*Fig. 5* Ejecución de Trimmomatic para el filtrado y recorte de calidad de lecturas paired-end.  
+
 
 
 
