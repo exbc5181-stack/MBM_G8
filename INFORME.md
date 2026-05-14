@@ -92,9 +92,18 @@ MINLEN:36`
 Posteriormente, se ejecutó nuevamente el comando `FASTQC` sobre las secuencias filtradas para evaluar la calidad de las lecturas procesadas y, mediante el comando `xdg-open`, se visualizaron los reportes HTML generados.   
 
 <img width="1016" height="406" alt="image" src="https://github.com/user-attachments/assets/54ad6a8a-118b-4dbe-b631-b128f89f7953" />    
-*Fig. 6 Ejecución del comando fastq en las secuencias limpias en la terminal  
+*Fig. 6* Ejecución del comando fastq en las secuencias limpias en la terminal  
 
 **2. Fase de Ensamblaje de novo (Entorno: Galaxy)**   
+
+**2.1 Reconstrucción Genómica con SPAdes**   
+Los archivos resultantes output_1_paired.fq y output_2_paired.fq se cargaron en Galaxy. Se utilizó el ensamblador SPAdes configurado para genomas virales, procesando las lecturas pareadas para reconstruir los contigs del Bacteriófago T4.  
+<img width="997" height="438" alt="image" src="https://github.com/user-attachments/assets/ec1b7385-f2cb-4560-946d-ffc90fe4f85d" />   
+
+*Fig. 7* Visualización de los scaffolds ensamblados mediante SPAdes en la plataforma Galaxy.
+
+
+
 
 
 
