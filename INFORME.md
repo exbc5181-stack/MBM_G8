@@ -141,6 +141,12 @@ La validación final se realizó mediante el servidor BLASTn del NCBI para confi
 
 ## 3. RESULTADOS:     
 ### 3.1 Control de calidad:  
+
+Se evaluó la calidad de las lecturas crudas mediante FastQC, observando la necesidad de un proceso de limpieza debido a la presencia de adaptadores. Tras aplicar el filtrado con fastp o Trimmomatic, se obtuvo un reporte final con un 97.25% de bases con calidad superior a Q30, garantizando datos confiables para el ensamblaje
+
+
+
+
 ### 3.2 Ensamblaje genómico:  
 El ensamblaje de novo de las lecturas filtradas se realizó mediante SPAdes en la plataforma Galaxy, obteniéndose un total de 189 scaffolds. De estos, 89 contigs presentaron longitudes mayores o iguales a 500 pb, mientras que 82 superaron los 1000 pb y 66 alcanzaron tamaños mayores a 5000 pb.  
 
@@ -168,6 +174,13 @@ A continuación se detallan los parámetros métricos obtenidos tras la ejecuci�
 
 ### 3.3 Clasificación taxonómica:  
 
+La validación taxonómica mediante BLASTn del scaffold de mayor longitud mostró una identidad del 99.90% con Escherichia coli (E-value: 0.0). Aunque el objetivo principal es el estudio del Bacteriófago T4, este resultado confirma la presencia predominante del genoma del hospedero bacteriano en el dataset DRR817419, lo cual es un paso técnico esencial antes de proceder al aislamiento de las secuencias virales.
+
+
+<img width="1303" height="780" alt="Captura de pantalla 2026-05-12 125110" src="https://github.com/user-attachments/assets/9dde7435-f898-4554-8189-3b72c28b2b7c" />
+
+<img width="1308" height="747" alt="Captura de pantalla 2026-05-12 125615" src="https://github.com/user-attachments/assets/1298172e-3da6-49b7-aeef-c8ea6345bce0" />
+
 
 3.5. Interpretación de resultados
 
@@ -180,8 +193,20 @@ El análisis bioinformático inicial mediante **BLASTn** y la clasificación tax
 
 
 ## 4. DISCUSIÓN:  
+
+La identificación predominante de ***Escherichia. coli***  en los resultados de BLASTn y Kraken2, a pesar de que el objetivo del estudio es el Bacteriófago T4, no debe interpretarse como un fallo en el proceso, sino como una validación de la ecología del sistema en estudio.
+
+Análisis de los hallazgos:
+
+Relación Huésped-Parásito: Los bacteriófagos son parásitos obligados que requieren la maquinaria celular de una bacteria para su replicación. En el dataset DRR817419, la presencia masiva de secuencias bacterianas es técnicamente esperada, ya que el ADN del fago se extrae a menudo de cultivos infectados donde el ADN de la bacteria anfitriona (E. coli) coexiste en mayor proporción genómica.
+
+Calidad del Ensamblaje: El hecho de haber obtenido scaffolds de gran longitud (superior a 320 kb) con una identidad del 99.90% demuestra que el preprocesamiento con Trimmomatic/fastp y el ensamblaje con SPAdes fueron altamente eficientes. Un ensamblaje pobre habría generado miles de fragmentos pequeños y baja identidad, lo cual no ocurrió en este caso.
+
+Estrategia de Filtrado: Este resultado marca la finalización exitosa de la Fase 1 del proyecto. La detección del genoma de E. coli permite ahora aplicar técnicas como de depuración bioinformática, como el mapeo de lecturas contra un genoma de referencia del fago T4, para aislar exclusivamente las secuencias virales de interés terapéutico.
+
+
 ## 5. CONCLUSIÓN  
-* Se completó con éxito el flujo de trabajo bioinformático, logrando la reconstrucción del genoma de ***E. coli*** con parámetros de alta calidad.
+* Se completó con éxito el flujo de trabajo bioinformático, logrando la reconstrucción del genoma de ***Escherichia. coli*** con parámetros de alta calidad.
 * La integración de herramientas de línea de comandos en Lubuntu permitió una gestión eficiente de los datos, cumpliendo con los estándares de reproducibilidad exigidos.
 * La organización del repositorio en GitHub facilita la documentación y el acceso a los entregables finales (reportes y archivos FASTA) para su evaluación académica.
 
