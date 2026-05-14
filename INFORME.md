@@ -46,7 +46,9 @@ Se utilizó el SRA Toolkit para la extracción de las lecturas del identificador
 `fasterq-dump --split-files DRR817419`  
 Se generaron dos archivos FASTQ correspondientes a las lecturas Forward y Reverse.    
 La implementación del parámetro --split-files tiene como objetivo la segregación del registro original en dos archivos FASTQ independientes (Forward y Reverse). Este procedimiento es un requisito técnico para el procesamiento de librerías Paired-end.  
-<img width="886" height="498" alt="image" src="https://github.com/user-attachments/assets/ccec8d31-1d97-4c2a-b68a-b468ee761063" />
+<img width="902" height="621" alt="image" src="https://github.com/user-attachments/assets/b9d56962-21de-4280-891e-9a3cfacaba44" />
+                         *Fig. 1* Ejecución del comando fasterq-dump en la terminal
+
 
 
 
