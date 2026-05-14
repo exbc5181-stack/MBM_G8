@@ -61,8 +61,8 @@ Se generaron reportes HTML para inspeccionar la calidad de bases y contenido de 
 
 Posteriormenete, se utilizó el comando `xdg-open` para abrir los reportes HTML generados por FASTQC y visualizar los resultados del control de calidad de las secuencias.  
 
-<img width="881" height="584" alt="image" src="https://github.com/user-attachments/assets/039b66f4-33f7-4ccc-90ec-2883ea0c64e6" />      
-
+ <img width="1005" height="497" alt="image" src="https://github.com/user-attachments/assets/9f87d68d-e3f5-40ab-b807-ba8d207b531f" />   
+ 
 *Fig. 2* Ejecución del comando fastq en la terminal    
 
 <img width="958" height="282" alt="image" src="https://github.com/user-attachments/assets/0f2a8dd7-6dc4-4fe4-b4c7-7a100c0d6cb9" />   
