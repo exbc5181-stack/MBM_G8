@@ -139,7 +139,20 @@ La validación final se realizó mediante el servidor BLASTn del NCBI para confi
 
 
 
-## 3. RESULTADOS:   
+## 3. RESULTADOS:     
+### 3.1 Control de calidad:  
+### 3.2 Ensamblaje genómico:  
+El ensamblaje de novo de las lecturas filtradas se realizó mediante SPAdes en la plataforma Galaxy, obteniéndose un total de 189 scaffolds. De estos, 89 contigs presentaron longitudes mayores o iguales a 500 pb, mientras que 82 superaron los 1000 pb y 66 alcanzaron tamaños mayores a 5000 pb.  
+
+La longitud total del ensamblaje fue de 4,661,610 pb y el scaffold de mayor tamaño alcanzó 327,394 pb. Asimismo, el ensamblaje presentó un valor de N50 de 118,604 pb y un L50 de 12, indicando una adecuada continuidad de las secuencias ensambladas.  
+
+El contenido GC obtenido fue de 50,2 %, con un total de 800 bases ambiguas (Ns), correspondientes a 17,24 Ns por cada 100 kbp. En conjunto, estos resultados evidencian una adecuada calidad del ensamblaje generado a partir de las lecturas procesadas.  
+
+Debido a que el tamaño total del ensamblaje superó el tamaño esperado del genoma de referencia del bacteriófago T4 (~169 kb), los scaffolds obtenidos fueron posteriormente considerados para análisis de clasificación taxonómica, con el fin de identificar las secuencias asociadas al genoma viral y posibles fragmentos correspondientes al hospedero bacteriano.  
+
+### 3.3 Clasificación taxonómica:  
+
+
 ## 4. DISCUSIÓN:  
 ## 5. CONCLUSIÓN  
 ## 6. REFERENCIAS BIBLIOGRÁFICAS:  
