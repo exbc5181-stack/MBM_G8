@@ -37,12 +37,13 @@ El funcionamiento de un fago, como el **Fago T4**, se basa en el ciclo lítico, 
 ## 2. METODOLOGÍA:  
 Para el desarrollo de este proyecto, se implementó una estrategia bioinformática híbrida y multientorno, diseñada para garantizar la máxima precisión en la reconstrucción genómica del Bacteriófago T4. Esta aproximación integra el uso de entornos locales basados en Linux (Lubuntu) para el pre-procesamiento crítico, la plataforma de computación de alto rendimiento Galaxy para el ensamblaje de novo y los servidores del NCBI (BLASTn) para la validación taxonómica final.  
 
-**1. Fase de Pre-procesamiento y Control de Calidad (Entorno: Lubuntu Linux)**
+**1. Fase de Pre-procesamiento y Control de Calidad (Entorno: Lubuntu Linux)**  
 El manejo inicial de los datos se realizó mediante la terminal de comandos en Lubuntu, priorizando la eficiencia en la manipulación de archivos de gran volumen.  
 
 **1.1 Obtención de Datos Crudos y Descompresión de Librerías**  
 Se utilizó el SRA Toolkit para la extracción de las lecturas del identificador **DRR817419.**  
-´´fasterq-dump --split-files DRR817419´´
+Comando utilizado:  
+`fasterq-dump --split-files DRR817419`
 
 
 
