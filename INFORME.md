@@ -77,11 +77,13 @@ Posteriormenete, se utilizó el comando `xdg-open` para abrir los reportes HTML 
 Se aplicó un filtrado riguroso mediante Trimmomatic v0.39 para garantizar que solo bases de alta confianza participen en el ensamblaje.  
 
 **Comando utilizado:**  
-`java -jar trimmomatic.jar PE DRR817419_1.fastq DRR817419_2.fastq \
+`java -jar /usr/share/java/trimmomatic.jar PE -phred33 \
+DRR817419_1.fastq DRR817419_2.fastq \
 output_1_paired.fq output_1_unpaired.fq \
 output_2_paired.fq output_2_unpaired.fq \
-ILLUMINACLIP:TruSeq3-PE.fa:2:30:10 HEADCROP:15 \
-LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:36`   
+HEADCROP:15 \
+SLIDINGWINDOW:4:20 \
+MINLEN:36`   
 
 <img width="1020" height="211" alt="image" src="https://github.com/user-attachments/assets/f9ceca3f-5eeb-435c-8498-6e94d47b9a96" />    
 
