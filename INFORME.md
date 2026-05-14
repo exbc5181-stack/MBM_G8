@@ -146,8 +146,6 @@ La validación final se realizó mediante el servidor BLASTn del NCBI para confi
 Se evaluó la calidad de las lecturas crudas mediante FastQC, observando la necesidad de un proceso de limpieza debido a la presencia de adaptadores. Tras aplicar el filtrado con fastp o Trimmomatic, se obtuvo un reporte final con un 97.25% de bases con calidad superior a Q30, garantizando datos confiables para el ensamblaje
 
 
-
-
 ### 3.2 Ensamblaje genómico:  
 El ensamblaje de novo de las lecturas filtradas se realizó mediante SPAdes en la plataforma Galaxy, obteniéndose un total de 189 scaffolds. De estos, 89 contigs presentaron longitudes mayores o iguales a 500 pb, mientras que 82 superaron los 1000 pb y 66 alcanzaron tamaños mayores a 5000 pb.  
 
@@ -181,6 +179,13 @@ La validación taxonómica mediante BLASTn del scaffold de mayor longitud mostr�
 <img width="1303" height="780" alt="Captura de pantalla 2026-05-12 125110" src="https://github.com/user-attachments/assets/9dde7435-f898-4554-8189-3b72c28b2b7c" />
 
 <img width="1308" height="747" alt="Captura de pantalla 2026-05-12 125615" src="https://github.com/user-attachments/assets/1298172e-3da6-49b7-aeef-c8ea6345bce0" />
+
+La secuencia obtenida de 168,129 pb fue validada mediante la herramienta BLASTn contra la base de datos de nucleótidos (nt/nr) de NCBI. Los resultados confirmaron con un 99.98% de identidad y un 100% de cobertura de consulta que el ensamblaje corresponde al genoma completo de Escherichia virus T4. Este resultado valida la eficacia de la estrategia de filtrado por mapeo contra referencia, logrando aislar el material genético viral del hospedero bacteriano con alta precisión
+
+<img width="1302" height="792" alt="Captura de pantalla 2026-05-14 134801" src="https://github.com/user-attachments/assets/a7f878cb-e289-4f51-b286-f84bd087f532" />
+
+<img width="1321" height="804" alt="Captura de pantalla 2026-05-14 134945" src="https://github.com/user-attachments/assets/996a315b-1516-466b-ae35-d04efb00a3d0" />
+
 
 
 3.5. Interpretación de resultados
