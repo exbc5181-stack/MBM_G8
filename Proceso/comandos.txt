@@ -1,18 +1,22 @@
-Memoria de Comandos y Herramientas
+# Memoria de Comandos y Herramientas - Grupo 8
 
-En esta sección se detallan los comandos ejecutados en la terminal de Lubuntu para el procesamiento de los datos de *Escherichia coli*.
+En esta sección se detallan los comandos ejecutados en la terminal de Lubuntu para el procesamiento de los datos del dataset **DRR817419**.
 
 ## 1. Descarga de Datos (NCBI SRA)
-Se utilizó el ID de acceso **DRR817419**.
+Se utilizó el ID de acceso **DRR817419** para obtener las lecturas pareadas.
 ```bash
 fastq-dump --split-files --gzip DRR817419
 
-2. Preprocesamiento y Control de Calidad
-
+2. Preprocesamiento y Control de Calidad (fastp)
+Se realizó la limpieza de adaptadores y filtrado por calidad (Q30).
 fastp -i DRR817419_1.fastq.gz -I DRR817419_2.fastq.gz \
       -o clean_R1.fastq.gz -O clean_R2.fastq.gz \
       -h reporte_limpieza.html
 
-3. Ensamblaje
-
+3. Ensamblaje de novo (SPAdes)
+Se reconstruyeron los scaffolds a partir de las lecturas limpias.
 spades.py -1 clean_R1.fastq.gz -2 clean_R2.fastq.gz -o ensamblaje_resultado
+
+4. Validación Taxonómica
+Uso de BLASTn para comparar el scaffold líder contra la base de datos de NCBI.
+# Ejecutado mediante servidor web NCBI
