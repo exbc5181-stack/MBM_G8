@@ -57,6 +57,8 @@ Se evaluó el estado de las secuencias mediante FastQC para detectar artefactos 
 **Comando utilizado:**  
 `fastqc DRR817419_1.fastq DRR817419_2.fastq`  
 
+Se utilizó el comando `xdg-open` para abrir los reportes HTML generados por FASTQC y visualizar los resultados del control de calidad de las secuencias.
+
 Se generaron reportes HTML para inspeccionar la calidad de bases y contenido de adaptadores.  
 
 <img width="881" height="584" alt="image" src="https://github.com/user-attachments/assets/039b66f4-33f7-4ccc-90ec-2883ea0c64e6" />      
@@ -65,7 +67,23 @@ Se generaron reportes HTML para inspeccionar la calidad de bases y contenido de 
 
 <img width="958" height="282" alt="image" src="https://github.com/user-attachments/assets/0f2a8dd7-6dc4-4fe4-b4c7-7a100c0d6cb9" />   
 
-*Fig. 3* Reportes HTML
+*Fig. 3* Reportes HTML en la terminal  
+
+<img width="987" height="397" alt="image" src="https://github.com/user-attachments/assets/12d496b1-32d6-4e76-ae49-1b3cede46a4f" />    
+
+*Fig. 4* Apertura de reportes FASTQC mediante el comando xdg-open en Linux.  
+
+**1.3 Limpieza y Filtrado de Lecturas (Trimming)**  
+Se aplicó un filtrado riguroso mediante Trimmomatic v0.39 para garantizar que solo bases de alta confianza participen en el ensamblaje.  
+**Comando utilizado:**  
+`java -jar trimmomatic.jar PE DRR817419_1.fastq DRR817419_2.fastq \
+output_1_paired.fq output_1_unpaired.fq \
+output_2_paired.fq output_2_unpaired.fq \
+ILLUMINACLIP:TruSeq3-PE.fa:2:30:10 HEADCROP:15 \
+LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:36`  
+
+
+
 
 
 
