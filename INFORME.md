@@ -75,6 +75,7 @@ Posteriormenete, se utilizó el comando `xdg-open` para abrir los reportes HTML 
 
 **1.3 Limpieza y Filtrado de Lecturas (Trimming)**  
 Se aplicó un filtrado riguroso mediante Trimmomatic v0.39 para garantizar que solo bases de alta confianza participen en el ensamblaje.  
+
 **Comando utilizado:**  
 `java -jar trimmomatic.jar PE DRR817419_1.fastq DRR817419_2.fastq \
 output_1_paired.fq output_1_unpaired.fq \
@@ -84,7 +85,20 @@ LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:36`
 
 <img width="1020" height="408" alt="image" src="https://github.com/user-attachments/assets/5b973129-a329-4c81-8d42-23fc0d579b13" />  
 
-*Fig. 5* Ejecución de Trimmomatic para el filtrado y recorte de calidad de lecturas paired-end.  
+*Fig. 5* Ejecución de Trimmomatic para el filtrado y recorte de calidad de lecturas paired-end.    
+
+Posteriormente, se ejecutó nuevamente el comando `FASTQC` sobre las secuencias filtradas para evaluar la calidad de las lecturas procesadas y, mediante el comando `xdg-open`, se visualizaron los reportes HTML generados.   
+
+<img width="1016" height="406" alt="image" src="https://github.com/user-attachments/assets/54ad6a8a-118b-4dbe-b631-b128f89f7953" />    
+*Fig. 6 Ejecución del comando fastq en las secuencias limpias en la terminal  
+
+**2. Fase de Ensamblaje de novo (Entorno: Galaxy)**   
+
+
+
+
+
+
 
 
 
