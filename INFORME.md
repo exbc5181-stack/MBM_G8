@@ -50,7 +50,7 @@ La implementación del parámetro --split-files tiene como objetivo la segregaci
 
 <img width="902" height="621" alt="image" src="https://github.com/user-attachments/assets/b9d56962-21de-4280-891e-9a3cfacaba44" />   
 
-*Fig. 1* Ejecución del comando fasterq-dump en la terminal  
+*Fig. 1* Ejecución del comando fasterq-dump en la terminal   
 
 **1.2 Control de Calidad Inicial (QC)**  
 Se evaluó el estado de las secuencias mediante FastQC para detectar artefactos técnicos.  
@@ -61,7 +61,12 @@ Se generaron reportes HTML para inspeccionar la calidad de bases y contenido de 
 
 <img width="881" height="584" alt="image" src="https://github.com/user-attachments/assets/039b66f4-33f7-4ccc-90ec-2883ea0c64e6" />      
 
-*Fig. 2* Ejecución del comando fastq en la terminal
+*Fig. 2* Ejecución del comando fastq en la terminal    
+
+<img width="958" height="282" alt="image" src="https://github.com/user-attachments/assets/0f2a8dd7-6dc4-4fe4-b4c7-7a100c0d6cb9" />   
+
+*Fig. 3* Reportes HTML
+
 
 
 
