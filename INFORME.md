@@ -59,7 +59,7 @@ Se evaluó el estado de las secuencias mediante FastQC para detectar artefactos 
 
 Se generaron reportes HTML para inspeccionar la calidad de bases y contenido de adaptadores.   
 
-Posteriormenete, se utilizó el comando `xdg-open` para abrir los reportes HTML generados por FASTQC y visualizar los resultados del control de calidad de las secuencias.  
+Posteriormente, se utilizó el comando `xdg-open` para abrir los reportes HTML generados por FASTQC y visualizar los resultados del control de calidad de las secuencias.  
 
  <img width="1005" height="497" alt="image" src="https://github.com/user-attachments/assets/9f87d68d-e3f5-40ab-b807-ba8d207b531f" />   
  
