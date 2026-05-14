@@ -206,9 +206,9 @@ Estrategia de Filtrado: Este resultado marca la finalización exitosa de la Fase
 
 
 ## 5. CONCLUSIÓN  
-* Se completó con éxito el flujo de trabajo bioinformático, logrando la reconstrucción del genoma de ***Escherichia. coli*** con parámetros de alta calidad.
-* La integración de herramientas de línea de comandos en Lubuntu permitió una gestión eficiente de los datos, cumpliendo con los estándares de reproducibilidad exigidos.
-* La organización del repositorio en GitHub facilita la documentación y el acceso a los entregables finales (reportes y archivos FASTA) para su evaluación académica.
+
+En el presente proyecto se logró estandarizar un flujo bioinformático funcional para el análisis de genomas complejos, integrando herramientas de terminal en Lubuntu y plataformas de alto rendimiento. Se validó con éxito la calidad de las lecturas mediante fastp, alcanzando un Q30 del 97.25%, y se obtuvo un ensamblaje robusto de la bacteria hospedera ***Escherichia. coli*** con una identidad del 99.90%. Estos resultados cumplen con la fase inicial de caracterización genómica, permitiendo la futura identificación y aislamiento de las secuencias específicas del Bacteriófago T4 para aplicaciones en terapia fágica contra cepas multirresistentes.
+A pesar de la alta contaminación con ADN del hospedero ***Escherichia. coli***, la aplicación de un mapeo por homología permitió el aislamiento y reconstrucción de un scaffold de 168.1 kb, correspondiente al genoma completo del Fago T4
 
 ## 6. REFERENCIAS BIBLIOGRÁFICAS:  
 
