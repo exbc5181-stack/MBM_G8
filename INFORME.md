@@ -105,8 +105,9 @@ Los archivos resultantes output_1_paired.fq y output_2_paired.fq se cargaron en 
 ### **3. Fase de Validación Taxonómica (Entorno: NCBI BLASTn)**  
 La validación final se realizó mediante el servidor BLASTn del NCBI para confirmar la identidad biológica de las secuencias obtenidas.  
 
-<img width="1013" height="364" alt="image" src="https://github.com/user-attachments/assets/ef90b464-dcb8-44b9-a738-37696f5b3eb6" />  
-*Fig. 8* Validación taxonómica en BLASTn 
+<img width="1013" height="364" alt="image" src="https://github.com/user-attachments/assets/ef90b464-dcb8-44b9-a738-37696f5b3eb6" />     
+
+*Fig. 8*  Validación taxonómica en BLASTn 
 
 
 
