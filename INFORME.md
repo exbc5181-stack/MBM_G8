@@ -92,6 +92,7 @@ MINLEN:36`
 Posteriormente, se ejecutó nuevamente el comando `FASTQC` sobre las secuencias filtradas para evaluar la calidad de las lecturas procesadas y, mediante el comando `xdg-open`, se visualizaron los reportes HTML generados.   
 
 <img width="1016" height="406" alt="image" src="https://github.com/user-attachments/assets/54ad6a8a-118b-4dbe-b631-b128f89f7953" />    
+
 *Fig. 6* Ejecución del comando fastq en las secuencias limpias en la terminal  
 
 ### **2. Fase de Ensamblaje de novo (Entorno: Galaxy)**   
