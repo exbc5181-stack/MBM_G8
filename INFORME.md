@@ -65,7 +65,7 @@ Posteriormenete, se utilizó el comando `xdg-open` para abrir los reportes HTML 
  
 *Fig. 2* Ejecución del comando fastq en la terminal    
 
-<img width="958" height="282" alt="image" src="https://github.com/user-attachments/assets/0f2a8dd7-6dc4-4fe4-b4c7-7a100c0d6cb9" />   
+<img width="991" height="282" alt="image" src="https://github.com/user-attachments/assets/2fb1b6c1-90be-420a-8d04-3379f28b9dbf" />    
 
 *Fig. 3* Reportes HTML en la terminal  
 
