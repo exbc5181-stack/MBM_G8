@@ -49,7 +49,7 @@ Se generaron dos archivos FASTQ correspondientes a las lecturas Forward y Revers
 La implementación del parámetro --split-files tiene como objetivo la segregación del registro original en dos archivos FASTQ independientes (Forward y Reverse). Este procedimiento es un requisito técnico para el procesamiento de librerías Paired-end.  
 
 <img width="902" height="621" alt="image" src="https://github.com/user-attachments/assets/b9d56962-21de-4280-891e-9a3cfacaba44" />  
-                         *Fig. 1* Ejecución del comando fasterq-dump en la terminal  
+*Fig. 1* Ejecución del comando fasterq-dump en la terminal  
 
 **1.2 Control de Calidad Inicial (QC)**
 Se evaluó el estado de las secuencias mediante FastQC para detectar artefactos técnicos.  
@@ -59,7 +59,7 @@ Se evaluó el estado de las secuencias mediante FastQC para detectar artefactos 
 Se generaron reportes HTML para inspeccionar la calidad de bases y contenido de adaptadores.  
 
 <img width="881" height="584" alt="image" src="https://github.com/user-attachments/assets/039b66f4-33f7-4ccc-90ec-2883ea0c64e6" />  
-                     *Fig. 2* Ejecución del comando fastq en la terminal
+*Fig. 2* Ejecución del comando fastq en la terminal
 
 
 
