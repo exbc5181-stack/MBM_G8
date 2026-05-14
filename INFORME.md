@@ -37,7 +37,7 @@ El funcionamiento de un fago, como el **Fago T4**, se basa en el ciclo lítico, 
 ## 2. METODOLOGÍA:  
 Para el desarrollo de este proyecto, se implementó una estrategia bioinformática híbrida y multientorno, diseñada para garantizar la máxima precisión en la reconstrucción genómica del Bacteriófago T4. Esta aproximación integra el uso de entornos locales basados en Linux (Lubuntu) para el pre-procesamiento crítico, la plataforma de computación de alto rendimiento Galaxy para el ensamblaje de novo y los servidores del NCBI (BLASTn) para la validación taxonómica final.  
 
-**1. Fase de Pre-procesamiento y Control de Calidad (Entorno: Lubuntu Linux)**  
+### **1. Fase de Pre-procesamiento y Control de Calidad (Entorno: Lubuntu Linux)**  
 El manejo inicial de los datos se realizó mediante la terminal de comandos en Lubuntu, priorizando la eficiencia en la manipulación de archivos de gran volumen.  
 
 **1.1 Obtención de Datos Crudos y Descompresión de Librerías**  
@@ -94,13 +94,17 @@ Posteriormente, se ejecutó nuevamente el comando `FASTQC` sobre las secuencias 
 <img width="1016" height="406" alt="image" src="https://github.com/user-attachments/assets/54ad6a8a-118b-4dbe-b631-b128f89f7953" />    
 *Fig. 6* Ejecución del comando fastq en las secuencias limpias en la terminal  
 
-**2. Fase de Ensamblaje de novo (Entorno: Galaxy)**   
+### **2. Fase de Ensamblaje de novo (Entorno: Galaxy)**   
 
 **2.1 Reconstrucción Genómica con SPAdes**   
 Los archivos resultantes output_1_paired.fq y output_2_paired.fq se cargaron en Galaxy. Se utilizó el ensamblador SPAdes configurado para genomas virales, procesando las lecturas pareadas para reconstruir los contigs del Bacteriófago T4.  
 <img width="997" height="438" alt="image" src="https://github.com/user-attachments/assets/ec1b7385-f2cb-4560-946d-ffc90fe4f85d" />   
 
-*Fig. 7* Visualización de los scaffolds ensamblados mediante SPAdes en la plataforma Galaxy.
+*Fig. 7* Visualización de los scaffolds ensamblados mediante SPAdes en la plataforma Galaxy.   
+
+### **3. Fase de Validación Taxonómica (Entorno: NCBI BLASTn)**
+
+
 
 
 
