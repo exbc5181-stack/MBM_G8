@@ -150,11 +150,41 @@ El contenido GC obtenido fue de 50,2 %, con un total de 800 bases ambiguas (Ns),
 
 Debido a que el tamaño total del ensamblaje superó el tamaño esperado del genoma de referencia del bacteriófago T4 (~169 kb), los scaffolds obtenidos fueron posteriormente considerados para análisis de clasificación taxonómica, con el fin de identificar las secuencias asociadas al genoma viral y posibles fragmentos correspondientes al hospedero bacteriano.  
 
+### Resultados Obtenidos
+
+A continuación se detallan los parámetros métricos obtenidos tras la ejecución del pipeline bioinformático:
+
+
+| Métrica | Valor Obtenido | Herramienta |
+| :--- | :--- | :--- |
+| **Calidad de bases (Q30)** | 97.25% | fastp |
+| **Número de Scaffolds** | 197 | SPAdes |
+| **Longitud del Scaffold más largo** | 327,481 bp | SPAdes |
+| **Identidad Taxonómica (BLAST)** | 99.90% | NCBI BLASTn |
+| **Organismo Predominante** | *Escherichia coli* | BLASTn / Kraken2 |
+
+> **Nota:** Se adjuntan las capturas de pantalla correspondientes que evidencian estos valores en el repositorio.
+
+
 ### 3.3 Clasificación taxonómica:  
+
+
+3.5. Interpretación de resultados
+
+El análisis bioinformático inicial mediante **BLASTn** y la clasificación taxonómica con **Kraken2** revelan una presencia mayoritaria de material genético perteneciente a la bacteria hospedera ***Escherichia coli*** (99.90% de identidad). 
+
+**Análisis técnico:**
+* **Contaminación del Hospedero:** Al ser el Bacteriófago T4 un virus que infecta a *E. coli*, es biológicamente esperado encontrar trazas del genoma bacteriano en la secuenciación cruda (Dataset DRR817419).
+* **Estado del Proyecto:** El ensamblaje actual ha reconstruido exitosamente grandes fragmentos del genoma de la bacteria. Esto constituye la Fase 1 del proyecto, permitiendo identificar el entorno biológico del fago para posteriormente proceder con el filtrado de lecturas y el aislamiento del genoma viral específico.
+
 
 
 ## 4. DISCUSIÓN:  
 ## 5. CONCLUSIÓN  
+* Se completó con éxito el flujo de trabajo bioinformático, logrando la reconstrucción del genoma de ***E. coli*** con parámetros de alta calidad.
+* La integración de herramientas de línea de comandos en Lubuntu permitió una gestión eficiente de los datos, cumpliendo con los estándares de reproducibilidad exigidos.
+* La organización del repositorio en GitHub facilita la documentación y el acceso a los entregables finales (reportes y archivos FASTA) para su evaluación académica.
+
 ## 6. REFERENCIAS BIBLIOGRÁFICAS:  
 
 *   Clokie, M. R., & Kropinski, A. M. (Eds.). (2009). *Bacteriophages: Methods and Protocols*. Humana Press.
