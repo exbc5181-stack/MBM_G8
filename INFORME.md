@@ -73,7 +73,7 @@ Posteriormenete, se utilizó el comando `xdg-open` para abrir los reportes HTML 
 
 *Fig. 4* Apertura de reportes FASTQC mediante el comando xdg-open en Linux.  
 
-**1.3 Limpieza y Filtrado de Lecturas (Trimming)**  
+**1.3 Limpieza y Filtrado de Lecturas**  
 Se aplicó un filtrado riguroso mediante Trimmomatic v0.39 para garantizar que solo bases de alta confianza participen en el ensamblaje.  
 
 **Comando utilizado:**  
@@ -83,7 +83,7 @@ output_2_paired.fq output_2_unpaired.fq \
 ILLUMINACLIP:TruSeq3-PE.fa:2:30:10 HEADCROP:15 \
 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:36`   
 
-<img width="1020" height="408" alt="image" src="https://github.com/user-attachments/assets/5b973129-a329-4c81-8d42-23fc0d579b13" />  
+<img width="1020" height="211" alt="image" src="https://github.com/user-attachments/assets/f9ceca3f-5eeb-435c-8498-6e94d47b9a96" />    
 
 *Fig. 5* Ejecución de Trimmomatic para el filtrado y recorte de calidad de lecturas paired-end.    
 
