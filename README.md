@@ -41,8 +41,6 @@ Con el fin de evaluar la precisión del ensamblaje generado y realizar la asigna
 ## FLUJO DE TRABAJO:  
 <img width="2753" height="1216" alt="Ensamblaje de novo y validación taxonómica del_page-0001" src="https://github.com/user-attachments/assets/dff40c8d-bcfb-4f67-97fb-cdc31a5823fe" />
 ## ## FLUJO DE TRABAJO:
-
-
 ```mermaid
 graph TD
     %% Estilos Globales
