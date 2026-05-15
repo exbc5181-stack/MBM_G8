@@ -51,7 +51,7 @@ graph TD
 
     %% ETAPA 1: OBTENCIÓN
     E1(1. OBTENCIÓN DE DATOS):::fase
-    SRA[ID Acceso: DRR317419<br/>Reads Pareados NovaSeq]:::subfase
+    SRA[ID Acceso: DRR817419<br/>Reads Pareados NovaSeq]:::subfase
     REF[Referencia: NC_000866<br/>~169 Kbp]:::info
 
     E1 --> SRA
