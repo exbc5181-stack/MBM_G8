@@ -83,7 +83,7 @@ Asimismo, la susceptibilidad bacteriana y la productividad de la infección depe
 
 Una vez ocurrida con éxito la inyección, el fago ejecuta un control temporal estricto mediante factores de adquisición que degradan los tRNAs y mRNAs de la bacteria, mientras mantiene estable su propio proteoma para secuestrar los complejos esenciales del hospedero y conducir inexorablemente a la lisis celular *(Wolfram-Schauerte et al., 2022)*.
 
-> 💡 **Implicación Clínica:** Comprender a fondo estos puntos de control metabólico, las barreras de entrada membranales y los sistemas de defensa enzimáticos es indispensable para diseñar cócteles de fagos robustos que evadan la resistencia bacteriana y actúen eficazmente contra patógenos clínicos multirresistentes.
+**Implicación Clínica:** Comprender a fondo estos puntos de control metabólico, las barreras de entrada membranales y los sistemas de defensa enzimáticos es indispensable para diseñar cócteles de fagos robustos que evadan la resistencia bacteriana y actúen eficazmente contra patógenos clínicos multirresistentes.
 
 ---
 
