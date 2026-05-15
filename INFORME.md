@@ -157,7 +157,6 @@ El análisis de la composición posicional mediante el módulo Per Base Sequence
 
 Como resultado de este procesamiento, el módulo Per Base Sequence Content logró una validación exitosa (criterio de aprobación verde). Las curvas de abundancia para adenina, timina, citosina y guanina muestran una convergencia absoluta y paralela en torno al 25% cada una, manteniéndose con total estabilidad y linealidad a lo largo de toda la extensión remanente de los fragmentos. Paralelamente, el módulo Sequence Length Distribution reflejó esta modificación metodológica mediante una reducción proporcional en la longitud máxima de lectura, confirmando la remoción homogénea del bloque nucleotídico inicial sesgado.
 
-
 <img width="975" height="488" alt="image" src="https://github.com/user-attachments/assets/e9300cf0-4f5c-457c-abff-ac226a2b1cfa" />
 
 Figura 10: Evaluación de calidad de las lecturas del bacteriófago T4 mediante FastQC y MultiQC.
@@ -221,12 +220,19 @@ La secuencia obtenida de 168,129 pb fue validada mediante la herramienta BLASTn 
 El análisis bioinformático inicial mediante **BLASTn** y la clasificación taxonómica con **Kraken2** revelan una presencia mayoritaria de material genético perteneciente a la bacteria hospedera ***Escherichia coli*** (99.90% de identidad). 
 
 El resultado taxonómico indica que:
+
 •	El dataset contiene secuencias compatibles con el bacteriófago T4. 
+
 •	El hospedero asociado es Escherichia coli. 
+
 •	La detección de:
+
 o	Tequatrovirus 
+
 o	Tequatrovirus T4 
+
 o	Escherichia phage T4 
+
 Lo que confirma la identidad viral del ensamblaje.
 
 Interpretación biológica
@@ -236,13 +242,16 @@ El bacteriófago T4 pertenece a:
 | Dominio viral | Viruses |
 | Orden | Caudoviricetes |
 | Género | Tequatrovirus |
-| Especie | Escherichia phage T4 |
+| Especie | *Escherichia phage* T4 |
 
 Este fago es ampliamente utilizado como modelo en:
 
 •	Biología molecular 
+
 •	Genómica viral 
+
 •	Terapia con fagos 
+
 •	Control biológico de cepas de Escherichia coli 
 
 El análisis taxonómico valida exitosamente la presencia del bacteriófago T4 en el ensamblaje de novo. Aunque gran parte de las lecturas se clasifican dentro de Escherichia coli, esto es coherente con la biología del fago T4 debido a su estrecha relación con su hospedero bacteriano.
@@ -250,6 +259,7 @@ El análisis taxonómico valida exitosamente la presencia del bacteriófago T4 e
 La identificación específica de:
 
 •	Tequatrovirus T4 
+
 •	Escherichia phage T4 
 
 Lo querespalda la correcta validación taxonómica del ensamblaje viral y confirma que el dataset corresponde a un bacteriófago T4 asociado a E. coli.
