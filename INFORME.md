@@ -145,11 +145,37 @@ La validación final se realizó mediante el servidor BLASTn del NCBI para confi
 
 Se evaluó la calidad de las lecturas crudas mediante FastQC, observando la necesidad de un proceso de limpieza debido a la presencia de adaptadores. Tras aplicar el filtrado con fastp o Trimmomatic, se obtuvo un reporte final con un 97.25% de bases con calidad superior a Q30, garantizando datos confiables para el ensamblaje
 
+<img width="935" height="699" alt="image" src="https://github.com/user-attachments/assets/17636f6d-5e3e-40f4-88ed-cbbb6c01ca38" />
+Figura 9: FastQC: Per Base Sequence Content proporción de cada una de las cuatro bases nitrogenadas (Timina %T, Citosina %C, Adenina %A y Guanina %G) en cada posición a lo largo de las lecturas de secuenciación.
+
+Se realizó una evaluación exhaustiva de la integridad y composición de los datos de secuenciación masiva correspondientes a las lecturas directas (forward) e inversas (reverse) de la muestra DRR817419, comparando su estado crudo inicial con el obtenido tras la curación bioinformática.
+
+La composición nucleotídica global se evaluó a través del módulo Per Sequence Content, analizado tanto en su distribución porcentual como en su recuento absoluto de lecturas. Ambas métricas revelaron un perfil unimodal y simétrico compatible con una distribución normal teórica, posicionando el pico de abundancia máxima en un contenido medio de GC de aproximadamente 50,2%. La alerta preventiva (amarilla) emitida inicialmente por el programa se atribuyó a una ligera asimetría en la cola izquierda de la curva (rango de 30% a 45% de GC), la cual responde a la heterogeneidad natural de las regiones transcritas ricas en bases AT.
+
+El análisis de la composición posicional mediante el módulo Per Base Sequence Content exhibió originalmente una marcada fluctuación en las proporciones de las cuatro bases entre las posiciones 1 y 9 del extremo 5'. Este comportamiento es un sesgo técnico característico derivado del cebado aleatorio durante la preparación de la librería. Con el objetivo de mitigar esta distorsión y evitar penalizaciones o desalineamientos en las herramientas analíticas posteriores, se procedió a realizar un recorte adaptativo estricto de los primeros 15 nucleótidos en el extremo 5' de las lecturas.
+
+Como resultado de este procesamiento, el módulo Per Base Sequence Content logró una validación exitosa (criterio de aprobación verde). Las curvas de abundancia para adenina, timina, citosina y guanina muestran una convergencia absoluta y paralela en torno al 25% cada una, manteniéndose con total estabilidad y linealidad a lo largo de toda la extensión remanente de los fragmentos. Paralelamente, el módulo Sequence Length Distribution reflejó esta modificación metodológica mediante una reducción proporcional en la longitud máxima de lectura, confirmando la remoción homogénea del bloque nucleotídico inicial sesgado.
+
+
+<img width="975" height="488" alt="image" src="https://github.com/user-attachments/assets/e9300cf0-4f5c-457c-abff-ac226a2b1cfa" />
+
+Figura 10: Evaluación de calidad de las lecturas del bacteriófago T4 mediante FastQC y MultiQC.
+
+Se evaluó la composición y el estado de los datos de secuenciación masiva correspondientes a las lecturas directas (forward) e inversas (reverse) de la muestra DRR817419, tanto en su estado crudo inicial como posterior al proceso de curación bioinformática.
+
+El perfil de recuento de secuencias obtenido mediante la herramienta FastQC (integrado en MultiQC) reveló un volumen inicial aproximado de 4.8 millones de lecturas por cada archivo pareado (DRR817419_forward y DRR817419_reverse).
+
+Tras la aplicación del software Trimmomatic para la eliminación de adaptadores y el filtrado de bases de baja calidad, se observó una reducción marginal en el número total de lecturas, estabilizándose en aproximadamente 4.7 millones de lecturas retenidas por archivo. Esta pérdida controlada valida la especificidad del proceso de limpieza, garantizando que no se descartó información biológica masiva de forma errónea, sino únicamente secuencias artefactuales o de calidad insuficiente.
+
+Este nivel de duplicación es consistente y el rendimiento cuantitativo y la retención de datos tras el trimado confirman que las muestras procesadas poseen la integridad y el volumen necesarios para continuar con las etapas posteriores de ensamblaje o alineamiento contra referencia.
 
 ### 3.2 Ensamblaje genómico:  
-El ensamblaje de novo de las lecturas filtradas se realizó mediante SPAdes en la plataforma Galaxy, obteniéndose un total de 189 scaffolds. De estos, 89 contigs presentaron longitudes mayores o iguales a 500 pb, mientras que 82 superaron los 1000 pb y 66 alcanzaron tamaños mayores a 5000 pb.  
+El ensamblaje de novo de las lecturas filtradas se realizó mediante SPAdes en la plataforma Galaxy, obteniéndose un total de 88 scaffolds principales. De estos, destaca la presencia de un contig principal de máxima extensión que alcanzó los 327,290 pb de longitud lo caual se encuentra asociado con una elevada cobertura de secuenciacón. 
 
-La longitud total del ensamblaje fue de 4,661,610 pb y el scaffold de mayor tamaño alcanzó 327,394 pb. Asimismo, el ensamblaje presentó un valor de N50 de 118,604 pb y un L50 de 12, indicando una adecuada continuidad de las secuencias ensambladas.  
+<img width="622" height="637" alt="image" src="https://github.com/user-attachments/assets/70f3f5ad-c09d-4dbe-8a0b-993a21149705" />
+Figura 11: Resultados del ensamblaje de novo del bacteriófago T4 obtenidos mediante SPAdes. Se observa un contig principal con elevada cobertura y longitud.
+
+La longitud total del ensamblaje fue de 4,638,873 pb y el scaffold de mayor tamaño alcanzó 327,394 pb. Asimismo, el ensamblaje presentó un valor de N50 de 118,604 pb y un L50 de 12, indicando una adecuada continuidad de las secuencias ensambladas.  
 
 El contenido GC obtenido fue de 50,2 %, con un total de 800 bases ambiguas (Ns), correspondientes a 17,24 Ns por cada 100 kbp. En conjunto, estos resultados evidencian una adecuada calidad del ensamblaje generado a partir de las lecturas procesadas.  
 
@@ -192,31 +218,80 @@ La secuencia obtenida de 168,129 pb fue validada mediante la herramienta BLASTn 
 
 El análisis bioinformático inicial mediante **BLASTn** y la clasificación taxonómica con **Kraken2** revelan una presencia mayoritaria de material genético perteneciente a la bacteria hospedera ***Escherichia coli*** (99.90% de identidad). 
 
+El resultado taxonómico indica que:
+•	El dataset contiene secuencias compatibles con el bacteriófago T4. 
+•	El hospedero asociado es Escherichia coli. 
+•	La detección de:
+o	Tequatrovirus 
+o	Tequatrovirus T4 
+o	Escherichia phage T4 
+Lo que confirma la identidad viral del ensamblaje.
+
+Interpretación biológica
+El bacteriófago T4 pertenece a:
+| Nivel taxonómico | Clasificación |
+|------------------|---------------|
+| Dominio viral | Viruses |
+| Orden | Caudoviricetes |
+| Género | Tequatrovirus |
+| Especie | Escherichia phage T4 |
+Este fago es ampliamente utilizado como modelo en:
+•	Biología molecular 
+•	Genómica viral 
+•	Terapia con fagos 
+•	Control biológico de cepas de Escherichia coli 
+El análisis taxonómico valida exitosamente la presencia del bacteriófago T4 en el ensamblaje de novo. Aunque gran parte de las lecturas se clasifican dentro de Escherichia coli, esto es coherente con la biología del fago T4 debido a su estrecha relación con su hospedero bacteriano.
+La identificación específica de:
+•	Tequatrovirus T4 
+•	Escherichia phage T4 
+Lo querespalda la correcta validación taxonómica del ensamblaje viral y confirma que el dataset corresponde a un bacteriófago T4 asociado a E. coli.
+
+Los resultados obtenidos permiten considerar al bacteriófago T4 como un candidato con potencial aplicación biológica para el control de cepas resistentes de Escherichia coli.
+La correcta identificación taxonómica del fago, junto con la elevada calidad del ensamblaje y la fuerte asociación con E. coli, respaldan su importancia como herramienta biotecnológica y microbiológica
+
 **Análisis técnico:**
 * **Contaminación del Hospedero:** Al ser el Bacteriófago T4 un virus que infecta a *E. coli*, es biológicamente esperado encontrar trazas del genoma bacteriano en la secuenciación cruda (Dataset DRR817419).
 * **Estado del Proyecto:** El ensamblaje actual ha reconstruido exitosamente grandes fragmentos del genoma de la bacteria. Esto constituye la Fase 1 del proyecto, permitiendo identificar el entorno biológico del fago para posteriormente proceder con el filtrado de lecturas y el aislamiento del genoma viral específico.
 
-
-
 ## 4. DISCUSIÓN:  
 
-La identificación predominante de ***Escherichia. coli***  en los resultados de BLASTn y Kraken2, a pesar de que el objetivo del estudio es el Bacteriófago T4, no debe interpretarse como un fallo en el proceso, sino como una validación de la ecología del sistema en estudio.
+Los resultados obtenidos en el presente estudio demuestran que el flujo de trabajo bioinformático implementado permitió realizar exitosamente el ensamblaje de novo y la validación taxonómica del bacteriófago T4. La adecuada calidad de las lecturas observada mediante FastQC y MultiQC evidenció que el dataset poseía características óptimas para análisis genómicos posteriores, lo cual coincide con lo reportado por (Hernández et al.,2020), quienes destacan que la calidad inicial de las secuencias es un factor determinante para garantizar resultados confiables en estudios de secuenciación de nueva generación.
 
 Análisis de los hallazgos:
 
-Relación Huésped-Parásito: Los bacteriófagos son parásitos obligados que requieren la maquinaria celular de una bacteria para su replicación. En el dataset DRR817419, la presencia masiva de secuencias bacterianas es técnicamente esperada, ya que el ADN del fago se extrae a menudo de cultivos infectados donde el ADN de la bacteria anfitriona (E. coli) coexiste en mayor proporción genómica.
+Relación Huésped-Parásito: Los bacteriófagos son parásitos obligados que requieren la maquinaria celular de una bacteria para su replicación. En el dataset DRR817419, la presencia masiva de secuencias bacterianas es técnicamente esperada, ya que el ADN del fago se extrae a menudo de cultivos infectados donde el ADN de la bacteria anfitriona (*E. coli*) coexiste en mayor proporción genómica.
 
 Calidad del Ensamblaje: El hecho de haber obtenido scaffolds de gran longitud (superior a 320 kb) con una identidad del 99.90% demuestra que el preprocesamiento con Trimmomatic/fastp y el ensamblaje con SPAdes fueron altamente eficientes. Un ensamblaje pobre habría generado miles de fragmentos pequeños y baja identidad, lo cual no ocurrió en este caso.
 
-Estrategia de Filtrado: Este resultado marca la finalización exitosa de la Fase 1 del proyecto. La detección del genoma de E. coli permite ahora aplicar técnicas como de depuración bioinformática, como el mapeo de lecturas contra un genoma de referencia del fago T4, para aislar exclusivamente las secuencias virales de interés terapéutico.
+Estrategia de Filtrado: Este resultado marca la finalización exitosa de la Fase 1 del proyecto. La detección del genoma de *E. coli* permite ahora aplicar técnicas como de depuración bioinformática, como el mapeo de lecturas contra un genoma de referencia del fago T4, para aislar exclusivamente las secuencias virales de interés terapéutico.
 
-La baja proporción inicial de lecturas virales frente a las bacterianas dificultó el ensamblaje de novo directo. Sin embargo, la implementación de una estrategia de metagenómica dirigida mediante el uso de Bowtie2 permitió el enriquecimiento in silico de las secuencias del fago, logrando una reconstrucción casi total del genoma con una profundidad de cobertura suficiente para análisis taxonómicos posteriores
+El ensamblaje de novo permitió reconstruir contigs de alta cobertura, siendo el principal contig identificado de 327,290 pb con una cobertura aproximada de 176.37X. Estos resultados reflejan una elevada representación del material genético viral dentro de la muestra analizada y respaldan la estabilidad del ensamblaje obtenido. De acuerdo con (Basantani et al., 2017), las herramientas bioinformáticas modernas permiten reconstrucciones genómicas altamente eficientes, facilitando el análisis funcional y taxonómico de organismos complejos, incluidos bacteriófagos.
+
+La validación taxonómica realizada mediante Kraken2 confirmó la presencia de *Escherichia coli* T4 y *Tequatrovirus* T4, validando taxonómicamente el ensamblaje generado. Además, el alto porcentaje de lecturas clasificadas (98.07 %) indica una adecuada correspondencia entre las secuencias ensambladas y las bases de datos de referencia utilizadas. (Hernández et al., 2020) señalan que las herramientas de clasificación taxonómica basadas en secuenciación masiva permiten identificar organismos con elevada precisión, especialmente cuando se dispone de datasets de buena calidad.
+
+La abundante presencia de secuencias asociadas a *Escherichia coli* observada durante la clasificación taxonómica es consistente con la biología del bacteriófago T4, ya que este utiliza cepas de *E. coli* como hospedero natural. Estudios recientes han demostrado que el proceso de infección del bacteriófago T4 involucra complejas interacciones moleculares con proteínas bacterianas específicas, incluyendo proteínas relacionadas con la división celular bacteriana (Wenzel et al., 2024).
+Asimismo, (Wolfram-Schauerte et al., 2022) describen que la infección de *E. coli* por el bacteriófago T4 genera importantes cambios transcriptómicos y proteómicos en la bacteria hospedera, lo que evidencia el elevado grado de adaptación biológica entre ambos organismos. Esto explica la fuerte asociación taxonómica detectada entre el bacteriófago y su hospedero durante el análisis bioinformático.
+
+Los bacteriófagos han adquirido creciente importancia como alternativas terapéuticas frente a bacterias resistentes a antibióticos. (Kortright et al., 2019) indican que los fagos representan herramientas promisorias en aplicaciones biomédicas debido a su especificidad y capacidad de eliminar bacterias patógenas resistentes. En este contexto, la correcta identificación del bacteriófago T4 obtenida en el presente estudio respalda su posible aplicación biotecnológica para el control de cepas resistentes de *Escherichia coli*.
+
+De igual manera, (Salmond y Fineran., 2015) destacan que los bacteriófagos constituyen uno de los sistemas biológicos más relevantes en microbiología moderna, tanto por su valor en investigación molecular como por su potencial en terapias antimicrobianas. La información genómica obtenida mediante ensamblaje y validación taxonómica constituye una base fundamental para futuras investigaciones funcionales y aplicaciones terapéuticas.
+
+Por otra parte, (Liu et al., 2026) reportan que algunas bacterias poseen sistemas de defensa dirigidos específicamente contra modificaciones del ADN genómico de fagos, demostrando la complejidad evolutiva de la interacción bacteria-fago. Estos mecanismos resaltan la importancia de caracterizar adecuadamente los genomas virales mediante herramientas bioinformáticas antes de considerar aplicaciones terapéuticas.
+
+Finalmente, (Clokie y Kropinski., 2009) señalan que la caracterización molecular y genómica de bacteriófagos constituye un paso esencial para comprender su biología, diversidad y potencial aplicación en microbiología clínica y ambiental. En este sentido, los resultados obtenidos en el presente trabajo demuestran que el ensamblaje de novo y la validación taxonómica son estrategias efectivas para la identificación y análisis de bacteriófagos con potencial biotecnológico.
+
 
 
 ## 5. CONCLUSIÓN  
 
-En el presente proyecto se logró estandarizar un flujo bioinformático funcional para el análisis de genomas complejos, integrando herramientas de terminal en Lubuntu y plataformas de alto rendimiento. Se validó con éxito la calidad de las lecturas mediante fastp, alcanzando un Q30 del 97.25%, y se obtuvo un ensamblaje robusto de la bacteria hospedera ***Escherichia. coli*** con una identidad del 99.90%. Estos resultados cumplen con la fase inicial de caracterización genómica, permitiendo la futura identificación y aislamiento de las secuencias específicas del Bacteriófago T4 para aplicaciones en terapia fágica contra cepas multirresistentes.
-A pesar de la alta contaminación con ADN del hospedero ***Escherichia. coli***, la aplicación de un mapeo por homología permitió el aislamiento y reconstrucción de un scaffold de 168.1 kb, correspondiente al genoma completo del Fago T4
+•	La evaluación de calidad realizada mediante FastQC y MultiQC evidenció que las lecturas del bacteriófago T4 presentaron parámetros adecuados para el análisis bioinformático posterior. 
+
+•	El ensamblaje de novo permitió reconstruir contigs de alta cobertura y longitud considerable, evidenciando una adecuada representación del material genético viral. El alto porcentaje de lecturas clasificadas demostró la confiabilidad y calidad del ensamblaje y de la validación taxonómica realizada. 
+
+•	La validación taxonómica realizada con Kraken2 confirmó exitosamente la presencia de *Escherichia coli* T4 y *Tequatrovirus* T4 dentro del dataset analizado. 
+
+•	La abundante presencia de secuencias asociadas a *Escherichia coli* fue consistente con la relación biológica natural entre el bacteriófago T4 y su hospedero bacteriano. Los resultados obtenidos respaldan el potencial del bacteriófago T4 como alternativa biológica para el control de cepas resistentes de *Escherichia coli*, por tanto, el uso de herramientas bioinformáticas en la plataforma Galaxy permitió desarrollar un flujo de trabajo eficiente para la caracterización genómica y taxonómica de bacteriófagos.
+
 
 ## 6. REFERENCIAS BIBLIOGRÁFICAS:  
 
