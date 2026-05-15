@@ -53,7 +53,7 @@ graph TD
     subgraph "E. coli: Membrana Interna"
         A[Proteína DamX]:::caja
         B[Si se elimina / deleta]:::proceso
-        C[Éxito de infección del Fago T4<br/>disminuye al 40%<br/><i>(Wenzel et al., 2024)</i>]:::consecuencia
+        C["Éxito de infección del Fago T4 disminuye al 40% (Wenzel et al., 2024)"]:::consecuencia
         
         A --> B
         B --> C
@@ -63,7 +63,7 @@ graph TD
     subgraph "E. coli: Sistema Inmune"
         D[Endonucleasa CMoRE]:::caja
         E[Infección Activa]:::proceso
-        F[Degrada específicamente el<br/>ADN modificado del fago<br/><i>(Liu et al., 2026)</i>]:::consecuencia
+        F["Degrada específicamente el ADN modificado del fago (Liu et al., 2026)"]:::consecuencia
         
         D --> E
         E --> F
@@ -73,7 +73,6 @@ graph TD
     style C color:#c0392b
     style F color:#c0392b
 ```
-
 
 
 
