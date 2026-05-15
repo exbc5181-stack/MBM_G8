@@ -207,7 +207,7 @@ La validación taxonómica mediante BLASTn del scaffold de mayor longitud mostr�
 
 <img width="1308" height="747" alt="Captura de pantalla 2026-05-12 125615" src="https://github.com/user-attachments/assets/1298172e-3da6-49b7-aeef-c8ea6345bce0" />
 
-La secuencia obtenida de 168,129 pb fue validada mediante la herramienta BLASTn contra la base de datos de nucleótidos (nt/nr) de NCBI. Los resultados confirmaron con un 99.98% de identidad y un 100% de cobertura de consulta que el ensamblaje corresponde al genoma completo de Escherichia virus T4. Este resultado valida la eficacia de la estrategia de filtrado por mapeo contra referencia, logrando aislar el material genético viral del hospedero bacteriano con alta precisión
+La secuencia obtenida de 168,129 pb fue validada mediante la herramienta BLASTn contra la base de datos de nucleótidos (nt/nr) de NCBI. Los resultados confirmaron con un 99.98% de identidad y un 100% de cobertura de consulta que el ensamblaje corresponde al genoma completo de *Escherichia virus* T4. Este resultado valida la eficacia de la estrategia de filtrado por mapeo contra referencia, logrando aislar el material genético viral del hospedero bacteriano con alta precisión
 
 <img width="1302" height="792" alt="Captura de pantalla 2026-05-14 134801" src="https://github.com/user-attachments/assets/a7f878cb-e289-4f51-b286-f84bd087f532" />
 
@@ -223,7 +223,7 @@ El resultado taxonómico indica que:
 
 •	El dataset contiene secuencias compatibles con el bacteriófago T4. 
 
-•	El hospedero asociado es Escherichia coli. 
+•	El hospedero asociado es *Escherichia coli*. 
 
 •	La detección de:
 
@@ -236,7 +236,9 @@ o	Escherichia phage T4
 Lo que confirma la identidad viral del ensamblaje.
 
 Interpretación biológica
+
 El bacteriófago T4 pertenece a:
+
 | Nivel taxonómico | Clasificación |
 |------------------|---------------|
 | Dominio viral | Viruses |
@@ -252,21 +254,21 @@ Este fago es ampliamente utilizado como modelo en:
 
 •	Terapia con fagos 
 
-•	Control biológico de cepas de Escherichia coli 
+•	Control biológico de cepas de *Escherichia coli* 
 
-El análisis taxonómico valida exitosamente la presencia del bacteriófago T4 en el ensamblaje de novo. Aunque gran parte de las lecturas se clasifican dentro de Escherichia coli, esto es coherente con la biología del fago T4 debido a su estrecha relación con su hospedero bacteriano.
+El análisis taxonómico valida exitosamente la presencia del bacteriófago T4 en el ensamblaje de novo. Aunque gran parte de las lecturas se clasifican dentro de *Escherichia coli*, esto es coherente con la biología del fago T4 debido a su estrecha relación con su hospedero bacteriano.
 
 La identificación específica de:
 
-•	Tequatrovirus T4 
+•	*Tequatrovirus* T4 
 
-•	Escherichia phage T4 
+•	*Escherichia phage* T4 
 
-Lo querespalda la correcta validación taxonómica del ensamblaje viral y confirma que el dataset corresponde a un bacteriófago T4 asociado a E. coli.
+Lo que respalda la correcta validación taxonómica del ensamblaje viral y confirma que el dataset corresponde a un bacteriófago T4 asociado a *E. coli*.
 
-Los resultados obtenidos permiten considerar al bacteriófago T4 como un candidato con potencial aplicación biológica para el control de cepas resistentes de Escherichia coli.
+Los resultados obtenidos permiten considerar al bacteriófago T4 como un candidato con potencial aplicación biológica para el control de cepas resistentes de *Escherichia coli*.
 
-La correcta identificación taxonómica del fago, junto con la elevada calidad del ensamblaje y la fuerte asociación con E. coli, respaldan su importancia como herramienta biotecnológica y microbiológica
+La correcta identificación taxonómica del fago, junto con la elevada calidad del ensamblaje y la fuerte asociación con *E. coli*, respaldan su importancia como herramienta biotecnológica y microbiológica
 
 **Análisis técnico:**
 * **Contaminación del Hospedero:** Al ser el Bacteriófago T4 un virus que infecta a *E. coli*, es biológicamente esperado encontrar trazas del genoma bacteriano en la secuenciación cruda (Dataset DRR817419).
