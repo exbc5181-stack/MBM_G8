@@ -38,6 +38,13 @@ graph LR
     E2 --> E3(3. Ensamblaje):::etapa
     E3 --> E4(4. Lisis Celular):::etapa
 ```
+
+El funcionamiento de un fago, como el **Fago T4**, se basa en el ciclo lítico, el cual consta de las siguientes etapas:
+
+1. **Adsorción y Penetración:** Reconocimiento de receptores específicos e inyección del material genético.
+2. **Biosíntesis:** Secuestro de la maquinaria celular para replicar el genoma viral.
+3. **Ensamblaje:** Formación de nuevos viriones.
+4. **Lisis:** Liberación de los virus mediante la ruptura de la pared bacteriana (Clokie & Kropinski, 2009).
 ## 2. INTERACCIONES MOLECULARES Y EVOLUCIÓN DE LA RESISTENCIA
 
 El alarmante incremento de cepas de *Escherichia coli* con resistencia multiantibiótica ha impulsado un renacimiento en la investigación de estas terapias basadas en bacteriófagos como agentes antibacterianos alternativos *(Wolfram-Schauerte et al., 2022)*. Sin embargo, la optimización de estos tratamientos médicos exige descifrar las complejas interacciones moleculares y los mecanismos evolutivos de resistencia que surgen bidireccionalmente entre el fago y la bacteria *(Liu et al., 2026)*.
@@ -94,26 +101,6 @@ En la genómica contemporánea, el procesamiento de datos provenientes de Secuen
 El **ensamblaje *de novo*** constituye una estrategia fundamental cuando no se dispone de un genoma de referencia confiable o cuando se busca identificar variaciones genómicas específicas sin sesgar el alineamiento. Este enfoque permite ensamblar lecturas cortas (*reads*) en secuencias continuas denominadas *contigs*.
 
 Herramientas como **SPAdes** emplean algoritmos basados en **grafos de De Bruijn** para optimizar la reconstrucción genómica, resolver regiones repetitivas y generar ensamblajes de alta calidad que representen de manera precisa la arquitectura genética del organismo estudiado *(Basantani et al., 2017; Hernández et al., 2020)*.
-
-
-
-
-
-El alarmante incremento de cepas de *Escherichia coli* con resistencia multiantibiótica ha impulsado un renacimiento en la investigación de terapias basadas en bacteriófagos como agentes antibacterianos alternativos ([Wolfram-Schauerte et al., 2022](https://doi.org)). Sin embargo, la optimización de estos tratamientos médicos exige descifrar las complejas interacciones moleculares y los mecanismos evolutivos de resistencia que surgen entre el fago y la bacteria ([Liu et al., 2026](https://doi.org)). Por un lado, las bacterias han desarrollado sistemas inmunológicos sofisticados como **CMoRE**, una endonucleasa de restricción tipo IV capaz de mitigar la infección viral al degradar específicamente el ADN modificado de fagos como el fago T4 ([Liu et al., 2026](https://doi.org)). Por otro lado, la susceptibilidad bacteriana y la productividad de la infección dependen críticamente de componentes estructurales del hospedero; por ejemplo, la deleción de la proteína de división celular **DamX** en la membrana interna de *E. coli* reduce el éxito de la infección por el fago T4 a un 40%, evidenciando que el virus aprovecha maquinaria celular específica para translocar su material genético ([Wenzel et al., 2024](https://doi.org)). Una vez ocurrida la inyección, el fago ejecuta un control temporal estricto mediante factores de adquisición que degradan los tRNAs y mRNAs de la bacteria, mientras mantiene estable su proteoma para secuestrar los complejos esenciales del hospedero y conducir a la lisis celular ([Wolfram-Schauerte et al., 2022](https://doi.org)). Comprender a fondo estos puntos de control metabólico, las barreras de entrada membranales y los sistemas de defensa enzimáticos es indispensable para diseñar cócteles de fagos robustos que evadan la resistencia bacteriana y actúen eficazmente contra patógenos clínicos multirresistentes.
-
-
-Los **bacteriófagos** (o fagos) son virus especializados que infectan y se replican exclusivamente dentro de bacterias y arqueas. Son considerados las entidades biológicas más abundantes del planeta y juegan un rol crucial en la regulación de poblaciones microbianas (Salmond & Fineran, 2015).
-
-### Mecanismo de Acción
-El funcionamiento de un fago, como el **Fago T4**, se basa en el ciclo lítico, el cual consta de las siguientes etapas:
-
-1. **Adsorción y Penetración:** Reconocimiento de receptores específicos e inyección del material genético.
-2. **Biosíntesis:** Secuestro de la maquinaria celular para replicar el genoma viral.
-3. **Ensamblaje:** Formación de nuevos viriones.
-4. **Lisis:** Liberación de los virus mediante la ruptura de la pared bacteriana (Clokie & Kropinski, 2009).
-
-En la genómica contemporánea, el procesamiento de datos provenientes de Secuenciación de Próxima Generación (NGS) requiere el uso de herramientas bioinformáticas especializadas para la reconstrucción de genomas virales. El ensamblaje de novo constituye una estrategia fundamental cuando no se dispone de un genoma de referencia confiable o cuando se busca identificar variaciones genómicas específicas. Este enfoque permite ensamblar lecturas cortas (reads) en secuencias continuas denominadas contigs. Herramientas como SPAdes emplean algoritmos basados en grafos de De Bruijn para optimizar la reconstrucción genómica, resolver regiones repetitivas y generar ensamblajes de alta calidad que representen de manera precisa la arquitectura genética del organismo estudiado (Basantani et al., 2017 & Hernández et al., 2020).   
-La crisis global de resistencia antimicrobiana ha reposicionado a los bacteriófagos como agentes biológicos clave para el control de patógenos bacterianos. El estudio del Bacteriófago T4, debido a su alta especificidad contra cepas de *Escherichia coli*, requiere una caracterización genómica exhaustiva que garantice la ausencia de factores de virulencia o genes de resistencia antes de su aplicación biotecnológica. La utilización del dataset DRR817419 permite validar un flujo de trabajo computacional para la clasificación taxonómica y el análisis funcional, proporcionando una base científica robusta para futuras terapias basadas en fagos.  
 
 ## 2. METODOLOGÍA:  
 Para el desarrollo de este proyecto, se implementó una estrategia bioinformática híbrida y multientorno, diseñada para garantizar la máxima precisión en la reconstrucción genómica del Bacteriófago T4. Esta aproximación integra el uso de entornos locales basados en Linux (Lubuntu) para el pre-procesamiento crítico, la plataforma de computación de alto rendimiento Galaxy para el ensamblaje de novo y los servidores del NCBI (BLASTn) para la validación taxonómica final.  
