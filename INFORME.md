@@ -146,6 +146,7 @@ La validación final se realizó mediante el servidor BLASTn del NCBI para confi
 Se evaluó la calidad de las lecturas crudas mediante FastQC, observando la necesidad de un proceso de limpieza debido a la presencia de adaptadores. Tras aplicar el filtrado con fastp o Trimmomatic, se obtuvo un reporte final con un 97.25% de bases con calidad superior a Q30, garantizando datos confiables para el ensamblaje
 
 <img width="935" height="699" alt="image" src="https://github.com/user-attachments/assets/17636f6d-5e3e-40f4-88ed-cbbb6c01ca38" />
+
 Figura 9: FastQC: Per Base Sequence Content proporción de cada una de las cuatro bases nitrogenadas (Timina %T, Citosina %C, Adenina %A y Guanina %G) en cada posición a lo largo de las lecturas de secuenciación.
 
 Se realizó una evaluación exhaustiva de la integridad y composición de los datos de secuenciación masiva correspondientes a las lecturas directas (forward) e inversas (reverse) de la muestra DRR817419, comparando su estado crudo inicial con el obtenido tras la curación bioinformática.
@@ -173,6 +174,7 @@ Este nivel de duplicación es consistente y el rendimiento cuantitativo y la ret
 El ensamblaje de novo de las lecturas filtradas se realizó mediante SPAdes en la plataforma Galaxy, obteniéndose un total de 88 scaffolds principales. De estos, destaca la presencia de un contig principal de máxima extensión que alcanzó los 327,290 pb de longitud lo caual se encuentra asociado con una elevada cobertura de secuenciacón. 
 
 <img width="622" height="637" alt="image" src="https://github.com/user-attachments/assets/70f3f5ad-c09d-4dbe-8a0b-993a21149705" />
+
 Figura 11: Resultados del ensamblaje de novo del bacteriófago T4 obtenidos mediante SPAdes. Se observa un contig principal con elevada cobertura y longitud.
 
 La longitud total del ensamblaje fue de 4,638,873 pb y el scaffold de mayor tamaño alcanzó 327,394 pb. Asimismo, el ensamblaje presentó un valor de N50 de 118,604 pb y un L50 de 12, indicando una adecuada continuidad de las secuencias ensambladas.  
@@ -235,18 +237,25 @@ El bacteriófago T4 pertenece a:
 | Orden | Caudoviricetes |
 | Género | Tequatrovirus |
 | Especie | Escherichia phage T4 |
+
 Este fago es ampliamente utilizado como modelo en:
+
 •	Biología molecular 
 •	Genómica viral 
 •	Terapia con fagos 
 •	Control biológico de cepas de Escherichia coli 
+
 El análisis taxonómico valida exitosamente la presencia del bacteriófago T4 en el ensamblaje de novo. Aunque gran parte de las lecturas se clasifican dentro de Escherichia coli, esto es coherente con la biología del fago T4 debido a su estrecha relación con su hospedero bacteriano.
+
 La identificación específica de:
+
 •	Tequatrovirus T4 
 •	Escherichia phage T4 
+
 Lo querespalda la correcta validación taxonómica del ensamblaje viral y confirma que el dataset corresponde a un bacteriófago T4 asociado a E. coli.
 
 Los resultados obtenidos permiten considerar al bacteriófago T4 como un candidato con potencial aplicación biológica para el control de cepas resistentes de Escherichia coli.
+
 La correcta identificación taxonómica del fago, junto con la elevada calidad del ensamblaje y la fuerte asociación con E. coli, respaldan su importancia como herramienta biotecnológica y microbiológica
 
 **Análisis técnico:**
