@@ -21,6 +21,7 @@ Realizar el ensamblaje de *novo* y la validación taxonómica del bacteriófago 
    
 ## 1. INTRODUCCIÓN   
 
+# MARCO TEÓRICO: BIOLOGÍA Y MECANISMO DE ACCIÓN DE LOS BACTERIÓFAGOS
 
 ---
 
@@ -30,40 +31,16 @@ La crisis global de resistencia antimicrobiana ha reposicionado a los bacterióf
 
 El estudio del Bacteriófago T4, debido a su alta especificidad contra cepas de *Escherichia coli*, requiere una caracterización genómica exhaustiva que garantice la ausencia de factores de virulencia o genes de resistencia antes de su aplicación biotecnológica. El funcionamiento de este virus se basa en el ciclo lítico clásico, el cual consta de cuatro etapas fundamentales *(Clokie & Kropinski, 2009)*:
 
-1. **Adsorción y Penetración:** Reconocimiento ultraespecífico de receptores en la superficie celular e inyección del material genético viral al citoplasma.
-2. **Biosíntesis:** Secuestro inmediato de la maquinaria transcripcional y traduccional del hospedero para replicar el genoma del fago.
-3. **Ensamblaje:** Maduración coordinada y encapsidación de los nuevos viriones.
-4. **Lisis:** Liberación masiva de la progenie viral mediante la disrupción osmótica y enzimática de la pared bacteriana.
-
----
-
-## 2. INTERACCIONES MOLECULARES Y EVOLUCIÓN DE LA RESISTENCIA
-
-El alarmante incremento de cepas de *Escherichia coli* con resistencia multiantibiótica ha impulsado un renacimiento en la investigación de estas terapias basadas en bacteriófagos como agentes antibacterianos alternativos *(Wolfram-Schauerte et al., 2022)*. Sin embargo, la optimización de estos tratamientos médicos exige descifrar las complejas interacciones moleculares y los mecanismos evolutivos de resistencia que surgen bidireccionalmente entre el fago y la bacteria *(Liu et al., 2026)*.
-
 ```mermaid
-graph TD
-    %% Estilos del gráfico
-    classDef host fill:#f5f6fa,stroke:#2f3640,stroke-width:1px;
-    classDef effect fill:#fff,stroke:#e74c3c,stroke-width:2px;
+graph LR
+    %% Estilos de Nodos
+    classDef etapa fill:#4b2e83,color:#fff,stroke:#333,stroke-width:2px;
+    
+    E1(1. Adsorción y Penetración):::etapa --> E2(2. Biosíntesis):::etapa
+    E2 --> E3(3. Ensamblaje):::etapa
+    E3 --> E4(4. Lisis Celular):::etapa
 
-    subgraph "E. coli: Membrana Interna"
-        A[Proteína DamX]:::host
-        B[Deleción / Mutación]:::host
-        A --> B
-        B --> C[Éxito de infección de T4<br/>disminuye al 40%]:::effect
-    end
 
-    subgraph "E. coli: Sistema Inmune"
-        D[Endonucleasa CMoRE<br/>Restricción Tipo IV]:::host
-        E[Infección Activa]:::host
-        D --> E
-        E --> F[Degradación específica del<br/>ADN modificado del fago]:::effect
-    end
-
-    %% Citas al pie de los efectos
-    style C color:#c0392b
-    style F color:#c0392b
 
 
 
