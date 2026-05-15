@@ -40,12 +40,15 @@ Con el fin de evaluar la precisión del ensamblaje generado y realizar la asigna
 
 ## FLUJO DE TRABAJO:  
 
+## ## FLUJO DE TRABAJO:
+
+```mermaid
 graph TD
     %% Estilos Globales
     classDef fase fill:#4b2e83,color:#fff,stroke:#333,stroke-width:2px;
     classDef subfase fill:#fff,stroke:#4b2e83,stroke-width:1px;
     classDef info fill:#f8f9fa,stroke:#ccc,stroke-dasharray: 5 5;
-```mermaid
+
     %% ETAPA 1: OBTENCIÓN
     E1(1. OBTENCIÓN DE DATOS):::fase
     SRA[ID Acceso: DRR317419<br/>Reads Pareados NovaSeq]:::subfase
