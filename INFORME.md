@@ -20,6 +20,57 @@ Realizar el ensamblaje de *novo* y la validación taxonómica del bacteriófago 
 * 
    
 ## 1. INTRODUCCIÓN   
+
+
+---
+
+## 1. CONTEXTO BIOLÓGICO Y MECANISMO DE ACCIÓN
+
+La crisis global de resistencia antimicrobiana ha reposicionado a los bacteriófagos (o fagos) como agentes biológicos clave para el control de patógenos bacterianos. Los fagos son virus especializados que infectan y se replican exclusivamente dentro de bacterias y arqueas; son considerados las entidades biológicas más abundantes del planeta y juegan un rol crucial en la regulación de poblaciones microbianas *(Salmond & Fineran, 2015)*.
+
+El estudio del Bacteriófago T4, debido a su alta especificidad contra cepas de *Escherichia coli*, requiere una caracterización genómica exhaustiva que garantice la ausencia de factores de virulencia o genes de resistencia antes de su aplicación biotecnológica. El funcionamiento de este virus se basa en el ciclo lítico clásico, el cual consta de cuatro etapas fundamentales *(Clokie & Kropinski, 2009)*:
+
+1. **Adsorción y Penetración:** Reconocimiento ultraespecífico de receptores en la superficie celular e inyección del material genético viral al citoplasma.
+2. **Biosíntesis:** Secuestro inmediato de la maquinaria transcripcional y traduccional del hospedero para replicar el genoma del fago.
+3. **Ensamblaje:** Maduración coordinada y encapsidación de los nuevos viriones.
+4. **Lisis:** Liberación masiva de la progenie viral mediante la disrupción osmótica y enzimática de la pared bacteriana.
+
+---
+
+## 2. INTERACCIONES MOLECULARES Y EVOLUCIÓN DE LA RESISTENCIA
+
+El alarmante incremento de cepas de *Escherichia coli* con resistencia multiantibiótica ha impulsado un renacimiento en la investigación de estas terapias basadas en bacteriófagos como agentes antibacterianos alternativos *(Wolfram-Schauerte et al., 2022)*. Sin embargo, la optimización de estos tratamientos médicos exige descifrar las complejas interacciones moleculares y los mecanismos evolutivos de resistencia que surgen bidireccionalmente entre el fago y la bacteria *(Liu et al., 2026)*.
+
+```mermaid
+graph TD
+    %% Estilos del gráfico
+    classDef host fill:#f5f6fa,stroke:#2f3640,stroke-width:1px;
+    classDef effect fill:#fff,stroke:#e74c3c,stroke-width:2px;
+
+    subgraph "E. coli: Membrana Interna"
+        A[Proteína DamX]:::host
+        B[Deleción / Mutación]:::host
+        A --> B
+        B --> C[Éxito de infección de T4<br/>disminuye al 40%]:::effect
+    end
+
+    subgraph "E. coli: Sistema Inmune"
+        D[Endonucleasa CMoRE<br/>Restricción Tipo IV]:::host
+        E[Infección Activa]:::host
+        D --> E
+        E --> F[Degradación específica del<br/>ADN modificado del fago]:::effect
+    end
+
+    %% Citas al pie de los efectos
+    style C color:#c0392b
+    style F color:#c0392b
+
+
+
+
+
+
+
 El alarmante incremento de cepas de *Escherichia coli* con resistencia multiantibiótica ha impulsado un renacimiento en la investigación de terapias basadas en bacteriófagos como agentes antibacterianos alternativos ([Wolfram-Schauerte et al., 2022](https://doi.org)). Sin embargo, la optimización de estos tratamientos médicos exige descifrar las complejas interacciones moleculares y los mecanismos evolutivos de resistencia que surgen entre el fago y la bacteria ([Liu et al., 2026](https://doi.org)). Por un lado, las bacterias han desarrollado sistemas inmunológicos sofisticados como **CMoRE**, una endonucleasa de restricción tipo IV capaz de mitigar la infección viral al degradar específicamente el ADN modificado de fagos como el fago T4 ([Liu et al., 2026](https://doi.org)). Por otro lado, la susceptibilidad bacteriana y la productividad de la infección dependen críticamente de componentes estructurales del hospedero; por ejemplo, la deleción de la proteína de división celular **DamX** en la membrana interna de *E. coli* reduce el éxito de la infección por el fago T4 a un 40%, evidenciando que el virus aprovecha maquinaria celular específica para translocar su material genético ([Wenzel et al., 2024](https://doi.org)). Una vez ocurrida la inyección, el fago ejecuta un control temporal estricto mediante factores de adquisición que degradan los tRNAs y mRNAs de la bacteria, mientras mantiene estable su proteoma para secuestrar los complejos esenciales del hospedero y conducir a la lisis celular ([Wolfram-Schauerte et al., 2022](https://doi.org)). Comprender a fondo estos puntos de control metabólico, las barreras de entrada membranales y los sistemas de defensa enzimáticos es indispensable para diseñar cócteles de fagos robustos que evadan la resistencia bacteriana y actúen eficazmente contra patógenos clínicos multirresistentes.
 
 
