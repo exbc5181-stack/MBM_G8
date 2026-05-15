@@ -39,8 +39,6 @@ graph LR
     E3 --> E4(4. Lisis Celular):::etapa
 ```
 
-El funcionamiento de un fago, como el **Fago T4**, se basa en el ciclo lítico, el cual consta de las siguientes etapas:
-
 1. **Adsorción y Penetración:** Reconocimiento de receptores específicos e inyección del material genético.
 2. **Biosíntesis:** Secuestro de la maquinaria celular para replicar el genoma viral.
 3. **Ensamblaje:** Formación de nuevos viriones.
