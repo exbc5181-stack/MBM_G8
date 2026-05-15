@@ -38,7 +38,41 @@ graph LR
     E2 --> E3(3. Ensamblaje):::etapa
     E3 --> E4(4. Lisis Celular):::etapa
 ```
+## 2. INTERACCIONES MOLECULARES Y EVOLUCIÓN DE LA RESISTENCIA
 
+El alarmante incremento de cepas de *Escherichia coli* con resistencia multiantibiótica ha impulsado un renacimiento en la investigación de estas terapias basadas en bacteriófagos como agentes antibacterianos alternativos *(Wolfram-Schauerte et al., 2022)*. Sin embargo, la optimización de estos tratamientos médicos exige descifrar las complejas interacciones moleculares y los mecanismos evolutivos de resistencia que surgen bidireccionalmente entre el fago y la bacteria *(Liu et al., 2026)*.
+
+```mermaid
+graph TD
+    %% Configuración de Estilos Globales
+    classDef caja fill:#4b2e83,color:#fff,stroke:#333,stroke-width:2px;
+    classDef proceso fill:#fff,stroke:#4b2e83,stroke-width:1px;
+    classDef consecuencia fill:#fff,stroke:#e74c3c,stroke-width:2px;
+
+    %% Bloque Membrana Interna
+    subgraph "E. coli: Membrana Interna"
+        A[Proteína DamX]:::caja
+        B[Si se elimina / deleta]:::proceso
+        C[Éxito de infección del Fago T4<br/>disminuye al 40%<br/><i>(Wenzel et al., 2024)</i>]:::consecuencia
+        
+        A --> B
+        B --> C
+    end
+
+    %% Bloque Sistema Inmune
+    subgraph "E. coli: Sistema Inmune"
+        D[Endonucleasa CMoRE]:::caja
+        E[Infección Activa]:::proceso
+        F[Degrada específicamente el<br/>ADN modificado del fago<br/><i>(Liu et al., 2026)</i>]:::consecuencia
+        
+        D --> E
+        E --> F
+    end
+
+    %% Ajuste visual de texto de alerta
+    style C color:#c0392b
+    style F color:#c0392b
+```
 
 
 
