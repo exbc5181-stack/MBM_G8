@@ -23,8 +23,6 @@ Realizar el ensamblaje de *novo* y la validación taxonómica del bacteriófago 
 
 # MARCO TEÓRICO: BIOLOGÍA Y MECANISMO DE ACCIÓN DE LOS BACTERIÓFAGOS
 
----
-
 ## 1. CONTEXTO BIOLÓGICO Y MECANISMO DE ACCIÓN
 
 La crisis global de resistencia antimicrobiana ha reposicionado a los bacteriófagos (o fagos) como agentes biológicos clave para el control de patógenos bacterianos. Los fagos son virus especializados que infectan y se replican exclusivamente dentro de bacterias y arqueas; son considerados las entidades biológicas más abundantes del planeta y juegan un rol crucial en la regulación de poblaciones microbianas *(Salmond & Fineran, 2015)*.
@@ -39,7 +37,7 @@ graph LR
     E1(1. Adsorción y Penetración):::etapa --> E2(2. Biosíntesis):::etapa
     E2 --> E3(3. Ensamblaje):::etapa
     E3 --> E4(4. Lisis Celular):::etapa
-
+```
 
 
 
