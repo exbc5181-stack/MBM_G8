@@ -1,0 +1,11 @@
+PASS	Basic Statistics	DRR817419_forward.gz
+PASS	Per base sequence quality	DRR817419_forward.gz
+PASS	Per tile sequence quality	DRR817419_forward.gz
+PASS	Per sequence quality scores	DRR817419_forward.gz
+WARN	Per base sequence content	DRR817419_forward.gz
+WARN	Per sequence GC content	DRR817419_forward.gz
+PASS	Per base N content	DRR817419_forward.gz
+PASS	Sequence Length Distribution	DRR817419_forward.gz
+WARN	Sequence Duplication Levels	DRR817419_forward.gz
+PASS	Overrepresented sequences	DRR817419_forward.gz
+PASS	Adapter Content	DRR817419_forward.gz
