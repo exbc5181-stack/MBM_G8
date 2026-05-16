@@ -40,63 +40,17 @@ Con el fin de evaluar la precisión del ensamblaje generado y realizar la asigna
 
 ## FLUJO DE TRABAJO:  
 <img width="2753" height="1216" alt="Ensamblaje de novo y validación taxonómica del_page-0001" src="https://github.com/user-attachments/assets/dff40c8d-bcfb-4f67-97fb-cdc31a5823fe" />
-## ## FLUJO DE TRABAJO:
-```mermaid
-graph TD
-    %% Estilos Globales
-    classDef fase fill:#4b2e83,color:#fff,stroke:#333,stroke-width:2px;
-    classDef subfase fill:#fff,stroke:#4b2e83,stroke-width:1px;
-    classDef info fill:#f8f9fa,stroke:#ccc,stroke-dasharray: 5 5;
-
-    %% ETAPA 1: OBTENCIÓN
-    E1(1. OBTENCIÓN DE DATOS):::fase
-    SRA[ID Acceso: DRR817419<br/>Reads Pareados NovaSeq]:::subfase
-    REF[Referencia: NC_000866<br/>~169 Kbp]:::info
-
-    E1 --> SRA
-    SRA -.-> REF
-
-    %% ETAPA 2: QC Y LIMPIEZA
-    E2(2. CONTROL DE CALIDAD Y LIMPIEZA):::fase
-    QC[2.1 FastQC:<br/>Diagnóstico de calidad]:::subfase
-    TRIM[2.2 Trimmomatic:<br/>Filtrado y remoción de adaptadores]:::subfase
-    PARAM[Parámetros:<br/>SLIDINGWINDOW:4:20<br/>MINLEN:50]:::info
-
-    SRA --> E2
-    E2 --> QC
-    E2 --> TRIM
-    TRIM -.-> PARAM
-
-    %% ETAPA 3: ENSAMBLAJE
-    E3(3. ENSAMBLAJE DE NOVO):::fase
-    SHOV[3.1 Shovill / SPAdes:<br/>Construcción de Contigs]:::subfase
-    VER[3.2 Verificación:<br/>Análisis de N50 y Longitud]:::subfase
-
-    TRIM --> E3
-    E3 --> SHOV
-    SHOV --> VER
-
-    %% ETAPA 4: ENTREGABLES
-    E4(4. ENTREGABLES DEL PROYECTO):::fase
-    GIT[4.1 Repositorio GitHub:<br/>INFORME.md y Workflow]:::subfase
-    DEF[4.2 Defensa Técnica:<br/>Comparativa Galaxy vs CLI]:::subfase
-
-    VER --> E4
-    E4 --> GIT
-    E4 --> DEF
-
-    %% Layout
-    subgraph "Pipeline Bioinformático - Grupo 8"
-    E1
-    E2
-    E3
-    E4
-    end
-```
 
 
 
 
 ## RESULTADOS:  
 
+El análisis bioinformático del dataset DRR817419 permitió obtener un ensamblaje genómico *de novo* de alta calidad mediante la herramienta SPAdes. A partir de las lecturas previamente filtradas y depuradas, se generó un total de **88 scaffolds principales**, evidenciando una reconstrucción genómica adecuada para posteriores análisis taxonómicos y estructurales.
+
+El ensamblaje presentó un **scaffold principal de 327,290 pb**, caracterizado por una elevada cobertura de secuenciación y una alta continuidad ensamblativa, lo que indica una adecuada calidad de las lecturas utilizadas durante el proceso de ensamblaje *de novo*.
+
+Posteriormente, la validación taxonómica realizada mediante BLASTn mostró una **identidad del 99.90% con *Escherichia coli***, confirmando la presencia predominante del hospedero bacteriano dentro del dataset analizado. Este resultado es biológicamente coherente debido a que el bacteriófago T4 infecta específicamente cepas de *E. coli*, por lo que es esperado encontrar material genético bacteriano asociado durante la secuenciación.
+
+Los resultados obtenidos permitieron identificar de manera precisa la relación biológica entre el bacteriófago T4 y su hospedero, proporcionando una base sólida para futuras etapas de filtrado, aislamiento de secuencias virales y validación taxonómica específica del genoma del fago.
 
