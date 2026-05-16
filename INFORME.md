@@ -13,10 +13,9 @@
 Realizar el ensamblaje de *novo* y la validación taxonómica del bacteriófago T4 mediante herramientas bioinformáticas, con el fin de evaluar su potencial aplicación como alternativa biológica para el control de cepas resistentes de *Escherichia coli*.  
 
 ## OBJETIVOS ESPECÍFICOS: 
-* Evaluar la calidad de las lecturas del dataset mediante fastp y FastQC, identificando parámetros y sesgos analíticos para el acondicionamiento de los datos.
-* Implementar una estrategia de filtrado taxonómico mediante mapeo contra referencia (Bowtie2) para aislar las lecturas virales eliminando el ruido genómico del hospedero.
+* Evaluar la calidad de las lecturas del dataset, identificando parámetros y sesgos analíticos para el acondicionamiento de los datos.
 * Realizar el ensamblaje de *novo* dirigido del genoma del bacteriófago T4 utilizando SPAdes para reconstruir su secuencia de manera continua.
-* Validar taxonómicamente las secuencias ensambladas finales mediante BLASTn para confirmar la identidad molecular y exactitud del genoma viral obtenido.
+* Validar taxonómicamente las secuencias ensambladas finales para confirmar la identidad molecular y exactitud del genoma viral obtenido.
    
 ## 1. INTRODUCCIÓN   
 
