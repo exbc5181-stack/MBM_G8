@@ -318,15 +318,15 @@ Finalmente, (Clokie y Kropinski., 2009) señalan que la caracterización molecul
 
 
 
-## 5. CONCLUSIÓN  
+## 5. CONCLUSIÓN    
 
-•	La evaluación de calidad realizada mediante FastQC y MultiQC evidenció que las lecturas del bacteriófago T4 presentaron parámetros adecuados para el análisis bioinformático posterior. 
+* El análisis estadístico estructural con QUAST demostró que el ensamblaje preliminar en Galaxy arrojó una marcada sobredimensión genómica (4.64 Mb) y un sesgo composicional de %GC alto (50.2%), actuando como una firma molecular inequívoca de una co-secuenciación masiva del hospedero bacteriano *Escherichia coli*.
 
-•	El ensamblaje de novo permitió reconstruir contigs de alta cobertura y longitud considerable, evidenciando una adecuada representación del material genético viral. El alto porcentaje de lecturas clasificadas demostró la confiabilidad y calidad del ensamblaje y de la validación taxonómica realizada. 
+* La implementación del pipeline de depuración en terminal mediante Bowtie 2 demostró ser una estrategia de alta sensibilidad y especificidad, permitiendo segregar con éxito el ruido molecular de la bacteria para aislar un set optimizado de 28,104 lecturas verdaderamente virales (tasa de alineamiento del 0.60%).
 
-•	La validación taxonómica realizada con Kraken2 confirmó exitosamente la presencia de *Escherichia coli* T4 y *Tequatrovirus* T4 dentro del dataset analizado. 
+* El re-ensamblaje con SPAdes Terminal resolvió de forma exitosa un único scaffold unificado (NODE_1) de 168,129 pb, cuya validación global en NCBI BLASTn ratificó una identidad nucleotídica del 99.98% con el genoma de referencia de *Escherichia* virus T4, certificando la máxima pureza biológica de la secuencia consenso obtenida.
 
-•	La abundante presencia de secuencias asociadas a *Escherichia coli* fue consistente con la relación biológica natural entre el bacteriófago T4 y su hospedero bacteriano. Los resultados obtenidos respaldan el potencial del bacteriófago T4 como alternativa biológica para el control de cepas resistentes de *Escherichia coli*, por tanto, el uso de herramientas bioinformáticas en la plataforma Galaxy permitió desarrollar un flujo de trabajo eficiente para la caracterización genómica y taxonómica de bacteriófagos.
+* Los resultados obtenidos reafirman el potencial del bacteriófago T4 como una alternativa biológica viable para el control de cepas resistentes de *Escherichia coli*, consolidando un flujo de trabajo bioinformático mixto (Galaxy-Terminal) altamente eficiente para la caracterización genómica de especímenes virales.
 
 
 ## 6. REFERENCIAS BIBLIOGRÁFICAS:  
