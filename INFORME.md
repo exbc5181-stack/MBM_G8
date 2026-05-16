@@ -210,6 +210,7 @@ Tras la aplicación del software Trimmomatic para la eliminación de adaptadores
 Este nivel de duplicación es consistente y el rendimiento cuantitativo y la retención de datos tras el trimado confirman que las muestras procesadas poseen la integridad y el volumen necesarios para continuar con las etapas posteriores de ensamblaje o alineamiento contra referencia.
 
 ### 3.2 Ensamblaje genómico:  
+#### 3.2.1 Evaluación Estructural del Ensamblaje Preliminar (QUAST)
 El ensamblaje de *novo* a partir de las lecturas filtradas se ejecutó mediante el algoritmo SPAdes dentro de la plataforma Galaxy. Para evaluar la continuidad, fragmentación y éxito general de la reconstrucción molecular, se analizaron las métricas estadísticas estructurales obtenidas a través de la herramienta QUAST:
 
 <img width="622" height="637" alt="image" src="https://github.com/user-attachments/assets/70f3f5ad-c09d-4dbe-8a0b-993a21149705" />
@@ -222,9 +223,28 @@ En su conjunto, la longitud acumulada de este ensamblaje alcanzó una extensión
 
 Esta hipótesis de contaminación por el hospedero se corrobora matemáticamente al analizar el contenido de Guanina y Citosina, el cual registró un promedio del 50.2% para el total de las secuencias moleculares obtenidas. Dado que el %GC teórico del Bacteriófago T4 es característicamente bajo (~34%) y el de *Escherichia coli* ronda el ~50%, este sesgo composicional actúa como una firma molecular irrefutable de que el ensamblaje preliminar está constituido primordialmente por el genoma de la bacteria hospedera, enmascarando las secuencias del virus.
 
-Por otra parte, al evaluar la continuidad del ensamblaje mediante las métricas estadísticas N50 (118,604 pb) y L50 (12), se evidencia una alta estabilidad técnica en el proceso. En el contexto bioinformático, el valor L50 de 12 actúa como un indicador cuantitativo de orden que certifica que la mitad de la masa total de este gigantesco genoma (más de 2.3 Mb) se encuentra concentrada de forma eficiente en apenas 12 scaffolds de gran tamaño. Asimismo, el valor N50 complementa este criterio de calidad al establecer un umbral de longitud, certificando que el menor de los fragmentos dentro de este bloque principal mide 118,604 pb y asegurando que el algoritmo SPAdes no fragmentó en exceso la secuencia consenso. Dentro de esta distribución, destacó de forma individual la resolución del contig de máxima extensión, el cual alcanzó los 327,290 pb. En conclusión, este primer escrutinio estructural demuestra que el pipeline procesó y acopló con éxito los datos crudos, pero expone la necesidad estricta de ejecutar un paso posterior de discriminación molecular y filtrado taxonómico para aislar las lecturas virales de los bloques bacterianos predominantes.
+Por otra parte, al evaluar la continuidad del ensamblaje mediante las métricas estadísticas N50 (118,604 pb) y L50 (12), se evidencia una alta estabilidad técnica en el proceso. En el contexto bioinformático, el valor L50 de 12 actúa como un indicador cuantitativo de orden que certifica que la mitad de la masa total de este gigantesco genoma (más de 2.3 Mb) se encuentra concentrada de forma eficiente en apenas 12 scaffolds de gran tamaño. Asimismo, el valor N50 complementa este criterio de calidad al establecer un umbral de longitud, certificando que el menor de los fragmentos dentro de este bloque principal mide 118,604 pb y asegurando que el algoritmo SPAdes no fragmentó en exceso la secuencia consenso. Dentro de esta distribución, destacó de forma individual la resolución del contig de máxima extensión, el cual alcanzó los 327,290 pb. En conclusión, este primer escrutinio estructural demuestra que el pipeline procesó y acopló con éxito los datos crudos, pero expone la necesidad estricta de ejecutar un paso posterior de discriminación molecular y filtrado taxonómico para aislar las lecturas virales de los bloques bacterianos predominantes.   
 
-### 3.3 Aislamiento Eficiente y Ensamblaje del Genoma Viral (Fase Definitiva)
+#### 3.3.1 Depuración Genómica mediante Mapeo de Lecturas (Bowtie 2)  
+Debido a la masiva co-secuenciación del hospedero *Escherichia coli* evidenciada en el análisis de QUAST, se procedió a ejecutar una etapa de filtrado por exclusión en entorno de terminal para aislar las lecturas correspondientes al bacteriófago T4. Para optimizar el pipeline bioinformático, se tomaron las lecturas de alta calidad previamente procesadas por Trimmomatic/fastp y se mapearon directamente con la herramienta Bowtie 2 contra el genoma de referencia de *Escherichia coli*.  
+
+Esta estrategia permitió segregar y remover todo el ruido molecular bacteriano sin necesidad de re-evaluar la calidad general de los datos. Las lecturas remanentes, correspondientes exclusivamente al virus, fueron sometidas directamente a un segundo proceso de ensamblaje de *novo* en SPAdes Terminal. Este filtrado resolvió con éxito un único scaffold unificado (NODE_1) de 168,129 pb, libre de contaminación bacteriana y para su correspondiente caracterización.  
+
+### 3.3 Caracterización y Validación Taxonómica del Genoma Viral Aislado:   
+Una vez obtenido el andamio definitivo NODE_1 de 168,129 pb mediante SPAdes Terminal, se procedió a realizar su caracterización biológica y validación taxonómica. Para comprobar la veracidad estructural del genoma viral reconstrucido y descartar cualquier residuo del hospedero, se ejecutó un alineamiento nucleotídico local mediante la herramienta BLASTn contra la base de datos de referencia (nt/nr) del NCBI.  
+Los parámetros métricos oficiales obtenidos en este análisis global se presentan consolidados en la siguiente tabla:  
+
+| Parámetro Métrico | Valor Obtenido | Herramienta / Plataforma |
+| :--- | :--- | :--- |
+| **Identidad Taxonómica (Hit Principal)** | **99.98%** (*Escherichia virus T4*) | NCBI BLASTn |
+| **Cobertura de Consulta (Query Cover)** | **100%** | NCBI BLASTn |
+| **Longitud del Scaffold Viral (NODE_1)** | **168,129 pb** | SPAdes Terminal |
+| **Profundidad de Cobertura Genómica** | **24.64x** | SPAdes Terminal |
+| **E-value Estadístico** | **0.0** | NCBI BLASTn |
+| **Bases de Calidad Obtenidas (Q30)** | **97.25%** | fastp / Trimmomatic |
+*Tabla. 1* Parámetros oficiales obtenidos.  
+
+El análisis arrojó un valor numérico esperado ($E\text{-value}$) de 0.0 y una cobertura de consulta (Query Cover) del 100%, confirmando una coincidencia molecular exacta. Asimismo, se registró un porcentaje de identidad del 99.98% con la secuencia completa de *Escherichia* virus T4. La diferencia marginal de apenas ~77 pb respecto al genoma de referencia internacional (168,903 pb) evidencia la alta fidelidad del pipeline bioinformático y la robustez del algoritmo de ensamblaje por grafos de De Bruijn a partir de lecturas cortas pareadas (paired-end).
 
 
 La aplicación del mapeo de alta sensibilidad con Bowtie2 arrojó una tasa de alineamiento específica del 0.60%, logrando capturar de forma exacta un total de 28,104 lecturas verdaderamente virales.
@@ -242,24 +262,14 @@ La secuencia obtenida de 168,129 pb fue validada mediante la herramienta BLASTn 
 
 <img width="1321" height="804" alt="Captura de pantalla 2026-05-14 134945" src="https://github.com/user-attachments/assets/996a315b-1516-466b-ae35-d04efb00a3d0" />
 
-| Parámetro Métrico | Valor Obtenido | Herramienta / Plataforma |
-| :--- | :--- | :--- |
-| **Identidad Taxonómica (Hit Principal)** | **99.98%** (*Escherichia virus T4*) | NCBI BLASTn |
-| **Cobertura de Consulta (Query Cover)** | **100%** | NCBI BLASTn |
-| **Longitud del Scaffold Viral (NODE_1)** | **168,129 pb** | SPAdes Terminal |
-| **Profundidad de Cobertura Genómica** | **24.64x** | SPAdes Terminal |
-| **E-value Estadístico** | **0.0** | NCBI BLASTn |
-| **Bases de Calidad Obtenidas (Q30)** | **97.25%** | fastp / Trimmomatic |
-
-
 
 ### 3.4 Validación Taxonómica Final por Alineamiento
 
 La veracidad estructural del scaffold principal de la secuencia obtenida de 168,129 pb del genoma del Bacteriofago se corroboró mediante un alineamiento nucleotídico local con la herramienta BLASTn, utilizando como contraste el genoma de referencia de  Escherichia virus T4 (168,903 pb). El análisis arrojó una cobertura de consulta (Query Cover) del 100% y un porcentaje de identidad del 99.98% ($E-value = 0.0$). La diferencia marginal de apenas ~774 pb entre ambas secuencias evidencia la elevada fidelidad y robustez del algoritmo de ensamblaje por grafos de De Bruijn a partir de lecturas cortas (paired-end), logrando una reconstrucción prácticamente integral del genoma viral.
 
-### 3.5 Interpretación Biológica y Clasificación Taxonómica
+### 3.5 Clasificación Taxonómica Oficial:   
 
-La caracterización y validación taxonómica del scaffold definitivo de **168,129 pb** (*NODE_1*) mediante la herramienta **BLASTn** y los perfiles de clasificación molecular confirmaron la identidad inequívoca del virus. A nivel sistemático, el espécimen bioinformático se adscribe a la siguiente jerarquía oficial:
+Esta categorización sistemática concluye la fase analítica del proyecto, certificando que el fago ensamblado corresponde con absoluta pureza al organismo objetivo del estudio y proporcionando una secuencia consenso de alta resolución molecular para posteriores análisis funcionales. El perfil de clasificación molecular adscribe el scaffold definitivo **168,129 pb** (*NODE_1*) de forma inequívoca dentro de la jerarquía taxonómica oficial aprobada por el Comité Internacional de Taxonomía de Virus (ICTV):
 
 | Nivel Taxonómico | Clasificación Científica |
 | :--- | :--- |
@@ -270,10 +280,7 @@ La caracterización y validación taxonómica del scaffold definitivo de **168,1
 
 La detección robusta de linajes específicos como *Tequatrovirus* T4 y *Escherichia virus T4* con un **99.98% de identidad** valida con éxito el flujo de trabajo implementado. 
 
-Desde una perspectiva biotecnológica y microbiológica, la confirmación de esta identidad es un pilar fundamental. El fago T4 es un sistema modelo ampliamente estudiado en la biología molecular y la genómica viral debido a su estricto ciclo lítico. Los datos genómicos limpios obtenidos en este proyecto respaldan su viabilidad y seguridad como un candidato biológico óptimo para el desarrollo de terapias fágicas avanzadas y el control epidemiológico de cepas multirresistentes de *Escherichia coli*.
-
----
-
+Desde una perspectiva biotecnológica y microbiológica, la confirmación de esta identidad es un pilar fundamental. El fago T4 es un sistema modelo ampliamente estudiado en la biología molecular y la genómica viral debido a su estricto ciclo lítico. Los datos genómicos limpios obtenidos en este proyecto respaldan su viabilidad y seguridad como un candidato biológico óptimo para el desarrollo de terapias fágicas avanzadas y el control epidemiológico de cepas multirresistentes de *Escherichia coli*.  
 
 ## 4. DISCUSIÓN:  
 
