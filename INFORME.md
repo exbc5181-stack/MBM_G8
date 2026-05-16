@@ -173,14 +173,15 @@ El ensamblaje de novo preliminar se ejecutó en Galaxy utilizando el algoritmo S
 *Fig. 7* Visualización de los scaffolds ensamblados mediante SPAdes en la plataforma Galaxy.   
 
 **2.2 Depuración Genómica con Bowtie 2 (Terminal)**    
+
 Al identificarse co-secuenciación masiva del hospedero bacteriano en Galaxy, el flujo de trabajo se trasladó a entorno de terminal Linux para ejecutar un filtrado por exclusión. Las lecturas previamente limpias se mapearon mediante la herramienta Bowtie 2 contra el genoma de referencia de *Escherichia coli* para segregar el ruido molecular. Las lecturas remanentes, correspondientes al virus, se sometieron directamente a un segundo proceso de ensamblaje de novo en SPAdes Terminal para generar el scaffold definitivo.  
 
 **Comando utilizado**  
 
-```
+
 Para aislar de forma exclusiva las secuencias pertenecientes al virus, se descargó el genoma de referencia oficial del *Enterobacteria fago T4* desde el NCBI (Accession: `NC_000866.4`) y se construyó un índice local con `Bowtie2`:
-```bash
-wget -O genoma_referencia_T4.fasta "[https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=NC_000866.4&rettype=fasta](https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=NC_000866.4&rettype=fasta)"
+
+```wget -O genoma_referencia_T4.fasta "[https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=NC_000866.4&rettype=fasta](https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=NC_000866.4&rettype=fasta)"
 bowtie2-build genoma_referencia_T4.fasta indice_T4```
 
 Mapeo y Extracción Selectiva de Lecturas Virales con Bowtie2
