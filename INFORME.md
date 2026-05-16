@@ -75,13 +75,13 @@ graph TD
     style C color:#c0392b
     style F color:#c0392b
 ```
-### 1.3 Mecanismos de Defensa Bacteriana
+### 1.2.1 Mecanismos de Defensa Bacteriana
 
 Las bacterias han desarrollado sistemas inmunológicos sofisticados para contrarrestar la agresión viral. Destaca entre ellos **CMoRE**, una endonucleasa de restricción tipo IV capaz de mitigar la infección viral al degradar específicamente el ADN modificado de fagos como el fago T4 *(Liu et al., 2026)*.
 
 Asimismo, la susceptibilidad bacteriana y la productividad de la infección dependen críticamente de componentes estructurales del hospedero. Por ejemplo, se ha evidenciado que la deleción de la proteína de división celular **DamX** en la membrana interna de *Escherichia coli* reduce el éxito de la infección por el fago T4 a un **40%**, demostrando que el virus aprovecha maquinaria celular específica para lograr translocar su material genético *(Wenzel et al., 2024)*.
 
-### 1.4 Estrategias de Contradefensa del Fago
+### 1.2.2 Estrategias de Contradefensa del Fago
 
 Una vez ocurrida con éxito la inyección, el fago ejecuta un control temporal estricto mediante factores de adquisición que degradan los tRNAs y mRNAs de la bacteria, mientras mantiene estable su propio proteoma para secuestrar los complejos esenciales del hospedero y conducir inexorablemente a la lisis celular *(Wolfram-Schauerte et al., 2022)*.
 
@@ -89,7 +89,7 @@ Una vez ocurrida con éxito la inyección, el fago ejecuta un control temporal e
 
 ---
 
-## 1.5 METODOLOGÍA BIOINFORMÁTICA Y ANÁLISIS GENÓMICO
+## 1.3 METODOLOGÍA BIOINFORMÁTICA Y ANÁLISIS GENÓMICO
 
 En la genómica contemporánea, el procesamiento de datos provenientes de Secuenciación de Próxima Generación (NGS) requiere el uso de herramientas bioinformáticas especializadas para la reconstrucción de genomas virales. La utilización del dataset **DRR317419** *(mencionado previamente como DRR817419)* permite validar un flujo de trabajo computacional para la clasificación taxonómica y el análisis funcional, proporcionando una base científica robusta para futuras terapias basadas en fagos.
 
