@@ -100,20 +100,9 @@ Herramientas como **SPAdes** emplean algoritmos basados en **grafos de De Bruijn
 Para el desarrollo de este proyecto, se implementó una estrategia bioinformática híbrida y multientorno, diseñada para garantizar la máxima precisión en la reconstrucción genómica del Bacteriófago T4. Esta aproximación integra el uso de entornos locales basados en Linux (Lubuntu) para el pre-procesamiento crítico, la plataforma de computación de alto rendimiento Galaxy para el ensamblaje de novo y los servidores del NCBI (BLASTn) para la validación taxonómica final.  
 
 
-<img width="3000" height="1688" alt="Ensamblaje de novo y validación taxonómica del (1)_page-0001" src="https://github.com/user-attachments/assets/2a539ae9-4438-4df1-b4d2-16ebce662d72" />
+<img width="3000" height="1688" alt="Ensamblaje de novo y validación taxonómica del (1)_page-0001" src="https://github.com/user-attachments/assets/2a539ae9-4438-4df1-b4d2-16ebce662d72" />  
 
-
-
-
-
-
-
-
-
-
-
-
-
+*Diagrama. 1* Flujograma de la metodlogía   
 
 
 ### **1. Fase de Pre-procesamiento y Control de Calidad (Entorno: Lubuntu Linux)**  
@@ -192,7 +181,8 @@ El ensamblaje de novo preliminar se ejecutó en Galaxy utilizando el algoritmo S
 **2.2 Depuración Genómica con Bowtie 2 (Terminal)**    
 
 Al identificarse co-secuenciación masiva del hospedero bacteriano en Galaxy, el flujo de trabajo se trasladó a entorno de terminal Linux para ejecutar un filtrado por exclusión. Las lecturas previamente limpias se mapearon mediante la herramienta Bowtie 2 contra el genoma de referencia de *Escherichia coli* para segregar el ruido molecular. Las lecturas remanentes, correspondientes al virus, se sometieron directamente a un segundo proceso de ensamblaje de novo en SPAdes Terminal para generar el scaffold definitivo.  
-Para aislar de forma exclusiva las secuencias pertenecientes al virus, se descargó el genoma de referencia oficial del *Enterobacteria fago T4* desde el NCBI (Accession: `NC_000866.4`) y se construyó un índice local con `Bowtie2`:
+Para aislar de forma exclusiva las secuencias pertenecientes al virus, se descargó el genoma de referencia oficial del *Enterobacteria fago T4* desde el NCBI (Accession: `NC_000866.4`) y se construyó un índice local con `Bowtie2`:  
+**Comando utilizado:**    
 
 ```
 wget -O genoma_referencia_T4.fasta "[https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=NC_000866.4&rettype=fasta](https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=NC_000866.4&rettype=fasta)"
@@ -202,7 +192,8 @@ bowtie2-build genoma_referencia_T4.fasta indice_T4
 
 
 **2.3 Mapeo y Extracción Selectiva de Lecturas Virales con Bowtie2**
-Se alinearon las lecturas limpias contra el índice del fago usando la opción --very-sensitive para maximizar la sensibilidad de captura de los fragmentos virales diluidos en el ADN bacteriano. Las lecturas pareadas concordantes con el virus se aislaron de manera pura en formato comprimido:
+Se alinearon las lecturas limpias contra el índice del fago usando la opción --very-sensitive para maximizar la sensibilidad de captura de los fragmentos virales diluidos en el ADN bacteriano. Las lecturas pareadas concordantes con el virus se aislaron de manera pura en formato comprimido:  
+**Comando utilizado:**    
 
 ```
 bowtie2 --very-sensitive -x indice_T4 -1 ~/Desktop/DRR817419_1_clean.fastq.gz -2 ~/Desktop/DRR817419_2_clean.fastq.gz --al-conc-gz lecturas_recuperadas.fastq.gz -S mapeo_fago.sam
@@ -210,8 +201,8 @@ bowtie2 --very-sensitive -x indice_T4 -1 ~/Desktop/DRR817419_1_clean.fastq.gz -2
 
 **2.4 Ensamblaje de las Lecturas Virales con SPAdes**
 
-Las lecturas específicas pareadas que fueron recuperadas y purificadas del fago se sometieron a una reconstrucción molecular utilizando el algoritmo de grafos de De Bruijn en SPAdes, empleando el parámetro --careful para minimizar el número de mismatches y contigs quiméricos:
-
+Las lecturas específicas pareadas que fueron recuperadas y purificadas del fago se sometieron a una reconstrucción molecular utilizando el algoritmo de grafos de De Bruijn en SPAdes, empleando el parámetro --careful para minimizar el número de mismatches y contigs quiméricos:  
+**Comando utilizado:**    
 
 ```
 spades.py --careful -1 lecturas_recuperadas.fastq.1.gz -2 lecturas_recuperadas.fastq.2.gz -o ~/Desktop/ENSAMBLAJE_FINAL_FAGO
