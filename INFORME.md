@@ -178,8 +178,25 @@ Al identificarse co-secuenciación masiva del hospedero bacteriano en Galaxy, el
 **Comando utilizado**  
 
 ```
-PEGA AQUI CRIS TU COMANDO   
-```  
+Para aislar de forma exclusiva las secuencias pertenecientes al virus, se descargó el genoma de referencia oficial del *Enterobacteria fago T4* desde el NCBI (Accession: `NC_000866.4`) y se construyó un índice local con `Bowtie2`:
+```bash
+wget -O genoma_referencia_T4.fasta "[https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=NC_000866.4&rettype=fasta](https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=NC_000866.4&rettype=fasta)"
+bowtie2-build genoma_referencia_T4.fasta indice_T4```
+
+Mapeo y Extracción Selectiva de Lecturas Virales con Bowtie2
+Se alinearon las lecturas limpias contra el índice del fago usando la opción --very-sensitive para maximizar la sensibilidad de captura de los fragmentos virales diluidos en el ADN bacteriano. Las lecturas pareadas concordantes con el virus se aislaron de manera pura en formato comprimido:
+
+bowtie2 --very-sensitive -x indice_T4 -1 ~/Desktop/DRR817419_1_clean.fastq.gz -2 ~/Desktop/DRR817419_2_clean.fastq.gz --al-conc-gz lecturas_recuperadas.fastq.gz -S mapeo_fago.sam
+
+
+Ensamblaje de las Lecturas Virales con SPAdes
+
+Las lecturas específicas pareadas que fueron recuperadas y purificadas del fago se sometieron a una reconstrucción molecular utilizando el algoritmo de grafos de De Bruijn en SPAdes, empleando el parámetro --careful para minimizar el número de mismatches y contigs quiméricos:
+
+spades.py --careful -1 lecturas_recuperadas.fastq.1.gz -2 lecturas_recuperadas.fastq.2.gz -o ~/Desktop/ENSAMBLAJE_FINAL_FAGO
+
+Debido a la nomenclatura de salida de Bowtie2 para lecturas pareadas comprimidas, los archivos de entrada se identificaron como .fastq.1.gz y .fastq.2.gz
+
 
 ### **3. Fase de Validación Taxonómica (Entorno: NCBI BLASTn)**  
 La caracterización y validación taxonómica de los scaffolds obtenidos se realizó mediante la herramienta BLASTn contra la base de datos de referencia de nucleótidos estándar (nt/nr) del NCBI. Este alineamiento global se ejecutó en dos etapas independientes: primero, para identificar la naturaleza biológica de los bloques genómicos preliminares y confirmar la presencia del hospedero bacteriano, y segundo, para certificar la pureza, el porcentaje de identidad molecular y el linaje taxonómico oficial del genoma viral aislado tras la depuración.    
