@@ -123,7 +123,9 @@ La implementación del parámetro --split-files tiene como objetivo la segregaci
 **1.2 Control de Calidad Inicial (QC)**  
 Se evaluó el estado de las secuencias mediante FastQC para detectar artefactos técnicos.  
 **Comando utilizado:**  
-`fastqc DRR817419_1.fastq DRR817419_2.fastq`  
+```
+fastqc DRR817419_1.fastq DRR817419_2.fastq
+```
 
 Se generaron reportes HTML para inspeccionar la calidad de bases y contenido de adaptadores.   
 
@@ -145,13 +147,15 @@ Posteriormente, se utilizó el comando `xdg-open` para abrir los reportes HTML g
 Se aplicó un filtrado riguroso mediante Trimmomatic v0.39 para garantizar que solo bases de alta confianza participen en el ensamblaje.  
 
 **Comando utilizado:**  
-`java -jar /usr/share/java/trimmomatic.jar PE -phred33 \
+```
+java -jar /usr/share/java/trimmomatic.jar PE -phred33 \
 DRR817419_1.fastq DRR817419_2.fastq \
 output_1_paired.fq output_1_unpaired.fq \
 output_2_paired.fq output_2_unpaired.fq \
 HEADCROP:15 \
 SLIDINGWINDOW:4:20 \
-MINLEN:36`   
+MINLEN:36
+```   
 
 <img width="1020" height="211" alt="image" src="https://github.com/user-attachments/assets/f9ceca3f-5eeb-435c-8498-6e94d47b9a96" />    
 
