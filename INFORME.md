@@ -99,6 +99,23 @@ Herramientas como **SPAdes** emplean algoritmos basados en **grafos de De Bruijn
 ## 2. METODOLOGÍA:  
 Para el desarrollo de este proyecto, se implementó una estrategia bioinformática híbrida y multientorno, diseñada para garantizar la máxima precisión en la reconstrucción genómica del Bacteriófago T4. Esta aproximación integra el uso de entornos locales basados en Linux (Lubuntu) para el pre-procesamiento crítico, la plataforma de computación de alto rendimiento Galaxy para el ensamblaje de novo y los servidores del NCBI (BLASTn) para la validación taxonómica final.  
 
+
+<img width="3000" height="1688" alt="Ensamblaje de novo y validación taxonómica del (1)_page-0001" src="https://github.com/user-attachments/assets/2a539ae9-4438-4df1-b4d2-16ebce662d72" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ### **1. Fase de Pre-procesamiento y Control de Calidad (Entorno: Lubuntu Linux)**  
 El manejo inicial de los datos se realizó mediante la terminal de comandos en Lubuntu, priorizando la eficiencia en la manipulación de archivos de gran volumen.  
 
