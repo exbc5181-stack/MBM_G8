@@ -214,31 +214,13 @@ El ensamblaje de *novo* a partir de las lecturas filtradas se ejecutó mediante 
 
 <img width="622" height="637" alt="image" src="https://github.com/user-attachments/assets/70f3f5ad-c09d-4dbe-8a0b-993a21149705" />
 
-Figura 11: Resultados del ensamblaje de novo del bacteriófago T4 obtenidos mediante SPAdes. Se observa un contig principal con elevada cobertura y longitud.
+Fig. 11 Resultados del ensamblaje de *novo* del bacteriófago T4 obtenidos mediante SPAdes. Se observa un contig principal con elevada cobertura y longitud.
 
-El primer intento de ensamblaje de novo directo general del dataset crudo generó una longitud total consolidada de 4,638,873 pb distribuida en scaffolds cuyo fragmento más largo alcanzaba las 327,394 pb con un contenido GC de 50.2%. El análisis taxonómico por BLASTn de este contig masivo arrojó una coincidencia del 99.90% de identidad con Escherichia coli.
+Respecto al rendimiento de la reconstrucción, el proceso generó un total de 207 contigs totales, de los cuales únicamente 88 fragmentos principales presentaron una longitud útil mayor o igual a 1,000 pb. Esta relación indica que, aunque el algoritmo generó una cantidad considerable de fragmentos menores dispersos (ruido bioinformático), logró consolidar un bloque robusto de 88 bloques continuos de alta confianza informativa. En su conjunto, la longitud acumulada de este ensamblaje alcanzó una extensión total de 4,638,873 pb (aproximadamente 4.64 Mb). Esta escala macroscópica de nucleótidos representa una sobredimensión crítica respecto al tamaño biológico esperado para el genoma de referencia del Bacteriófago T4 (~169 kb), evidenciando que el software reconstruyó una masa cromosómica casi 30 veces mayor a la del virus debido a una masiva co-secuenciación de material genético celular.
 
-Debido a que el tamaño total del ensamblaje superó el tamaño esperado del genoma de referencia del bacteriófago T4 (~169 kb), los scaffolds obtenidos fueron posteriormente considerados para análisis de clasificación taxonómica, con el fin de identificar las secuencias asociadas al genoma viral y posibles fragmentos correspondientes al hospedero bacteriano.  
+Esta hipótesis de contaminación por el hospedero se corrobora matemáticamente al analizar el contenido de Guanina y Citosina, el cual registró un promedio del 50.2% para el total de las secuencias moleculares obtenidas. Dado que el %GC teórico del Bacteriófago T4 es característicamente bajo (~34%) y el de Escherichia coli ronda el ~50%, este sesgo composicional actúa como una firma molecular irrefutable de que el ensamblaje preliminar está constituido primordialmente por el genoma de la bacteria hospedera, enmascarando las secuencias del virus.
 
-Este hallazgo evidenció una contaminación biológica masiva esperada: el dataset crudo estaba compuesto primordialmente por material genético de la bacteria hospedera, enmascarando las secuencias del virus debido a la asimetría de tamaño de los genomas celulares frente a los virales.
-
-
-A continuación se detallan los parámetros métricos obtenidos tras la ejecución del pipeline bioinformático:
-
-
-| Métrica | Valor Obtenido | Herramienta |
-| :--- | :--- | :--- |
-| **Calidad de bases (Q30)** | 97.25% | fastp |
-| **Número de Scaffolds** | 197 | SPAdes |
-| **Longitud del Scaffold más largo** | 327,481 bp | SPAdes |
-| **Identidad Taxonómica (BLAST)** | 99.90% | NCBI BLASTn |
-| **Organismo Predominante** | *Escherichia coli* | BLASTn / Kraken2 |
-
-> **Nota:** Se adjuntan las capturas de pantalla correspondientes que evidencian estos valores en el repositorio.
-
-
-
-La validación taxonómica mediante BLASTn del scaffold de mayor longitud mostró una identidad del 99.90% con Escherichia coli (E-value: 0.0). Aunque el objetivo principal es el estudio del Bacteriófago T4, este resultado confirma la presencia predominante del genoma del hospedero bacteriano en el dataset DRR817419, lo cual es un paso técnico esencial antes de proceder al aislamiento de las secuencias virales.
+Por otra parte, las métricas de continuidad arrojaron un valor N50 de 118,604 pb asociado a un L50 de 12. En el contexto bioinformático, esto significa que la mitad de la masa total de este gigantesco ensamblaje (más de 2.3 Mb) se encuentra concentrada eficientemente en apenas 12 fragmentos de gran tamaño, lo que demuestra que el algoritmo SPAdes operó con una excelente estabilidad técnica y continuidad física a pesar de la complejidad de la muestra mixta. Dentro de esta distribución, destacó de forma individual la resolución del contig de máxima extensión, el cual alcanzó los 327,290 pb. En conclusión, este primer escrutinio estructural demuestra que el pipeline procesó y acopló con éxito los datos crudos, pero expone la necesidad estricta de ejecutar un paso posterior de discriminación molecular y filtrado taxonómico para aislar las lecturas virales de los bloques bacterianos predominantes.
 
 ### 3.3 Aislamiento Eficiente y Ensamblaje del Genoma Viral (Fase Definitiva)
 
