@@ -163,19 +163,27 @@ Posteriormente, se ejecutó nuevamente el comando `FASTQC` sobre las secuencias 
 
 *Fig. 6* Ejecución del comando fastq en las secuencias limpias en la terminal  
 
-### **2. Fase de Ensamblaje de novo (Entorno: Galaxy)**   
+### **2. Fase de Ensamblaje de *novo* y Depuración Genómica **     
 
-**2.1 Reconstrucción Genómica con SPAdes**   
-El ensamblaje de novo del genoma del Bacteriófago T4 se realizó en la plataforma bioinformática Galaxy. Para la reconstrucción de los contigs a partir de las lecturas pareadas (paired-end), se utilizó el ensamblador SPAdes.  
+**2.1 Reconstrucción Genómica con SPAdes (Galaxy)**     
+El ensamblaje de novo preliminar se ejecutó en Galaxy utilizando el algoritmo SPAdes. Como datos de entrada (input), se emplearon las lecturas paired-end de alta calidad previamente depuradas con Trimmomatic. El software procesó estas secuencias limpias para generar el set inicial de scaffolds estructurales destinados a la evaluación.  
 
 <img width="997" height="438" alt="image" src="https://github.com/user-attachments/assets/ec1b7385-f2cb-4560-946d-ffc90fe4f85d" />   
 
 *Fig. 7* Visualización de los scaffolds ensamblados mediante SPAdes en la plataforma Galaxy.   
 
-### **3. Fase de Validación Taxonómica (Entorno: NCBI BLASTn)**  
-La validación final se realizó mediante el servidor BLASTn del NCBI para confirmar la identidad biológica de las secuencias obtenidas.  
+**2.2 Depuración Genómica con Bowtie 2 (Terminal)**  
+Al identificarse co-secuenciación masiva del hospedero bacteriano en Galaxy, el flujo de trabajo se trasladó a entorno de terminal Linux para ejecutar un filtrado por exclusión. Las lecturas previamente limpias se mapearon mediante la herramienta Bowtie 2 contra el genoma de referencia de *Escherichia coli* para segregar el ruido molecular. Las lecturas remanentes, correspondientes al virus, se sometieron directamente a un segundo proceso de ensamblaje de novo en SPAdes Terminal para generar el scaffold definitivo.  
 
-<img width="1013" height="364" alt="image" src="https://github.com/user-attachments/assets/ef90b464-dcb8-44b9-a738-37696f5b3eb6" />     
+*Comando utilizado*
+```
+PEGA AQUI CRIS TU COMANDO   
+```  
+
+### **3. Fase de Validación Taxonómica (Entorno: NCBI BLASTn)**  
+La caracterización y validación taxonómica de los scaffolds obtenidos se realizó mediante la herramienta BLASTn contra la base de datos de referencia de nucleótidos estándar (nt/nr) del NCBI. Este alineamiento global se ejecutó en dos etapas independientes: primero, para identificar la naturaleza biológica de los bloques genómicos preliminares y confirmar la presencia del hospedero bacteriano, y segundo, para certificar la pureza, el porcentaje de identidad molecular y el linaje taxonómico oficial del genoma viral aislado tras la depuración.    
+
+<img width="1303" height="780" alt="Captura de pantalla 2026-05-12 125110" src="https://github.com/user-attachments/assets/9dde7435-f898-4554-8189-3b72c28b2b7c" />
 
 *Fig. 8*  Validación taxonómica en BLASTn 
 
