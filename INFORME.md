@@ -210,7 +210,7 @@ Tras la aplicación del software Trimmomatic para la eliminación de adaptadores
 Este nivel de duplicación es consistente y el rendimiento cuantitativo y la retención de datos tras el trimado confirman que las muestras procesadas poseen la integridad y el volumen necesarios para continuar con las etapas posteriores de ensamblaje o alineamiento contra referencia.
 
 ### 3.2 Ensamblaje genómico:  
-El ensamblaje de novo de las lecturas filtradas se realizó mediante SPAdes en la plataforma Galaxy, obteniéndose un total de 88 scaffolds principales. De estos, destaca la presencia de un contig principal de máxima extensión que alcanzó los 327,290 pb de longitud lo caual se encuentra asociado con una elevada cobertura de secuenciacón. 
+El ensamblaje de *novo* a partir de las lecturas filtradas se ejecutó mediante el algoritmo SPAdes dentro de la plataforma Galaxy. Para evaluar la continuidad, fragmentación y éxito general de la reconstrucción molecular, se analizaron las métricas estadísticas estructurales obtenidas a través de la herramienta QUAST:
 
 <img width="622" height="637" alt="image" src="https://github.com/user-attachments/assets/70f3f5ad-c09d-4dbe-8a0b-993a21149705" />
 
