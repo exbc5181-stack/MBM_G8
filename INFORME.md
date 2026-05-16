@@ -226,9 +226,11 @@ Esta hipótesis de contaminación por el hospedero se corrobora matemáticamente
 Por otra parte, al evaluar la continuidad del ensamblaje mediante las métricas estadísticas N50 (118,604 pb) y L50 (12), se evidencia una alta estabilidad técnica en el proceso. En el contexto bioinformático, el valor L50 de 12 actúa como un indicador cuantitativo de orden que certifica que la mitad de la masa total de este gigantesco genoma (más de 2.3 Mb) se encuentra concentrada de forma eficiente en apenas 12 scaffolds de gran tamaño. Asimismo, el valor N50 complementa este criterio de calidad al establecer un umbral de longitud, certificando que el menor de los fragmentos dentro de este bloque principal mide 118,604 pb y asegurando que el algoritmo SPAdes no fragmentó en exceso la secuencia consenso. Dentro de esta distribución, destacó de forma individual la resolución del contig de máxima extensión, el cual alcanzó los 327,290 pb. En conclusión, este primer escrutinio estructural demuestra que el pipeline procesó y acopló con éxito los datos crudos, pero expone la necesidad estricta de ejecutar un paso posterior de discriminación molecular y filtrado taxonómico para aislar las lecturas virales de los bloques bacterianos predominantes.   
 
 #### 3.3.1 Depuración Genómica mediante Mapeo de Lecturas (Bowtie 2)  
-Debido a la masiva co-secuenciación del hospedero *Escherichia coli* evidenciada en el análisis de QUAST, se procedió a ejecutar una etapa de filtrado por exclusión en entorno de terminal para aislar las lecturas correspondientes al bacteriófago T4. Para optimizar el pipeline bioinformático, se tomaron las lecturas de alta calidad previamente procesadas por Trimmomatic/fastp y se mapearon directamente con la herramienta Bowtie 2 contra el genoma de referencia de *Escherichia coli*.  
+Debido a la masiva co-secuenciación del hospedero *Escherichia coli* evidenciada en el análisis de QUAST, se procedió a ejecutar una etapa de filtrado por exclusión en entorno de terminal para aislar las lecturas correspondientes al bacteriófago T4. Para optimizar el pipeline bioinformático, se tomaron las lecturas de alta calidad previamente procesadas por Trimmomatic/fastp y se mapearon directamente con la herramienta Bowtie 2 contra el genoma de referencia de *Escherichia coli*.    
 
-Esta estrategia permitió segregar y remover todo el ruido molecular bacteriano sin necesidad de re-evaluar la calidad general de los datos. Las lecturas remanentes, correspondientes exclusivamente al virus, fueron sometidas directamente a un segundo proceso de ensamblaje de *novo* en SPAdes Terminal. Este filtrado resolvió con éxito un único scaffold unificado (NODE_1) de 168,129 pb, libre de contaminación bacteriana y para su correspondiente caracterización.  
+La aplicación de este mapeo de alta sensibilidad arrojó una tasa de alineamiento específica del 0.60%, logrando capturar e identificar de forma exacta un total de 28,104 lecturas verdaderamente virales. Esta estrategia permitió discriminar con éxito el contenido del virus frente al predominante ruido molecular bacteriano sin necesidad de re-evaluar la calidad general de los datos.
+
+Este set optimizado de 28,104 lecturas remanentes, correspondientes exclusivamente al virus, fue sometido directamente a un segundo proceso de ensamblaje de *novo* en SPAdes Terminal. Este filtrado resolvió con éxito un único scaffold unificado (NODE_1) de 168,129 pb, libre de contaminación biológica y listo para su correspondiente caracterización taxonómica.   
 
 ### 3.3 Caracterización y Validación Taxonómica del Genoma Viral Aislado:   
 Una vez obtenido el scaffold definitivo NODE_1 de 168,129 pb mediante SPAdes Terminal, se procedió a realizar su caracterización biológica y validación taxonómica. Para comprobar la veracidad estructural del genoma viral reconstrucido y descartar cualquier residuo del hospedero, se ejecutó un alineamiento nucleotídico local mediante la herramienta BLASTn contra la secuencia de referencia oficial del bacteriófago T4 (NC_000866.4) depositada en la base de datos del NCBI.  
@@ -242,16 +244,13 @@ Los parámetros métricos oficiales obtenidos en este análisis global se presen
 | **Longitud del Scaffold Viral (NODE_1)** | **168,129 pb** | SPAdes Terminal |
 | **Profundidad de Cobertura Genómica** | **24.64x** | SPAdes Terminal |
 | **E-value Estadístico** | **0.0** | NCBI BLASTn |
-| **Bases de Calidad Obtenidas (Q30)** | **97.25%** | fastp / Trimmomatic |
-*Tabla. 1* Parámetros oficiales obtenidos.  
+| **Bases de Calidad Obtenidas (Q30)** | **97.25%** | fastp / Trimmomatic |  
 
-El análisis arrojó un valor numérico esperado ($E\text{-value}$) de 0.0 y una cobertura de consulta (Query Cover) del 100%, confirmando una coincidencia molecular exacta. Asimismo, se registró un porcentaje de identidad del 99.98% con la secuencia completa de *Escherichia* virus T4. La diferencia marginal de apenas ~77 pb respecto al genoma de referencia internacional (168,903 pb) evidencia la alta fidelidad del pipeline bioinformático y la robustez del algoritmo de ensamblaje por grafos de De Bruijn a partir de lecturas cortas pareadas (paired-end).
+*Tabla. 1* Parámetros oficiales obtenidos.    
 
+El análisis arrojó un valor numérico esperado ($E\text{-value}$) de 0.0 y una cobertura de consulta (Query Cover) del 100%, confirmando una coincidencia molecular exacta. Asimismo, se registró un porcentaje de identidad del 99.98% con la secuencia completa de *Escherichia* virus T4. La diferencia marginal de apenas ~77 pb respecto al genoma de referencia internacional (168,903 pb) evidencia la alta fidelidad del pipeline bioinformático y la robustez del algoritmo de ensamblaje por grafos de De Bruijn a partir de lecturas cortas pareadas (paired-end).  
 
-La aplicación del mapeo de alta sensibilidad con Bowtie2 arrojó una tasa de alineamiento específica del 0.60%, logrando capturar de forma exacta un total de 28,104 lecturas verdaderamente virales.
-
-El re-ensamblaje enfocado únicamente en estas lecturas purificadas resolvió por completo el ruido del hospedero, generando un scaffold definitivo excepcional dentro de la carpeta
-
+Es decir, el re-ensamblaje enfocado únicamente en estas lecturas purificadas resolvió por completo el ruido del hospedero, generando un scaffold definitivo excepcional.  
 
 <img width="1303" height="780" alt="Captura de pantalla 2026-05-12 125110" src="https://github.com/user-attachments/assets/9dde7435-f898-4554-8189-3b72c28b2b7c" />
 
