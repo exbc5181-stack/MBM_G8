@@ -232,7 +232,7 @@ Se evaluó la composición y el estado de los datos de secuenciación masiva cor
 
 El perfil de recuento de secuencias obtenido mediante la herramienta FastQC (integrado en MultiQC) reveló un volumen inicial aproximado de 4.8 millones de lecturas por cada archivo pareado (DRR817419_forward y DRR817419_reverse).
 
-Tras la aplicación del software Trimmomatic para la eliminación de adaptadores y el filtrado de bases de baja calidad, se observó una reducción marginal en el número total de lecturas, estabilizándose en aproximadamente 4.7 millones de lecturas retenidas por archivo. Esta pérdida controlada valida la especificidad del proceso de limpieza, garantizando que no se descartó información biológica masiva de forma errónea, sino únicamente secuencias artefactuales o de calidad insuficiente.
+Tras la aplicación del Trimmomatic para la eliminación de adaptadores y el filtrado de bases de baja calidad, se observó una reducción marginal en el número total de lecturas, estabilizándose en aproximadamente 4.7 millones de lecturas retenidas por archivo. Esta pérdida controlada valida la especificidad del proceso de limpieza, garantizando que no se descartó información biológica masiva de forma errónea, sino únicamente secuencias artefactuales o de calidad insuficiente.
 
 Este nivel de duplicación es consistente y el rendimiento cuantitativo y la retención de datos tras el trimado confirman que las muestras procesadas poseen la integridad y el volumen necesarios para continuar con las etapas posteriores de ensamblaje o alineamiento contra referencia.
 
@@ -243,9 +243,9 @@ El ensamblaje de novo de las lecturas filtradas se realizó mediante SPAdes en l
 
 Figura 11: Resultados del ensamblaje de novo del bacteriófago T4 obtenidos mediante SPAdes. Se observa un contig principal con elevada cobertura y longitud.
 
-El primer intento de ensamblaje de novo directo general del dataset crudo generó una longitud total consolidada de 4,638,873 pb distribuida en scaffolds cuyo fragmento más largo alcanzaba las 327,394 pb con un contenido GC de 50.2%. El análisis taxonómico por BLASTn de este contig masivo arrojó una coincidencia del 99.90% de identidad con Escherichia coli.
+El primer intento de ensamblaje de novo directo general del dataset crudo generó una longitud total consolidada de 4,638,873 pb distribuida en scaffolds cuyo fragmento más largo alcanzaba las 327,390 pb con un contenido GC de 50.2%. El análisis taxonómico por BLASTn de este contig masivo arrojó una coincidencia del 99.90% de identidad con *Escherichia coli*.
 
-Debido a que el tamaño total del ensamblaje superó el tamaño esperado del genoma de referencia del bacteriófago T4 (~169 kb), los scaffolds obtenidos fueron posteriormente considerados para análisis de clasificación taxonómica, con el fin de identificar las secuencias asociadas al genoma viral y posibles fragmentos correspondientes al hospedero bacteriano.  
+Debido a que el tamaño total del ensamblaje superó el tamaño esperado del genoma de referencia del bacteriófago T4 (~327,290 kb), los scaffolds obtenidos fueron posteriormente considerados para análisis de clasificación taxonómica, con el fin de identificar las secuencias asociadas al genoma viral y posibles fragmentos correspondientes al hospedero bacteriano.  
 
 Este hallazgo evidenció una contaminación biológica masiva esperada: el dataset crudo estaba compuesto primordialmente por material genético de la bacteria hospedera, enmascarando las secuencias del virus debido a la asimetría de tamaño de los genomas celulares frente a los virales.
 
@@ -256,8 +256,8 @@ A continuación se detallan los parámetros métricos obtenidos tras la ejecuci�
 | Métrica | Valor Obtenido | Herramienta |
 | :--- | :--- | :--- |
 | **Calidad de bases (Q30)** | 97.25% | fastp |
-| **Número de Scaffolds** | 197 | SPAdes |
-| **Longitud del Scaffold más largo** | 327,481 bp | SPAdes |
+| **Número de Scaffolds** | 88 | SPAdes |
+| **Longitud del Scaffold más largo** | 327,290 bp | SPAdes |
 | **Identidad Taxonómica (BLAST)** | 99.90% | NCBI BLASTn |
 | **Organismo Predominante** | *Escherichia coli* | BLASTn / Kraken2 |
 
