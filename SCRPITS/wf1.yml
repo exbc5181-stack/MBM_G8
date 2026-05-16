@@ -1,1 +1,361 @@
+1. Descarga de Datos
+
+# Definir el identificador del acceso
+ACCESSION="DRR817419"
+
+# Directorio de salida
+OUTPUT_DIR="raw_data"
+
+echo "Creando directorio de salida: $OUTPUT_DIR"
+mkdir -p $OUTPUT_DIR
+
+echo "Descargando datos del acceso $ACCESSION..."
+prefetch --output-directory $OUTPUT_DIR $ACCESSION
+
+if [ $? -eq 0 ]; then
+    echo "Descarga completada con éxito."
+else
+    echo "Error durante la descarga. Verifique el acceso y su conexión."
+    exit 1
+fi
+
+echo "Convertir archivo .sra a pares de archivos FASTQ..."
+fastq-dump --split-files --outdir $OUTPUT_DIR $OUTPUT_DIR/$ACCESSION/$ACCESSION.sra
+
+echo "Limpiando archivo .sra original para ahorrar espacio..."
+rm -rf $OUTPUT_DIR/$ACCESSION
+
+echo "Datos descargados y convertidos en: $OUTPUT_DIR"
+ls -lh $OUTPUT_DIR
+
+2. Control de Calidad y Limpieza de Lecturas
+
+#!/bin/bash
+# Script: 02_qc_trimming.sh
+
+# Activar el entorno de conda con fastqc y fastp
+# conda activate qc_tools
+
+# Directorios de entrada y salida
+RAW_DATA_DIR="raw_data"
+QC_RAW_DIR="qc_raw"
+TRIMMED_DIR="trimmed_data"
+QC_TRIMMED_DIR="qc_trimmed"
+
+echo "Creando directorios necesarios..."
+mkdir -p $QC_RAW_DIR $TRIMMED_DIR $QC_TRIMMED_DIR
+
+# Encontrar los archivos FASTQ
+R1=$(find $RAW_DATA_DIR -name "*_1.fastq" -o -name "*_1.fq" | head -n 1)
+R2=$(find $RAW_DATA_DIR -name "*_2.fastq" -o -name "*_2.fq" | head -n 1)
+
+if [ -z "$R1" ] || [ -z "$R2" ]; then
+    echo "Error: No se encontraron archivos FASTQ pares en $RAW_DATA_DIR"
+    exit 1
+fi
+
+BASE_NAME=$(basename $R1 | sed 's/_1\.f\?\(ast\)\?q//g')
+echo "Procesando muestra: $BASE_NAME"
+
+# 1. Calidad de datos crudos
+echo "Ejecutando FastQC en lecturas crudas..."
+fastqc $R1 $R2 -o $QC_RAW_DIR
+
+# 2. Limpieza de lecturas con fastp
+echo "Limpiando lecturas con fastp..."
+fastp -i $R1 -I $R2 \
+      -o $TRIMMED_DIR/${BASE_NAME}_trimmed_1.fastq.gz \
+      -O $TRIMMED_DIR/${BASE_NAME}_trimmed_2.fastq.gz \
+      --detect_adapter_for_pe \
+      --cut_front --cut_tail --cut_window_size 4 --cut_mean_quality 20 \
+      --length_required 50 \
+      --html $TRIMMED_DIR/${BASE_NAME}_fastp_report.html \
+      --json $TRIMMED_DIR/${BASE_NAME}_fastp_report.json
+
+# 3. Calidad de datos limpios
+echo "Ejecutando FastQC en lecturas limpias..."
+fastqc $TRIMMED_DIR/${BASE_NAME}_trimmed_1.fastq.gz \
+       $TRIMMED_DIR/${BASE_NAME}_trimmed_2.fastq.gz \
+       -o $QC_TRIMMED_DIR
+
+echo "Control de calidad y limpieza completados."
+
+3. Trimomatic
+
+#!/bin/bash
+# Script: 02_trimming_trimmomatic.sh
+# Uso: sbatch 02_trimming_trimmomatic.sh
+# Descripción: Realiza el recorte de adaptadores y filtrado de calidad 
+#              de lecturas paired-end usando Trimmomatic.
+
+#SBATCH --job-name=trimmomatic_DRR817419
+#SBATCH --output=logs/%x_%j.out
+#SBATCH --error=logs/%x_%j.err
+#SBATCH --time=00:30:00
+#SBATCH --cpus-per-task=4            # Trimmomatic puede usar múltiples hilos
+#SBATCH --mem=8G
+#SBATCH --partition=standard
+
+# -------------------------------
+# 1. Configuración de Rutas
+# -------------------------------
+# Directorio de trabajo: la raíz de tu proyecto (debes cambiarla)
+WORK_DIR="/path/to/your/project"
+RAW_DATA_DIR="${WORK_DIR}/raw_data"
+TRIMMED_DIR="${WORK_DIR}/trimmed_data"
+LOG_DIR="${WORK_DIR}/logs"
+
+# Crear directorios necesarios (si no existen)
+mkdir -p $TRIMMED_DIR $LOG_DIR
+
+# Cambiar al directorio de trabajo
+cd $WORK_DIR
+
+# -------------------------------
+# 2. Cargar Módulos
+# -------------------------------
+# Cargar los módulos necesarios en el entorno de galaxi
+echo "Cargando módulos de software..."
+module purge                           # Limpiar el entorno para evitar conflictos
+module load trimmomatic/0.39          # Ajusta la versión si es necesario
+
+# Si Trimmomatic no está como módulo, puedes usar el comando `java` directo
+# (ver la sección de "Notas Importantes" al final del script).
+
+# -------------------------------
+# 3. Definir Archivos de Entrada/Salida
+# -------------------------------
+# Buscar los archivos FASTQ generados en el paso de descarga.
+R1=$(find $RAW_DATA_DIR -name "*_1.fastq" -o -name "*_1.fq" | head -n 1)
+R2=$(find $RAW_DATA_DIR -name "*_2.fastq" -o -name "*_2.fq" | head -n 1)
+
+if [[ -z "$R1" ]] || [[ -z "$R2" ]]; then
+    echo "Error: No se encontraron los archivos FASTQ pares en $RAW_DATA_DIR"
+    exit 1
+fi
+
+# Extraer el nombre base de las muestras para los archivos de salida
+BASE_NAME=$(basename $R1 | sed 's/_1\.f\(ast\)\?q//g')
+echo "Procesando muestra: $BASE_NAME"
+
+# Definir los 4 archivos de salida de Trimmomatic (paired y unpaired para R1 y R2)
+OUT_PAIRED_1="${TRIMMED_DIR}/${BASE_NAME}_R1_paired.fastq.gz"
+OUT_UNPAIRED_1="${TRIMMED_DIR}/${BASE_NAME}_R1_unpaired.fastq.gz"
+OUT_PAIRED_2="${TRIMMED_DIR}/${BASE_NAME}_R2_paired.fastq.gz"
+OUT_UNPAIRED_2="${TRIMMED_DIR}/${BASE_NAME}_R2_unpaired.fastq.gz"
+
+# -------------------------------
+# 4. Ejecutar Trimmomatic
+# -------------------------------
+# Las rutas a los archivos de adaptadores pueden variar según la instalación.
+# Generalmente, se encuentran dentro del directorio de instalación de Trimmomatic.
+# Si la variable de entorno $EBROOTTRIMMOMATIC no está definida, puedes especificar
+# la ruta completa (por ejemplo: /opt/software/Trimmomatic/0.39/adapters/).
+
+# Intenta encontrar el directorio de adaptadores de forma dinámica
+ADAPTERS_DIR=""
+if [[ -n "$EBROOTTRIMMOMATIC" ]]; then
+    ADAPTERS_DIR="$EBROOTTRIMMOMATIC/adapters"
+elif [[ -f "/opt/software/Trimmomatic/0.39/adapters/TruSeq3-PE.fa" ]]; then
+    ADAPTERS_DIR="/opt/software/Trimmomatic/0.39/adapters"
+fi
+
+if [[ -z "$ADAPTERS_DIR" ]]; then
+    echo "Advertencia: No se pudo encontrar el directorio de adaptadores."
+    echo "Asegúrate de que la ruta a los archivos .fa (TruSeq3-PE.fa) sea correcta."
+    # Si conoces la ruta, defínela manualmente aquí y descomenta la siguiente línea:
+    # ADAPTERS_DIR="/ruta/conocida/a/los/adaptadores"
+    # Si no, el script fallará al no encontrar el archivo.
+    exit 1
+fi
+
+ADAPTER_FILE="${ADAPTERS_DIR}/TruSeq3-PE.fa" # Cambiar a NexteraPE-PE.fa si es necesario
+
+echo "Usando archivo de adaptadores: $ADAPTER_FILE"
+
+echo "Iniciando Trimmomatic..."
+
+# Comando trimmomatic para lecturas paired-end
+# (Ajusta los parámetros según la calidad de tus datos)
+trimmomatic PE \
+    -threads $SLURM_CPUS_PER_TASK \
+    -phred33 \
+    $R1 $R2 \
+    $OUT_PAIRED_1 $OUT_UNPAIRED_1 \
+    $OUT_PAIRED_2 $OUT_UNPAIRED_2 \
+    ILLUMINACLIP:$ADAPTER_FILE:2:30:10:2:keepBothReads \
+    LEADING:20 \
+    TRAILING:20 \
+    SLIDINGWINDOW:4:20 \
+    MINLEN:50
+
+# -------------------------------
+# 5. Verificación de la Ejecución
+# -------------------------------
+if [[ $? -eq 0 ]]; then
+    echo "Trimmomatic completado con éxito."
+    echo "Archivos generados:"
+    ls -lh $TRIMMED_DIR
+else
+    echo "Error: Falló la ejecución de Trimmomatic."
+    exit 1
+fi
+
+echo "Recorte y filtrado de calidad finalizado."
+
+ 
+4.Ensamblaje de Novo con SPAdes
+
+#!/bin/bash
+# Script: 03_assembly.sh
+
+# Activar el entorno de conda con spades
+# conda activate assembly_tools
+
+TRIMMED_DIR="trimmed_data"
+ASSEMBLY_DIR="assembly_results"
+
+echo "Creando directorio para ensamblajes: $ASSEMBLY_DIR"
+mkdir -p $ASSEMBLY_DIR
+
+# Encontrar los archivos ya limpiados
+R1=$(find $TRIMMED_DIR -name "*_trimmed_1.fastq.gz" | head -n 1)
+R2=$(find $TRIMMED_DIR -name "*_trimmed_2.fastq.gz" | head -n 1)
+
+if [ -z "$R1" ] || [ -z "$R2" ]; then
+    echo "Error: No se encontraron archivos FASTQ limpios en $TRIMMED_DIR"
+    exit 1
+fi
+
+BASE_NAME=$(basename $R1 | sed 's/_trimmed_1\.fastq\.gz//g')
+echo "Ensamblando muestra: $BASE_NAME"
+
+# Ejecutar SPAdes
+spades.py --pe1-1 $R1 --pe1-2 $R2 \
+          -o $ASSEMBLY_DIR/${BASE_NAME}_spades_assembly \
+          --isolate \
+          --cov-cutoff auto \
+          -t 16 \
+          -m 32
+
+echo "Ensamblaje completado. Resultados en: $ASSEMBLY_DIR/${BASE_NAME}_spades_assembly"
+
+# Copiar el contig principal para facilitar su uso
+cp $ASSEMBLY_DIR/${BASE_NAME}_spades_assembly/contigs.fasta \
+   $ASSEMBLY_DIR/${BASE_NAME}_assembly_contigs.fasta
+
+echo "El archivo de contigs principal es: $ASSEMBLY_DIR/${BASE_NAME}_assembly_contigs.fasta"#!/bin/bash
+# Script: 03_assembly.sh
+
+# Activar el entorno de conda con spades
+# conda activate assembly_tools
+
+TRIMMED_DIR="trimmed_data"
+ASSEMBLY_DIR="assembly_results"
+
+echo "Creando directorio para ensamblajes: $ASSEMBLY_DIR"
+mkdir -p $ASSEMBLY_DIR
+
+# Encontrar los archivos ya limpiados
+R1=$(find $TRIMMED_DIR -name "*_trimmed_1.fastq.gz" | head -n 1)
+R2=$(find $TRIMMED_DIR -name "*_trimmed_2.fastq.gz" | head -n 1)
+
+if [ -z "$R1" ] || [ -z "$R2" ]; then
+    echo "Error: No se encontraron archivos FASTQ limpios en $TRIMMED_DIR"
+    exit 1
+fi
+
+BASE_NAME=$(basename $R1 | sed 's/_trimmed_1\.fastq\.gz//g')
+echo "Ensamblando muestra: $BASE_NAME"
+
+# Ejecutar SPAdes
+spades.py --pe1-1 $R1 --pe1-2 $R2 \
+          -o $ASSEMBLY_DIR/${BASE_NAME}_spades_assembly \
+          --isolate \
+          --cov-cutoff auto \
+          -t 16 \
+          -m 32
+
+echo "Ensamblaje completado. Resultados en: $ASSEMBLY_DIR/${BASE_NAME}_spades_assembly"
+
+# Copiar el contig principal para facilitar su uso
+cp $ASSEMBLY_DIR/${BASE_NAME}_spades_assembly/contigs.fasta \
+   $ASSEMBLY_DIR/${BASE_NAME}_assembly_contigs.fasta
+
+echo "El archivo de contigs principal es: $ASSEMBLY_DIR/${BASE_NAME}_assembly_contigs.fasta"
+
+5. Validación de la Calidad del Ensamblaje
+
+#!/bin/bash
+# Script: 04_validate_assembly.sh
+
+# Activar el entorno de conda con checkv y quast
+# conda activate validation_tools
+
+ASSEMBLY_DIR="assembly_results"
+VALIDATION_DIR="validation_results"
+
+echo "Creando directorio de validación: $VALIDATION_DIR"
+mkdir -p $VALIDATION_DIR
+
+# Encontrar el archivo de contigs
+CONTIGS=$(find $ASSEMBLY_DIR -name "*_assembly_contigs.fasta" | head -n 1)
+
+if [ -z "$CONTIGS" ]; then
+    echo "Error: No se encontró el archivo de contigs en $ASSEMBLY_DIR"
+    exit 1
+fi
+
+BASE_NAME=$(basename $CONTIGS | sed 's/_assembly_contigs\.fasta//g')
+echo "Validando ensamblaje para: $BASE_NAME"
+
+# 1. Validación con CheckV
+echo "Ejecutando CheckV para evaluar integridad viral..."
+checkv end_to_end $CONTIGS $VALIDATION_DIR/checkv_${BASE_NAME} -t 8
+
+# 2. Evaluación con QUAST
+echo "Ejecutando QUAST para métricas de calidad..."
+quast.py $CONTIGS \
+         -o $VALIDATION_DIR/quast_${BASE_NAME} \
+         --min-contig 200 \
+         --gene-finding \
+         -t 8
+
+echo "Validación completada. Revisar los reportes en $VALIDATION_DIR"
+
+6. Clasificación Taxonómica
+
+#!/bin/bash
+# Script: 05_taxonomy.sh
+
+# Activar el entorno de conda con taxMyPhage y VIRIDIC
+# conda activate taxonomy_tools
+
+ASSEMBLY_DIR="assembly_results"
+TAXONOMY_DIR="taxonomy_results"
+
+echo "Creando directorio de taxonomía: $TAXONOMY_DIR"
+mkdir -p $TAXONOMY_DIR
+
+# Encontrar el archivo de contigs
+CONTIGS=$(find $ASSEMBLY_DIR -name "*_assembly_contigs.fasta" | head -n 1)
+
+if [ -z "$CONTIGS" ]; then
+    echo "Error: No se encontró el archivo de contigs en $ASSEMBLY_DIR"
+    exit 1
+fi
+
+BASE_NAME=$(basename $CONTIGS | sed 's/_assembly_contigs\.fasta//g')
+echo "Clasificando taxonómicamente: $BASE_NAME"
+
+# 1. Clasificación con taxMyPhage
+echo "Ejecutando taxMyPhage..."
+taxMyPhage -i $CONTIGS -o $TAXONOMY_DIR/taxMyPhage_${BASE_NAME} --threads 8
+
+# 2. Similitud con VIRIDIC (requiere una base de datos de genomas de referencia)
+# Descomentar si se tiene una base de datos de referencias de fagos T4 configurada
+# VIRIDIC -i $CONTIGS -d /path/to/T4_reference_genomes/ -o $TAXONOMY_DIR/viridic_${BASE_NAME}
+
+echo "Clasificación taxonómica completada."
+
 
