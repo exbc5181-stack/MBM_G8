@@ -175,10 +175,6 @@ El ensamblaje de novo preliminar se ejecutó en Galaxy utilizando el algoritmo S
 **2.2 Depuración Genómica con Bowtie 2 (Terminal)**    
 
 Al identificarse co-secuenciación masiva del hospedero bacteriano en Galaxy, el flujo de trabajo se trasladó a entorno de terminal Linux para ejecutar un filtrado por exclusión. Las lecturas previamente limpias se mapearon mediante la herramienta Bowtie 2 contra el genoma de referencia de *Escherichia coli* para segregar el ruido molecular. Las lecturas remanentes, correspondientes al virus, se sometieron directamente a un segundo proceso de ensamblaje de novo en SPAdes Terminal para generar el scaffold definitivo.  
-
-**Comando utilizado**  
-
-
 Para aislar de forma exclusiva las secuencias pertenecientes al virus, se descargó el genoma de referencia oficial del *Enterobacteria fago T4* desde el NCBI (Accession: `NC_000866.4`) y se construyó un índice local con `Bowtie2`:
 
 ```
@@ -188,14 +184,14 @@ bowtie2-build genoma_referencia_T4.fasta indice_T4
 
 
 
-Mapeo y Extracción Selectiva de Lecturas Virales con Bowtie2
+**2.3 Mapeo y Extracción Selectiva de Lecturas Virales con Bowtie2**
 Se alinearon las lecturas limpias contra el índice del fago usando la opción --very-sensitive para maximizar la sensibilidad de captura de los fragmentos virales diluidos en el ADN bacteriano. Las lecturas pareadas concordantes con el virus se aislaron de manera pura en formato comprimido:
 
 ```
 bowtie2 --very-sensitive -x indice_T4 -1 ~/Desktop/DRR817419_1_clean.fastq.gz -2 ~/Desktop/DRR817419_2_clean.fastq.gz --al-conc-gz lecturas_recuperadas.fastq.gz -S mapeo_fago.sam
 ```
 
-Ensamblaje de las Lecturas Virales con SPAdes
+**2.4 Ensamblaje de las Lecturas Virales con SPAdes**
 
 Las lecturas específicas pareadas que fueron recuperadas y purificadas del fago se sometieron a una reconstrucción molecular utilizando el algoritmo de grafos de De Bruijn en SPAdes, empleando el parámetro --careful para minimizar el número de mismatches y contigs quiméricos:
 
