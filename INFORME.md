@@ -183,7 +183,7 @@ Para aislar de forma exclusiva las secuencias pertenecientes al virus, se descar
 
 ```bash
 wget -O genoma_referencia_T4.fasta "[https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=NC_000866.4&rettype=fasta](https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=NC_000866.4&rettype=fasta)"
-bowtie2-build genoma_referencia_T4.fasta indice_T4
+bowtie2-build genoma_referencia_T4.fasta indice_T4```
 
 
 
