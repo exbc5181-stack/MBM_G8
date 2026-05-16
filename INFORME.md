@@ -315,7 +315,7 @@ La caracterización y validación taxonómica del scaffold definitivo de **168,1
 | **Género** | *Tequatrovirus* |
 | **Especie** | *Escherichia virus T4* (antes *Escherichia phage* T4) |
 
-La detección robusta de linajes específicos como *Tequatrovirus T4* y *Escherichia virus T4* con un **99.98% de identidad** valida con éxito el flujo de trabajo implementado. 
+La detección robusta de linajes específicos como *Tequatrovirus* T4 y *Escherichia virus T4* con un **99.98% de identidad** valida con éxito el flujo de trabajo implementado. 
 
 Desde una perspectiva biotecnológica y microbiológica, la confirmación de esta identidad es un pilar fundamental. El fago T4 es un sistema modelo ampliamente estudiado en la biología molecular y la genómica viral debido a su estricto ciclo lítico. Los datos genómicos limpios obtenidos en este proyecto respaldan su viabilidad y seguridad como un candidato biológico óptimo para el desarrollo de terapias fágicas avanzadas y el control epidemiológico de cepas multirresistentes de *Escherichia coli*.
 
