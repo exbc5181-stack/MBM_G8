@@ -181,8 +181,10 @@ Al identificarse co-secuenciación masiva del hospedero bacteriano en Galaxy, el
 
 Para aislar de forma exclusiva las secuencias pertenecientes al virus, se descargó el genoma de referencia oficial del *Enterobacteria fago T4* desde el NCBI (Accession: `NC_000866.4`) y se construyó un índice local con `Bowtie2`:
 
-```wget -O genoma_referencia_T4.fasta "[https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=NC_000866.4&rettype=fasta](https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=NC_000866.4&rettype=fasta)"
-bowtie2-build genoma_referencia_T4.fasta indice_T4```
+```
+wget -O genoma_referencia_T4.fasta "[https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=NC_000866.4&rettype=fasta](https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=NC_000866.4&rettype=fasta)"
+bowtie2-build genoma_referencia_T4.fasta indice_T4
+```
 
 Mapeo y Extracción Selectiva de Lecturas Virales con Bowtie2
 Se alinearon las lecturas limpias contra el índice del fago usando la opción --very-sensitive para maximizar la sensibilidad de captura de los fragmentos virales diluidos en el ADN bacteriano. Las lecturas pareadas concordantes con el virus se aislaron de manera pura en formato comprimido:
