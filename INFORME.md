@@ -231,7 +231,7 @@ Debido a la masiva co-secuenciación del hospedero *Escherichia coli* evidenciad
 Esta estrategia permitió segregar y remover todo el ruido molecular bacteriano sin necesidad de re-evaluar la calidad general de los datos. Las lecturas remanentes, correspondientes exclusivamente al virus, fueron sometidas directamente a un segundo proceso de ensamblaje de *novo* en SPAdes Terminal. Este filtrado resolvió con éxito un único scaffold unificado (NODE_1) de 168,129 pb, libre de contaminación bacteriana y para su correspondiente caracterización.  
 
 ### 3.3 Caracterización y Validación Taxonómica del Genoma Viral Aislado:   
-Una vez obtenido el andamio definitivo NODE_1 de 168,129 pb mediante SPAdes Terminal, se procedió a realizar su caracterización biológica y validación taxonómica. Para comprobar la veracidad estructural del genoma viral reconstrucido y descartar cualquier residuo del hospedero, se ejecutó un alineamiento nucleotídico local mediante la herramienta BLASTn contra la secuencia de referencia oficial del bacteriófago T4 (NC_000866.4) depositada en la base de datos del NCBI.  
+Una vez obtenido el scaffold definitivo NODE_1 de 168,129 pb mediante SPAdes Terminal, se procedió a realizar su caracterización biológica y validación taxonómica. Para comprobar la veracidad estructural del genoma viral reconstrucido y descartar cualquier residuo del hospedero, se ejecutó un alineamiento nucleotídico local mediante la herramienta BLASTn contra la secuencia de referencia oficial del bacteriófago T4 (NC_000866.4) depositada en la base de datos del NCBI.  
 
 Los parámetros métricos oficiales obtenidos en este análisis global se presentan consolidados en la siguiente tabla:  
 
