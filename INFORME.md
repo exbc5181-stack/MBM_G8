@@ -296,6 +296,8 @@ Es decir, el re-ensamblaje enfocado únicamente en estas lecturas purificadas re
 
 <img width="1308" height="747" alt="Captura de pantalla 2026-05-12 125615" src="https://github.com/user-attachments/assets/1298172e-3da6-49b7-aeef-c8ea6345bce0" />  
 
+https://blast.ncbi.nlm.nih.gov/Blast.cgi
+
 *Fig. 12* Resultado del alineamiento local BLASTn del scaffold preliminar obtenido en Galaxy, evidenciando una homología nucleotídica del 99.88% con el genoma cromosómico de *Escherichia coli strain C*.
 
 <img width="1302" height="792" alt="Captura de pantalla 2026-05-14 134801" src="https://github.com/user-attachments/assets/a7f878cb-e289-4f51-b286-f84bd087f532" />
