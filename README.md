@@ -39,12 +39,7 @@ Con el fin de evaluar la precisión del ensamblaje generado y realizar la asigna
 
 
 ## RESULTADOS:  
-
-El análisis bioinformático del dataset DRR817419 permitió obtener un ensamblaje genómico *de novo* de alta calidad mediante la herramienta SPAdes. A partir de las lecturas previamente filtradas y depuradas, se generó un total de **88 scaffolds principales**, evidenciando una reconstrucción genómica adecuada para posteriores análisis taxonómicos y estructurales.
-
-El ensamblaje presentó un **scaffold principal de 327,290 pb**, caracterizado por una elevada cobertura de secuenciación y una alta continuidad ensamblativa, lo que indica una adecuada calidad de las lecturas utilizadas durante el proceso de ensamblaje *de novo*.
-
-Posteriormente, la validación taxonómica realizada mediante BLASTn mostró una **identidad del 99.90% con *Escherichia coli***, confirmando la presencia predominante del hospedero bacteriano dentro del dataset analizado. Este resultado es biológicamente coherente debido a que el bacteriófago T4 infecta específicamente cepas de *E. coli*, por lo que es esperado encontrar material genético bacteriano asociado durante la secuenciación.
-
-Los resultados obtenidos permitieron identificar de manera precisa la relación biológica entre el bacteriófago T4 y su hospedero, proporcionando una base sólida para futuras etapas de filtrado, aislamiento de secuencias virales y validación taxonómica específica del genoma del fago.
+El análisis bioinformático mixto (Galaxy-Terminal) del dataset DRR817419 permitió el ensamblaje de novo y la validación taxonómica del bacteriófago T4. Tras la curación de lecturas con Trimmomatic (97.25% de bases > Q30), el ensamblaje preliminar en Galaxy generó un set de 88 scaffolds, destacando un bloque mayoritario de 327,290 pb (176.37X).   
+El alineamiento en NCBI BLASTn de este contig reveló una identidad del 99.90% con Escherichia coli, confirmando una co-secuenciación masiva del hospedero bacteriano. Para eliminar este ruido genómico, se aplicó un pipeline de exclusión en terminal con Bowtie 2, segregando el ADN bacteriano y aislando 28,104 lecturas virales (0.60% del dataset).  
+El re-ensamblaje de este set depurado en SPAdes Terminal resolvió con éxito un único scaffold unificado (NODE_1) de 168,129 pb con una cobertura de 24.64X. Finalmente, la validación global en NCBI BLASTn ratificó un Query Cover del 100%, E-value de 0.0 e identidad nucleotídica del 99.98% con la secuencia de referencia de Escherichia virus T4 (NC_000866.4). Estos resultados certifican la máxima pureza del genoma viral obtenido y validan la eficiencia del flujo de trabajo para caracterizar fagos con potencial aplicación biotecnológica y terapéutica.
 
