@@ -90,7 +90,7 @@ Una vez ocurrida con éxito la inyección, el fago ejecuta un control temporal e
 
 ## 1.3 METODOLOGÍA BIOINFORMÁTICA Y ANÁLISIS GENÓMICO
 
-En la genómica contemporánea, el procesamiento de datos provenientes de Secuenciación de Próxima Generación (NGS) requiere el uso de herramientas bioinformáticas especializadas para la reconstrucción de genomas virales. La utilización del dataset **DRR317419** permite validar un flujo de trabajo computacional para la clasificación taxonómica y el análisis funcional, proporcionando una base científica robusta para futuras terapias basadas en fagos.
+En la genómica contemporánea, el procesamiento de datos provenientes de Secuenciación de Próxima Generación (NGS) requiere el uso de herramientas bioinformáticas especializadas para la reconstrucción de genomas virales. La utilización del dataset **DRR817419** permite validar un flujo de trabajo computacional para la clasificación taxonómica y el análisis funcional, proporcionando una base científica robusta para futuras terapias basadas en fagos.
 
 El **ensamblaje *de novo*** constituye una estrategia fundamental cuando no se dispone de un genoma de referencia confiable o cuando se busca identificar variaciones genómicas específicas sin sesgar el alineamiento. Este enfoque permite ensamblar lecturas cortas (*reads*) en secuencias continuas denominadas *contigs* *(Basantani et al., 2017; Hernández et al., 2020)*
 
