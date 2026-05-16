@@ -13,16 +13,14 @@
 Realizar el ensamblaje de *novo* y la validación taxonómica del bacteriófago T4 mediante herramientas bioinformáticas, con el fin de evaluar su potencial aplicación como alternativa biológica para el control de cepas resistentes de *Escherichia coli*.  
 
 ## OBJETIVOS ESPECÍFICOS: 
-* Evaluar la calidad de las lecturas del bacteriófago T4 mediante FastQC, identificando parámetros de calidad relevantes para el análisis bioinformático posterior.  
-* Realizar el ensamblaje de *novo* del genoma del bacteriófago T4 utilizando software especializado para reconstruir su secuencia genómica.   
-* Validar taxonómicamente las secuencias ensambladas mediante herramientas de comparación y clasificación molecular.   
-* Analizar la relevancia biológica del bacteriófago T4 como posible alternativa para el control de cepas resistentes de *Escherichia coli*.
-* 
+* Evaluar la calidad de las lecturas del dataset mediante fastp y FastQC, identificando parámetros y sesgos analíticos para el acondicionamiento de los datos.
+* Implementar una estrategia de filtrado taxonómico mediante mapeo contra referencia (Bowtie2) para aislar las lecturas virales eliminando el ruido genómico del hospedero.
+* Realizar el ensamblaje de *novo* dirigido del genoma del bacteriófago T4 utilizando SPAdes para reconstruir su secuencia de manera continua.
+* Validar taxonómicamente las secuencias ensambladas finales mediante BLASTn para confirmar la identidad molecular y exactitud del genoma viral obtenido.
    
 ## 1. INTRODUCCIÓN   
 
 ## 1.1 CONTEXTO BIOLÓGICO Y MECANISMO DE ACCIÓN
-
 La crisis global de resistencia antimicrobiana ha reposicionado a los bacteriófagos (o fagos) como agentes biológicos clave para el control de patógenos bacterianos. Los fagos son virus especializados que infectan y se replican exclusivamente dentro de bacterias y arqueas; son considerados las entidades biológicas más abundantes del planeta y juegan un rol crucial en la regulación de poblaciones microbianas *(Salmond & Fineran, 2015)*.
 
 El estudio del Bacteriófago T4, debido a su alta especificidad contra cepas de *Escherichia coli*, requiere una caracterización genómica exhaustiva que garantice la ausencia de factores de virulencia o genes de resistencia antes de su aplicación biotecnológica. El funcionamiento de este virus se basa en el ciclo lítico clásico, el cual consta de cuatro etapas fundamentales *(Clokie & Kropinski, 2009)*:
@@ -245,11 +243,14 @@ El ensamblaje de novo de las lecturas filtradas se realizó mediante SPAdes en l
 
 Figura 11: Resultados del ensamblaje de novo del bacteriófago T4 obtenidos mediante SPAdes. Se observa un contig principal con elevada cobertura y longitud.
 
-La longitud total del ensamblaje fue de 4,638,873 pb y el scaffold de mayor tamaño alcanzó 327,394 pb. Asimismo, el ensamblaje presentó un valor de N50 de 118,604 pb y un L50 de 12, indicando una adecuada continuidad de las secuencias ensambladas.  
-
-El contenido GC obtenido fue de 50,2 %, con un total de 800 bases ambiguas (Ns), correspondientes a 17,24 Ns por cada 100 kbp. En conjunto, estos resultados evidencian una adecuada calidad del ensamblaje generado a partir de las lecturas procesadas.  
+El primer intento de ensamblaje de novo directo general del dataset crudo generó una longitud total consolidada de 4,638,873 pb distribuida en scaffolds cuyo fragmento más largo alcanzaba las 327,394 pb con un contenido GC de 50.2%. El análisis taxonómico por BLASTn de este contig masivo arrojó una coincidencia del 99.90% de identidad con Escherichia coli.
 
 Debido a que el tamaño total del ensamblaje superó el tamaño esperado del genoma de referencia del bacteriófago T4 (~169 kb), los scaffolds obtenidos fueron posteriormente considerados para análisis de clasificación taxonómica, con el fin de identificar las secuencias asociadas al genoma viral y posibles fragmentos correspondientes al hospedero bacteriano.  
+
+Este hallazgo evidenció una contaminación biológica masiva esperada: el dataset crudo estaba compuesto primordialmente por material genético de la bacteria hospedera, enmascarando las secuencias del virus debido a la asimetría de tamaño de los genomas celulares frente a los virales.
+
+
+
 
 ### Resultados Obtenidos
 
