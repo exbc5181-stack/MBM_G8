@@ -260,8 +260,10 @@ Es decir, el re-ensamblaje enfocado únicamente en estas lecturas purificadas re
 
 <img width="1302" height="792" alt="Captura de pantalla 2026-05-14 134801" src="https://github.com/user-attachments/assets/a7f878cb-e289-4f51-b286-f84bd087f532" />
 
-<img width="1321" height="804" alt="Captura de pantalla 2026-05-14 134945" src="https://github.com/user-attachments/assets/996a315b-1516-466b-ae35-d04efb00a3d0" />  
-*Fig. 13* Resultado del alineamiento BLASTn del scaffold definitivo NODE_1 (168,129 pb) tras la depuración con Bowtie 2, certificando una identidad molecular del 99.99% con el genoma de referencia de *Tequatrovirus* T4.
+<img width="1321" height="804" alt="Captura de pantalla 2026-05-14 134945" src="https://github.com/user-attachments/assets/996a315b-1516-466b-ae35-d04efb00a3d0" />   
+
+*Fig. 13* Resultado del alineamiento BLASTn del scaffold definitivo NODE_1 (168,129 pb) tras la depuración con Bowtie 2, certificando una identidad molecular del 99.99% con el genoma de referencia de *Tequatrovirus* T4.  
+
 
 ### 3.5 Clasificación Taxonómica Oficial:   
 
