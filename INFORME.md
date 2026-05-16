@@ -187,7 +187,7 @@ Se evaluó la calidad de las lecturas crudas mediante FastQC, observando la nece
 
 <img width="935" height="699" alt="image" src="https://github.com/user-attachments/assets/17636f6d-5e3e-40f4-88ed-cbbb6c01ca38" />
 
-Figura 9: FastQC: Per Base Sequence Content proporción de cada una de las cuatro bases nitrogenadas (Timina %T, Citosina %C, Adenina %A y Guanina %G) en cada posición a lo largo de las lecturas de secuenciación.
+Fig. 9 FastQC: Per Base Sequence Content proporción de cada una de las cuatro bases nitrogenadas (Timina %T, Citosina %C, Adenina %A y Guanina %G) en cada posición a lo largo de las lecturas de secuenciación.
 
 Se realizó una evaluación exhaustiva de la integridad y composición de los datos de secuenciación masiva correspondientes a las lecturas directas (forward) e inversas (reverse) de la muestra DRR817419, comparando su estado crudo inicial con el obtenido tras la curación bioinformática.
 
@@ -199,7 +199,7 @@ Como resultado de este procesamiento, el módulo Per Base Sequence Content logr�
 
 <img width="975" height="488" alt="image" src="https://github.com/user-attachments/assets/e9300cf0-4f5c-457c-abff-ac226a2b1cfa" />
 
-Figura 10: Evaluación de calidad de las lecturas del bacteriófago T4 mediante FastQC y MultiQC.
+Fig. 10 Evaluación de calidad de las lecturas del bacteriófago T4 mediante FastQC y MultiQC.
 
 Se evaluó la composición y el estado de los datos de secuenciación masiva correspondientes a las lecturas directas (forward) e inversas (reverse) de la muestra DRR817419, tanto en su estado crudo inicial como posterior al proceso de curación bioinformática.
 
