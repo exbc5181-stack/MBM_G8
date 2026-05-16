@@ -21,9 +21,7 @@ Realizar el ensamblaje de *novo* y la validación taxonómica del bacteriófago 
    
 ## 1. INTRODUCCIÓN   
 
-# MARCO TEÓRICO: BIOLOGÍA Y MECANISMO DE ACCIÓN DE LOS BACTERIÓFAGOS
-
-## 1. CONTEXTO BIOLÓGICO Y MECANISMO DE ACCIÓN
+## 1.1 CONTEXTO BIOLÓGICO Y MECANISMO DE ACCIÓN
 
 La crisis global de resistencia antimicrobiana ha reposicionado a los bacteriófagos (o fagos) como agentes biológicos clave para el control de patógenos bacterianos. Los fagos son virus especializados que infectan y se replican exclusivamente dentro de bacterias y arqueas; son considerados las entidades biológicas más abundantes del planeta y juegan un rol crucial en la regulación de poblaciones microbianas *(Salmond & Fineran, 2015)*.
 
@@ -43,7 +41,8 @@ graph LR
 2. **Biosíntesis:** Secuestro de la maquinaria celular para replicar el genoma viral.
 3. **Ensamblaje:** Formación de nuevos viriones.
 4. **Lisis:** Liberación de los virus mediante la ruptura de la pared bacteriana (Clokie & Kropinski, 2009).
-## 2. INTERACCIONES MOLECULARES Y EVOLUCIÓN DE LA RESISTENCIA
+
+## 1.2 INTERACCIONES MOLECULARES Y EVOLUCIÓN DE LA RESISTENCIA
 
 El alarmante incremento de cepas de *Escherichia coli* con resistencia multiantibiótica ha impulsado un renacimiento en la investigación de estas terapias basadas en bacteriófagos como agentes antibacterianos alternativos *(Wolfram-Schauerte et al., 2022)*. Sin embargo, la optimización de estos tratamientos médicos exige descifrar las complejas interacciones moleculares y los mecanismos evolutivos de resistencia que surgen bidireccionalmente entre el fago y la bacteria *(Liu et al., 2026)*.
 
@@ -78,13 +77,13 @@ graph TD
     style C color:#c0392b
     style F color:#c0392b
 ```
-### 2.1 Mecanismos de Defensa Bacteriana
+### 1.3 Mecanismos de Defensa Bacteriana
 
 Las bacterias han desarrollado sistemas inmunológicos sofisticados para contrarrestar la agresión viral. Destaca entre ellos **CMoRE**, una endonucleasa de restricción tipo IV capaz de mitigar la infección viral al degradar específicamente el ADN modificado de fagos como el fago T4 *(Liu et al., 2026)*.
 
 Asimismo, la susceptibilidad bacteriana y la productividad de la infección dependen críticamente de componentes estructurales del hospedero. Por ejemplo, se ha evidenciado que la deleción de la proteína de división celular **DamX** en la membrana interna de *Escherichia coli* reduce el éxito de la infección por el fago T4 a un **40%**, demostrando que el virus aprovecha maquinaria celular específica para lograr translocar su material genético *(Wenzel et al., 2024)*.
 
-### 2.2 Estrategias de Contradefensa del Fago
+### 1.4 Estrategias de Contradefensa del Fago
 
 Una vez ocurrida con éxito la inyección, el fago ejecuta un control temporal estricto mediante factores de adquisición que degradan los tRNAs y mRNAs de la bacteria, mientras mantiene estable su propio proteoma para secuestrar los complejos esenciales del hospedero y conducir inexorablemente a la lisis celular *(Wolfram-Schauerte et al., 2022)*.
 
@@ -92,7 +91,7 @@ Una vez ocurrida con éxito la inyección, el fago ejecuta un control temporal e
 
 ---
 
-## 3. METODOLOGÍA BIOINFORMÁTICA Y ANÁLISIS GENÓMICO
+## 1.5 METODOLOGÍA BIOINFORMÁTICA Y ANÁLISIS GENÓMICO
 
 En la genómica contemporánea, el procesamiento de datos provenientes de Secuenciación de Próxima Generación (NGS) requiere el uso de herramientas bioinformáticas especializadas para la reconstrucción de genomas virales. La utilización del dataset **DRR317419** *(mencionado previamente como DRR817419)* permite validar un flujo de trabajo computacional para la clasificación taxonómica y el análisis funcional, proporcionando una base científica robusta para futuras terapias basadas en fagos.
 
