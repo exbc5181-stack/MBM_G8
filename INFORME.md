@@ -250,10 +250,6 @@ Debido a que el tamaño total del ensamblaje superó el tamaño esperado del gen
 Este hallazgo evidenció una contaminación biológica masiva esperada: el dataset crudo estaba compuesto primordialmente por material genético de la bacteria hospedera, enmascarando las secuencias del virus debido a la asimetría de tamaño de los genomas celulares frente a los virales.
 
 
-
-
-### Resultados Obtenidos
-
 A continuación se detallan los parámetros métricos obtenidos tras la ejecución del pipeline bioinformático:
 
 
