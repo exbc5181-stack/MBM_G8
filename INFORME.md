@@ -175,7 +175,8 @@ El ensamblaje de novo preliminar se ejecutó en Galaxy utilizando el algoritmo S
 **2.2 Depuración Genómica con Bowtie 2 (Terminal)**    
 Al identificarse co-secuenciación masiva del hospedero bacteriano en Galaxy, el flujo de trabajo se trasladó a entorno de terminal Linux para ejecutar un filtrado por exclusión. Las lecturas previamente limpias se mapearon mediante la herramienta Bowtie 2 contra el genoma de referencia de *Escherichia coli* para segregar el ruido molecular. Las lecturas remanentes, correspondientes al virus, se sometieron directamente a un segundo proceso de ensamblaje de novo en SPAdes Terminal para generar el scaffold definitivo.  
 
-*Comando utilizado*
+**Comando utilizado**  
+
 ```
 PEGA AQUI CRIS TU COMANDO   
 ```  
