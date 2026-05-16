@@ -163,7 +163,7 @@ Posteriormente, se ejecutó nuevamente el comando `FASTQC` sobre las secuencias 
 
 *Fig. 6* Ejecución del comando fastq en las secuencias limpias en la terminal  
 
-### **2. Fase de Ensamblaje de *novo* y Depuración Genómica **     
+**2. Fase de Ensamblaje de *novo* y Depuración Genómica**       
 
 **2.1 Reconstrucción Genómica con SPAdes (Galaxy)**     
 El ensamblaje de novo preliminar se ejecutó en Galaxy utilizando el algoritmo SPAdes. Como datos de entrada (input), se emplearon las lecturas paired-end de alta calidad previamente depuradas con Trimmomatic. El software procesó estas secuencias limpias para generar el set inicial de scaffolds estructurales destinados a la evaluación.  
@@ -172,7 +172,7 @@ El ensamblaje de novo preliminar se ejecutó en Galaxy utilizando el algoritmo S
 
 *Fig. 7* Visualización de los scaffolds ensamblados mediante SPAdes en la plataforma Galaxy.   
 
-**2.2 Depuración Genómica con Bowtie 2 (Terminal)**  
+**2.2 Depuración Genómica con Bowtie 2 (Terminal)**    
 Al identificarse co-secuenciación masiva del hospedero bacteriano en Galaxy, el flujo de trabajo se trasladó a entorno de terminal Linux para ejecutar un filtrado por exclusión. Las lecturas previamente limpias se mapearon mediante la herramienta Bowtie 2 contra el genoma de referencia de *Escherichia coli* para segregar el ruido molecular. Las lecturas remanentes, correspondientes al virus, se sometieron directamente a un segundo proceso de ensamblaje de novo en SPAdes Terminal para generar el scaffold definitivo.  
 
 *Comando utilizado*
