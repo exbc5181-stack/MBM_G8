@@ -257,16 +257,10 @@ El re-ensamblaje enfocado únicamente en estas lecturas purificadas resolvió po
 
 <img width="1308" height="747" alt="Captura de pantalla 2026-05-12 125615" src="https://github.com/user-attachments/assets/1298172e-3da6-49b7-aeef-c8ea6345bce0" />
 
-La secuencia obtenida de 168,129 pb fue validada mediante la herramienta BLASTn contra la base de datos de nucleótidos (nt/nr) de NCBI. Los resultados confirmaron con un 99.98% de identidad y un 100% de cobertura de consulta que el ensamblaje corresponde al genoma completo de *Escherichia virus* T4. Este resultado valida la eficacia de la estrategia de filtrado por mapeo contra referencia, logrando aislar el material genético viral del hospedero bacteriano con alta precisión
 
 <img width="1302" height="792" alt="Captura de pantalla 2026-05-14 134801" src="https://github.com/user-attachments/assets/a7f878cb-e289-4f51-b286-f84bd087f532" />
 
 <img width="1321" height="804" alt="Captura de pantalla 2026-05-14 134945" src="https://github.com/user-attachments/assets/996a315b-1516-466b-ae35-d04efb00a3d0" />
-
-
-### 3.4 Validación Taxonómica Final por Alineamiento
-
-La veracidad estructural del scaffold principal de la secuencia obtenida de 168,129 pb del genoma del Bacteriofago se corroboró mediante un alineamiento nucleotídico local con la herramienta BLASTn, utilizando como contraste el genoma de referencia de  Escherichia virus T4 (168,903 pb). El análisis arrojó una cobertura de consulta (Query Cover) del 100% y un porcentaje de identidad del 99.98% ($E-value = 0.0$). La diferencia marginal de apenas ~774 pb entre ambas secuencias evidencia la elevada fidelidad y robustez del algoritmo de ensamblaje por grafos de De Bruijn a partir de lecturas cortas (paired-end), logrando una reconstrucción prácticamente integral del genoma viral.
 
 ### 3.5 Clasificación Taxonómica Oficial:   
 
