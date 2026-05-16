@@ -109,7 +109,9 @@ El manejo inicial de los datos se realizó mediante la terminal de comandos en L
 **1.1 Obtención de Datos Crudos y Descompresión de Librerías**  
 Se utilizó el SRA Toolkit para la extracción de las lecturas del identificador **DRR817419.**  
 **Comando utilizado:**  
-`fasterq-dump --split-files DRR817419`  
+```
+fasterq-dump --split-files DRR817419
+```  
 
 Se generaron dos archivos FASTQ correspondientes a las lecturas Forward y Reverse.    
 La implementación del parámetro --split-files tiene como objetivo la segregación del registro original en dos archivos FASTQ independientes (Forward y Reverse). Este procedimiento es un requisito técnico para el procesamiento de librerías Paired-end.  
