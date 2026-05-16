@@ -102,7 +102,7 @@ Para el desarrollo de este proyecto, se implementó una estrategia bioinformáti
 
 <img width="3000" height="1688" alt="Ensamblaje de novo y validación taxonómica del (1)_page-0001" src="https://github.com/user-attachments/assets/2a539ae9-4438-4df1-b4d2-16ebce662d72" />  
 
-*Diagrama. 1* Flujograma de la metodlogía   
+*Diagrama. 1* Flujograma metodológico  
 
 
 ### **1. Fase de Pre-procesamiento y Control de Calidad (Entorno: Lubuntu Linux)**  
