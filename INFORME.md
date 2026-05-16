@@ -268,9 +268,15 @@ A continuación se detallan los parámetros métricos obtenidos tras la ejecuci�
 > **Nota:** Se adjuntan las capturas de pantalla correspondientes que evidencian estos valores en el repositorio.
 
 
-### 3.3 Clasificación taxonómica:  
 
 La validación taxonómica mediante BLASTn del scaffold de mayor longitud mostró una identidad del 99.90% con Escherichia coli (E-value: 0.0). Aunque el objetivo principal es el estudio del Bacteriófago T4, este resultado confirma la presencia predominante del genoma del hospedero bacteriano en el dataset DRR817419, lo cual es un paso técnico esencial antes de proceder al aislamiento de las secuencias virales.
+
+### 3.3 Aislamiento Eficiente y Ensamblaje del Genoma Viral (Fase Definitiva)
+
+
+La aplicación del mapeo de alta sensibilidad con Bowtie2 arrojó una tasa de alineamiento específica del 0.60%, logrando capturar de forma exacta un total de 28,104 lecturas verdaderamente virales.
+
+El re-ensamblaje enfocado únicamente en estas lecturas purificadas resolvió por completo el ruido del hospedero, generando un scaffold definitivo excepcional dentro de la carpeta
 
 
 <img width="1303" height="780" alt="Captura de pantalla 2026-05-12 125110" src="https://github.com/user-attachments/assets/9dde7435-f898-4554-8189-3b72c28b2b7c" />
@@ -283,66 +289,38 @@ La secuencia obtenida de 168,129 pb fue validada mediante la herramienta BLASTn 
 
 <img width="1321" height="804" alt="Captura de pantalla 2026-05-14 134945" src="https://github.com/user-attachments/assets/996a315b-1516-466b-ae35-d04efb00a3d0" />
 
+| Parámetro Métrico | Valor Obtenido | Herramienta / Plataforma |
+| :--- | :--- | :--- |
+| **Identidad Taxonómica (Hit Principal)** | **99.98%** (*Escherichia virus T4*) | NCBI BLASTn |
+| **Cobertura de Consulta (Query Cover)** | **100%** | NCBI BLASTn |
+| **Longitud del Scaffold Viral (NODE_1)** | **168,129 pb** | SPAdes Terminal |
+| **Profundidad de Cobertura Genómica** | **24.64x** | SPAdes Terminal |
+| **E-value Estadístico** | **0.0** | NCBI BLASTn |
+| **Bases de Calidad Obtenidas (Q30)** | **97.25%** | fastp / Trimmomatic |
 
 
-3.5. Interpretación de resultados
 
-El análisis bioinformático inicial mediante **BLASTn** y la clasificación taxonómica con **Kraken2** revelan una presencia mayoritaria de material genético perteneciente a la bacteria hospedera ***Escherichia coli*** (99.90% de identidad). 
+### 3.4 Validación Taxonómica Final por Alineamiento
 
-El resultado taxonómico indica que:
+La veracidad estructural del scaffold principal de la secuencia obtenida de 168,129 pb del genoma del Bacteriofago se corroboró mediante un alineamiento nucleotídico local con la herramienta BLASTn, utilizando como contraste el genoma de referencia de  Escherichia virus T4 (168,903 pb). El análisis arrojó una cobertura de consulta (Query Cover) del 100% y un porcentaje de identidad del 99.98% ($E-value = 0.0$). La diferencia marginal de apenas ~774 pb entre ambas secuencias evidencia la elevada fidelidad y robustez del algoritmo de ensamblaje por grafos de De Bruijn a partir de lecturas cortas (paired-end), logrando una reconstrucción prácticamente integral del genoma viral.
 
-•	El dataset contiene secuencias compatibles con el bacteriófago T4. 
+### 3.5 Interpretación Biológica y Clasificación Taxonómica
 
-•	El hospedero asociado es *Escherichia coli*. 
+La caracterización y validación taxonómica del scaffold definitivo de **168,129 pb** (*NODE_1*) mediante la herramienta **BLASTn** y los perfiles de clasificación molecular confirmaron la identidad inequívoca del virus. A nivel sistemático, el espécimen bioinformático se adscribe a la siguiente jerarquía oficial:
 
-•	La detección de:
+| Nivel Taxonómico | Clasificación Científica |
+| :--- | :--- |
+| **Dominio Viral** | *Viruses* |
+| **Clase** | *Caudoviricetes* |
+| **Género** | *Tequatrovirus* |
+| **Especie** | *Escherichia virus T4* (antes *Escherichia phage* T4) |
 
-o	Tequatrovirus 
+La detección robusta de linajes específicos como *Tequatrovirus T4* y *Escherichia virus T4* con un **99.98% de identidad** valida con éxito el flujo de trabajo implementado. 
 
-o	Tequatrovirus T4 
+Desde una perspectiva biotecnológica y microbiológica, la confirmación de esta identidad es un pilar fundamental. El fago T4 es un sistema modelo ampliamente estudiado en la biología molecular y la genómica viral debido a su estricto ciclo lítico. Los datos genómicos limpios obtenidos en este proyecto respaldan su viabilidad y seguridad como un candidato biológico óptimo para el desarrollo de terapias fágicas avanzadas y el control epidemiológico de cepas multirresistentes de *Escherichia coli*.
 
-o	Escherichia phage T4 
+---
 
-Lo que confirma la identidad viral del ensamblaje.
-
-Interpretación biológica
-
-El bacteriófago T4 pertenece a:
-
-| Nivel taxonómico | Clasificación |
-|------------------|---------------|
-| Dominio viral | Viruses |
-| Orden | Caudoviricetes |
-| Género | Tequatrovirus |
-| Especie | *Escherichia phage* T4 |
-
-Este fago es ampliamente utilizado como modelo en:
-
-•	Biología molecular 
-
-•	Genómica viral 
-
-•	Terapia con fagos 
-
-•	Control biológico de cepas de *Escherichia coli* 
-
-El análisis taxonómico valida exitosamente la presencia del bacteriófago T4 en el ensamblaje de novo. Aunque gran parte de las lecturas se clasifican dentro de *Escherichia coli*, esto es coherente con la biología del fago T4 debido a su estrecha relación con su hospedero bacteriano.
-
-La identificación específica de:
-
-•	*Tequatrovirus* T4 
-
-•	*Escherichia phage* T4 
-
-Lo que respalda la correcta validación taxonómica del ensamblaje viral y confirma que el dataset corresponde a un bacteriófago T4 asociado a *E. coli*.
-
-Los resultados obtenidos permiten considerar al bacteriófago T4 como un candidato con potencial aplicación biológica para el control de cepas resistentes de *Escherichia coli*.
-
-La correcta identificación taxonómica del fago, junto con la elevada calidad del ensamblaje y la fuerte asociación con *E. coli*, respaldan su importancia como herramienta biotecnológica y microbiológica
-
-**Análisis técnico:**
-* **Contaminación del Hospedero:** Al ser el Bacteriófago T4 un virus que infecta a *E. coli*, es biológicamente esperado encontrar trazas del genoma bacteriano en la secuenciación cruda (Dataset DRR817419).
-* **Estado del Proyecto:** El ensamblaje actual ha reconstruido exitosamente grandes fragmentos del genoma de la bacteria. Esto constituye la Fase 1 del proyecto, permitiendo identificar el entorno biológico del fago para posteriormente proceder con el filtrado de lecturas y el aislamiento del genoma viral específico.
 
 ## 4. DISCUSIÓN:  
 
