@@ -1,102 +1,28 @@
-1. Descarga de Datos
+#Terminal #1
+#1. GENERACION DE LA CARPETA DE TRABAJO
+mkdir MBMG#8_proyecto_final
 
-# Definir el identificador del acceso
-ACCESSION="DRR817419"
+#2. DESCARGA DEL DATASET
+fasterq-dump --split-files DRR817419
 
-# Directorio de salida
-OUTPUT_DIR="raw_data"
+#.3 CONTROL DE CALIDAD: 
+fastqc DRR817419_1.fastq DRR817419_2.fastq
 
-echo "Creando directorio de salida: $OUTPUT_DIR"
-mkdir -p $OUTPUT_DIR
+#4. ABRIR REPORTES DE FASTQC
+xdg-open DRR817419_1_fastqc.html
+xdg-open DRR817419_2_fastqc.html
 
-echo "Descargando datos del acceso $ACCESSION..."
-prefetch --output-directory $OUTPUT_DIR $ACCESSION
+#5. LIMPIEZA DE LOS DATOS CRUDOS
+ava -jar /usr/share/java/trimmomatic.jar PE -phred33 DRR817419_1.fastq DRR817419_2.fastq output_1_paired.fq output_1_unpaired.fq output_2_paired.fq output_2_unpaired.fq HEADCROP:15 SLIDINGWINDOW:4:20 MINLEN:36 
 
-if [ $? -eq 0 ]; then
-    echo "Descarga completada con éxito."
-else
-    echo "Error durante la descarga. Verifique el acceso y su conexión."
-    exit 1
-fi
+#6. CONTROL DE CALIDAD DE LOS DATOS LIMPIOS:
+fastqc output_1_paired.fq output_2_paired.fq
 
-echo "Convertir archivo .sra a pares de archivos FASTQ..."
-fastq-dump --split-files --outdir $OUTPUT_DIR $OUTPUT_DIR/$ACCESSION/$ACCESSION.sra
-
-echo "Limpiando archivo .sra original para ahorrar espacio..."
-rm -rf $OUTPUT_DIR/$ACCESSION
-
-echo "Datos descargados y convertidos en: $OUTPUT_DIR"
-ls -lh $OUTPUT_DIR
-
-2. Control de Calidad y Limpieza de Lecturas
-
-#!/bin/bash
-# Script: 02_qc_trimming.sh
-
-# Activar el entorno de conda con fastqc y fastp
-# conda activate qc_tools
-
-# Directorios de entrada y salida
-RAW_DATA_DIR="raw_data"
-QC_RAW_DIR="qc_raw"
-TRIMMED_DIR="trimmed_data"
-QC_TRIMMED_DIR="qc_trimmed"
-
-echo "Creando directorios necesarios..."
-mkdir -p $QC_RAW_DIR $TRIMMED_DIR $QC_TRIMMED_DIR
-
-# Encontrar los archivos FASTQ
-R1=$(find $RAW_DATA_DIR -name "*_1.fastq" -o -name "*_1.fq" | head -n 1)
-R2=$(find $RAW_DATA_DIR -name "*_2.fastq" -o -name "*_2.fq" | head -n 1)
-
-if [ -z "$R1" ] || [ -z "$R2" ]; then
-    echo "Error: No se encontraron archivos FASTQ pares en $RAW_DATA_DIR"
-    exit 1
-fi
-
-BASE_NAME=$(basename $R1 | sed 's/_1\.f\?\(ast\)\?q//g')
-echo "Procesando muestra: $BASE_NAME"
-
-# 1. Calidad de datos crudos
-echo "Ejecutando FastQC en lecturas crudas..."
-fastqc $R1 $R2 -o $QC_RAW_DIR
-
-# 2. Limpieza de lecturas con fastp
-echo "Limpiando lecturas con fastp..."
-fastp -i $R1 -I $R2 \
-      -o $TRIMMED_DIR/${BASE_NAME}_trimmed_1.fastq.gz \
-      -O $TRIMMED_DIR/${BASE_NAME}_trimmed_2.fastq.gz \
-      --detect_adapter_for_pe \
-      --cut_front --cut_tail --cut_window_size 4 --cut_mean_quality 20 \
-      --length_required 50 \
-      --html $TRIMMED_DIR/${BASE_NAME}_fastp_report.html \
-      --json $TRIMMED_DIR/${BASE_NAME}_fastp_report.json
-
-# 3. Calidad de datos limpios
-echo "Ejecutando FastQC en lecturas limpias..."
-fastqc $TRIMMED_DIR/${BASE_NAME}_trimmed_1.fastq.gz \
-       $TRIMMED_DIR/${BASE_NAME}_trimmed_2.fastq.gz \
-       -o $QC_TRIMMED_DIR
-
-echo "Control de calidad y limpieza completados."
-
-3. Trimomatic
-
-#!/bin/bash
-# Script: 02_trimming_trimmomatic.sh
-# Uso: sbatch 02_trimming_trimmomatic.sh
-# Descripción: Realiza el recorte de adaptadores y filtrado de calidad 
-#              de lecturas paired-end usando Trimmomatic.
-
-#SBATCH --job-name=trimmomatic_DRR817419
-#SBATCH --output=logs/%x_%j.out
-#SBATCH --error=logs/%x_%j.err
-#SBATCH --time=00:30:00
-#SBATCH --cpus-per-task=4            # Trimmomatic puede usar múltiples hilos
-#SBATCH --mem=8G
-#SBATCH --partition=standard
-
-# -------------------------------
+#7. ENSAMBLAJE 
+mkdir ensamblaje_t4
+spades.py -o . -1 output_1_paired.fq -2 output_2_paired.fq --careful
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Terminal #2. 
 # 1. Configuración de Rutas
 # -------------------------------
 # Directorio de trabajo: la raíz de tu proyecto (debes cambiarla)
